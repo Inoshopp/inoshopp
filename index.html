@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — ระบบครบครัน</title>
+<title>รหัสสุ่ม SHOP — แอดมินฟังก์ชันจัดเต็ม</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -70,6 +70,7 @@
   .btn-solid:hover{ transform: translateY(-1px); }
   .btn-admin{ background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff; display:none; }
   .btn-wallet { background: linear-gradient(135deg, var(--green), #15803d); color:#fff; }
+  .btn-danger { background: linear-gradient(135deg, #ef4444, #991b1b); color:#fff; }
 
   .crumb{
     padding: 14px 5%; font-size:13px; color: var(--ink-dim);
@@ -141,11 +142,20 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
+  /* Admin Dashboard Styles */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
   }
   .admin-dashboard.active { display: block; }
+  .admin-stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px;
+  }
+  .stat-card {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 15px; text-align: center;
+  }
+  .stat-card .num { font-family: 'Kanit'; font-size: 24px; font-weight: bold; color: var(--yellow); margin-top: 5px; }
+  
   .admin-section-divider { border-top: 1px solid var(--line); margin: 25px 0 20px; padding-top: 20px; }
   .admin-form {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;
@@ -209,7 +219,7 @@
 </head>
 <body>
 
-<div class="topbar">⚡ ร้านสุ่มรหัสเกม — ระบบสมาชิก, เติมเงิน และจัดการแอดมิน</div>
+<div class="topbar">⚡ รหัสสุ่ม SHOP — ระบบแอดมินขั้นสูง ฟังก์ชันจัดเต็ม</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -238,7 +248,7 @@
 
 <div class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบสมาชิกและเติมเงินจริง</div>
+    <div class="hero-eyebrow" id="heroEyebrowView">● สมัครสมาชิกใหม่เริ่มต้น 0 บาท</div>
     <h1 id="heroTitleView">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
     <p id="heroDescView">เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที</p>
   </div>
@@ -347,15 +357,41 @@
 
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการปรับแต่งหน้าปกเว็บ, เพิ่มกล่องสุ่ม และเติมเงินให้ผู้ใช้</p>
+  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้านขั้นสูง (/admin/)</div>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการภาพรวมระบบ, ปรับแต่งหน้าเว็บ, เพิ่มกล่องสุ่ม และจัดการสมาชิก</p>
   
+  <!-- สถิติภาพรวมร้านค้า -->
+  <div class="admin-stats-grid">
+    <div class="stat-card">
+      <div style="font-size:12px; color:var(--ink-dim);">จำนวนกล่องสุ่มทั้งหมด</div>
+      <div class="num" id="statTotalBoxes">0</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:12px; color:var(--ink-dim);">ประวัติการซื้อรวม</div>
+      <div class="num" id="statTotalSales">0</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:12px; color:var(--ink-dim);">ยอดเงินในบัญชีปัจจุบัน</div>
+      <div class="num" id="statUserWallet">0 ฿</div>
+    </div>
+  </div>
+
+  <!-- ระบบจัดการข้อมูลด่วน (Reset & Clear) -->
+  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+    <h4 style="font-family:'Kanit'; font-size:16px; color:#ef4444; margin-bottom:10px;">🛠️ เครื่องมือจัดการและรีเซ็ตระบบ</h4>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button class="btn btn-danger" onclick="adminClearHistory()">🗑️ ล้างประวัติการซื้อทั้งหมด</button>
+      <button class="btn btn-outline" onclick="adminResetWallet()">🔄 รีเซ็ตยอดเงินผู้ใช้เป็น 0</button>
+    </div>
+  </div>
+
+  <!-- เมนูปรับแต่งหน้าปกเว็บ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 ปรับแต่งหน้าปกเว็บไซต์ (Hero Banner)</h4>
     <form onsubmit="handleSaveHeroSettings(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
       <div class="form-group">
         <label>ข้อความป้ายประกาศเล็กด้านบน</label>
-        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบสมาชิกและเติมเงินจริง" required>
+        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● สมัครสมาชิกใหม่เริ่มต้น 0 บาท" required>
       </div>
       <div class="form-group">
         <label>หัวข้อหลัก (Title)</label>
@@ -377,6 +413,7 @@
 
   <div class="admin-section-divider"></div>
 
+  <!-- เมนูเติมเงินให้ผู้ใช้ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -435,22 +472,23 @@
 </div>
 
 <footer>
-  © 2026 รหัสสุ่ม SHOP — แพลตฟอร์มปรับแต่งได้ทั้งหมดผ่าน /admin/
+  © 2026 รหัสสุ่ม SHOP — แพลตฟอร์มแอดมินฟังก์ชันจัดเต็มผ่าน /admin/
 </footer>
 
 <script>
   let currentUser = localStorage.getItem('gs_user') || null;
-  let userWallet = parseFloat(localStorage.getItem('gs_wallet')) || 100;
+  // ตั้งค่าเริ่มต้นยอดเงินสมาชิกใหม่เป็น 0 บาท
+  let userWallet = parseFloat(localStorage.getItem('gs_wallet')) || 0;
   let purchaseHistory = JSON.parse(localStorage.getItem('gs_history')) || [];
   
   let heroSettings = JSON.parse(localStorage.getItem('gs_hero')) || {
-    eyebrow: '● ระบบสมาชิกและเติมเงินจริง',
+    eyebrow: '● สมัครสมาชิกใหม่เริ่มต้น 0 บาท',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
     desc: 'เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v11')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v12')) || [
     { id: 1, name: 'กล่องเริ่มต้น', tier: 'ธรรมดา', price: 19, image: '', frame: 'frame-gold', items: ['[R] ดาบเหล็ก', '[R] ชุดผ้าเก่า', '[SR] ธนูไม้'] },
     { id: 2, name: 'กล่องทอง', tier: 'ยอดนิยม', price: 59, image: '', frame: 'frame-red', items: ['[SR] ดาบอัศวิน', '[SSR] ขวานเทพ'] }
   ];
@@ -489,12 +527,17 @@
     if (heroSettings.bgImage) {
       heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${heroSettings.bgImage}')`;
     }
+
+    // อัปเดตข้อมูลสถิติในหน้าแอดมิน
+    document.getElementById('statTotalBoxes').textContent = products.length;
+    document.getElementById('statTotalSales').textContent = purchaseHistory.length;
+    document.getElementById('statUserWallet').textContent = userWallet.toLocaleString() + ' ฿';
   }
 
   function saveData() {
     localStorage.setItem('gs_wallet', userWallet);
     localStorage.setItem('gs_history', JSON.stringify(purchaseHistory));
-    localStorage.setItem('gs_products_v11', JSON.stringify(products));
+    localStorage.setItem('gs_products_v12', JSON.stringify(products));
     localStorage.setItem('gs_hero', JSON.stringify(heroSettings));
   }
 
@@ -519,6 +562,7 @@
       `;
     });
     grid.innerHTML = html;
+    updateUIState();
   }
 
   function handleSaveHeroSettings(e) {
@@ -539,6 +583,24 @@
     } else {
       saveData(); updateUIState();
       alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
+    }
+  }
+
+  function adminClearHistory() {
+    if (confirm('คุณต้องการล้างประวัติการซื้อทั้งหมดใช่หรือไม่?')) {
+      purchaseHistory = [];
+      saveData();
+      updateUIState();
+      alert('ล้างประวัติการซื้อเรียบร้อยแล้ว');
+    }
+  }
+
+  function adminResetWallet() {
+    if (confirm('คุณต้องการรีเซ็ตยอดเงินผู้ใช้ให้เหลือ 0 บาทใช่หรือไม่?')) {
+      userWallet = 0;
+      saveData();
+      updateUIState();
+      alert('รีเซ็ตยอดเงินสำเร็จ');
     }
   }
 
@@ -633,6 +695,7 @@
     document.getElementById('adminHeroEyebrow').value = heroSettings.eyebrow;
     document.getElementById('adminHeroTitle').value = heroSettings.title;
     document.getElementById('adminHeroDesc').value = heroSettings.desc;
+    updateUIState();
   }
   function toggleAdminDashboard() { document.getElementById('adminDashboard').classList.toggle('active'); }
   function logoutAdmin() {
