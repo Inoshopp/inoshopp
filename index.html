@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — ระบบสมาชิกแยกกระเป๋าเงินอิสระ</title>
+<title>รหัสสุ่ม SHOP — ระบบแก้ไขหน้าเว็บแบบ Canva Builder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -72,6 +72,25 @@
   .btn-wallet { background: linear-gradient(135deg, var(--green), #15803d); color:#fff; }
   .btn-danger { background: linear-gradient(135deg, #ef4444, #991b1b); color:#fff; }
 
+  /* โหมดแก้ไขแบบ Canva เมื่อแอดมินล็อกอิน */
+  body.admin-logged-in [contenteditable="true"] {
+    outline: 2px dashed var(--yellow);
+    outline-offset: 4px;
+    cursor: text;
+    background: rgba(255, 204, 51, 0.08);
+    border-radius: 4px;
+  }
+  body.admin-logged-in .editable-img {
+    position: relative;
+    cursor: pointer;
+  }
+  body.admin-logged-in .editable-img::after {
+    content: '✏️ คลิกเปลี่ยนรูป';
+    position: absolute; top: 10px; right: 10px;
+    background: var(--yellow); color: #000; font-size: 11px;
+    padding: 4px 8px; border-radius: 4px; font-weight: bold; z-index: 10;
+  }
+
   .crumb{
     padding: 14px 5%; font-size:13px; color: var(--ink-dim);
     display:flex; gap:8px; align-items:center; border-bottom:1px solid var(--line);
@@ -80,7 +99,7 @@
 
   .hero{
     margin: 26px 5% 10px; border-radius: 18px; position: relative; overflow:hidden;
-    min-height: 340px; display:flex; align-items:center; justify-content:center;
+    min-height: 360px; display:flex; align-items:center; justify-content:center;
     background:
       linear-gradient(rgba(18, 10, 8, 0.65), rgba(18, 10, 8, 0.65)),
       radial-gradient(circle at 15% 20%, rgba(255,204,51,0.25), transparent 45%),
@@ -88,7 +107,7 @@
     background-size: cover; background-position: center;
     border: 1px solid var(--line);
   }
-  .hero-content{ position:relative; text-align:center; padding: 30px 20px; z-index: 2; }
+  .hero-content{ position:relative; text-align:center; padding: 30px 20px; z-index: 2; width: 100%; max-width: 700px; }
   .hero-eyebrow{
     display:inline-flex; align-items:center; gap:6px;
     background: rgba(255,204,51,0.15); color: var(--yellow);
@@ -142,6 +161,7 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
+  /* Admin Dashboard Styles */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
@@ -218,7 +238,7 @@
 </head>
 <body>
 
-<div class="topbar">⚡ รหัสสุ่ม SHOP — ระบบแยกกระเป๋าเงินและบัญชีอิสระ 100%</div>
+<div class="topbar">✨ โหมด Canva Builder: เมื่อเข้าแอดมิน คุณสามารถคลิกแก้ข้อความบนหน้าเว็บได้ทันที!</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -245,11 +265,12 @@
   🏠 หน้าแรก &nbsp;›&nbsp; หมวดหมู่ทั้งหมด &nbsp;›&nbsp; <b id="crumbTitle">[HOT 🔥] สุ่มรหัสเกม ราคาถูก 🎁</b>
 </div>
 
-<div class="hero" id="home">
+<!-- หน้าปกแบบ Canva Builder (สามารถพิมพ์แก้ไขสดได้เมื่อเป็นแอดมิน) -->
+<div class="hero editable-img" id="home" onclick="triggerBgChange(event)" title="คลิกเพื่อเปลี่ยนรูปพื้นหลังหน้าปก">
   <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบสมาชิกแยกกระเป๋าอิสระ เริ่มต้น 0 บาท</div>
-    <h1 id="heroTitleView">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
-    <p id="heroDescView">เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที</p>
+    <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● ระบบแก้ไขหน้าเว็บแบบ Canva Builder</div>
+    <h1 id="heroTitleView" contenteditable="false">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
+    <p id="heroDescView" contenteditable="false">คลิกที่ข้อความเพื่อแก้ไขข้อความ หรือคลิกที่พื้นหลังเพื่อเปลี่ยนรูปภาพได้ทันทีเมื่อเข้าสู่ระบบแอดมิน</p>
   </div>
 </div>
 
@@ -356,8 +377,8 @@
 
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้านขั้นสูง (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการภาพรวมระบบ, ปรับแต่งหน้าเว็บ, เพิ่มกล่องสุ่ม และจัดการสมาชิก</p>
+  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน Canva Builder (/admin/)</div>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">เปิดโหมดแก้ไขหน้าเว็บสดแล้ว: คุณสามารถคลิกพิมพ์แก้ไขข้อความหรือเปลี่ยนรูปบนหน้าเว็บได้ทันที หรือใช้ฟอร์มด้านล่างนี้ได้ครับ</p>
   
   <div class="admin-stats-grid">
     <div class="stat-card">
@@ -375,45 +396,14 @@
   </div>
 
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:#ef4444; margin-bottom:10px;">🛠️ เครื่องมือจัดการและรีเซ็ตระบบ</h4>
-    <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button class="btn btn-danger" onclick="adminClearAllHistory()">🗑️ ล้างประวัติการซื้อของแอดมิน</button>
-    </div>
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 บันทึกการเปลี่ยนแปลงหน้าเว็บ (Canvas Sync)</h4>
+    <button class="btn btn-solid" style="width: 100%;" onclick="saveCanvasChanges()">💾 บันทึกข้อความและดีไซน์ที่แก้ไขบนหน้าเว็บทั้งหมด</button>
   </div>
-
-  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 ปรับแต่งหน้าปกเว็บไซต์ (Hero Banner)</h4>
-    <form onsubmit="handleSaveHeroSettings(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-      <div class="form-group">
-        <label>ข้อความป้ายประกาศเล็กด้านบน</label>
-        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบสมาชิกแยกกระเป๋าอิสระ" required>
-      </div>
-      <div class="form-group">
-        <label>หัวข้อหลัก (Title)</label>
-        <input type="text" id="adminHeroTitle" class="form-control" placeholder="เช่น วงล้อสุ่มรหัส เกมมือถือ" required>
-      </div>
-      <div class="form-group full">
-        <label>รายละเอียดคำอธิบายหน้าปก</label>
-        <textarea id="adminHeroDesc" class="form-control" rows="2" placeholder="คำอธิบายหน้าเว็บ..." required></textarea>
-      </div>
-      <div class="form-group full">
-        <label>เปลี่ยนรูปภาพพื้นหลังหน้าปก (เลือกรูปจากเครื่อง)</label>
-        <input type="file" id="adminHeroBgFile" class="form-control" accept="image/*">
-      </div>
-      <div class="form-group full">
-        <button type="submit" class="btn btn-solid" style="width: 100%;">💾 บันทึกเปลี่ยนหน้าปกเว็บไซต์ทันที</button>
-      </div>
-    </form>
-  </div>
-
-  <div class="admin-section-divider"></div>
 
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required>
-        <!-- รายชื่อสมาชิกจะอัปเดตอัตโนมัติ -->
-      </select>
+      <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required></select>
       <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน" style="flex: 1; min-width: 160px;" required min="1">
       <button type="submit" class="btn btn-wallet">➕ เติมเงิน</button>
     </form>
@@ -464,23 +454,21 @@
 </div>
 
 <footer>
-  © 2026 รหัสสุ่ม SHOP — ระบบฐานข้อมูลสมาชิกแยกบัญชีอิสระ
+  © 2026 รหัสสุ่ม SHOP — ระบบ Canva Builder สด
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user') || null;
+  let currentUser = localStorage.getItem('gs_current_user_v15') || null;
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v15')) || {};
   
-  // ฐานข้อมูลผู้ใช้ทั้งหมด (เก็บบัญชี กระเป๋าเงิน และประวัติแยกตามอีเมล)
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db')) || {};
-  
-  let heroSettings = JSON.parse(localStorage.getItem('gs_hero')) || {
-    eyebrow: '● ระบบสมาชิกแยกกระเป๋าอิสระ เริ่มต้น 0 บาท',
+  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v15')) || {
+    eyebrow: '● ระบบแก้ไขหน้าเว็บแบบ Canva Builder',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
-    desc: 'เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที',
+    desc: 'คลิกที่ข้อความเพื่อแก้ไขข้อความ หรือคลิกที่พื้นหลังเพื่อเปลี่ยนรูปภาพได้ทันทีเมื่อเข้าสู่ระบบแอดมิน',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v13')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v15')) || [
     { id: 1, name: 'กล่องเริ่มต้น', tier: 'ธรรมดา', price: 19, image: '', frame: 'frame-gold', items: ['[R] ดาบเหล็ก', '[R] ชุดผ้าเก่า', '[SR] ธนูไม้'] },
     { id: 2, name: 'กล่องทอง', tier: 'ยอดนิยม', price: 59, image: '', frame: 'frame-red', items: ['[SR] ดาบอัศวิน', '[SSR] ขวานเทพ'] }
   ];
@@ -490,15 +478,11 @@
 
   function getActiveUserData() {
     if (!currentUser) return { wallet: 0, history: [] };
-    if (!usersDb[currentUser]) {
-      usersDb[currentUser] = { wallet: 0, history: [] };
-    }
+    if (!usersDb[currentUser]) { usersDb[currentUser] = { wallet: 0, history: [] }; }
     return usersDb[currentUser];
   }
 
-  function saveUsersDb() {
-    localStorage.setItem('gs_users_db', JSON.stringify(usersDb));
-  }
+  function saveUsersDb() { localStorage.setItem('gs_users_db_v15', JSON.stringify(usersDb)); }
 
   function updateUIState() {
     const loginBtn = document.getElementById('loginNavBtn');
@@ -525,19 +509,16 @@
       topupBtn.style.display = 'none';
     }
 
-    document.getElementById('heroEyebrowView').textContent = heroSettings.eyebrow;
+    document.getElementById('heroEyebrowView').innerHTML = heroSettings.eyebrow;
     document.getElementById('heroTitleView').innerHTML = heroSettings.title;
-    document.getElementById('heroDescView').textContent = heroSettings.desc;
+    document.getElementById('heroDescView').innerHTML = heroSettings.desc;
     
     const heroEl = document.getElementById('home');
     if (heroSettings.bgImage) {
       heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${heroSettings.bgImage}')`;
     }
 
-    // อัปเดตรายชื่อใน Select แอดมินอัตโนมัติ
     updateAdminUserSelect();
-
-    // สถิติแอดมิน
     document.getElementById('statTotalBoxes').textContent = products.length;
     document.getElementById('statTotalUsers').textContent = Object.keys(usersDb).length;
     document.getElementById('statUserWallet').textContent = userData.wallet.toLocaleString() + ' ฿';
@@ -548,14 +529,14 @@
     if (!selectEl) return;
     let optionsHtml = '<option value="">-- เลือกชื่อบัญชีผู้ใช้ --</option>';
     Object.keys(usersDb).forEach(email => {
-      optionsHtml += `<option value="${email}">${email} (${usersDb[email].wallet} ฿)</option>`;
+      optionsHtml += `<option value="${email}">${email} (ยอดเงิน: ${usersDb[email].wallet} ฿)</option>`;
     });
     selectEl.innerHTML = optionsHtml;
   }
 
   function saveData() {
-    localStorage.setItem('gs_products_v13', JSON.stringify(products));
-    localStorage.setItem('gs_hero', JSON.stringify(heroSettings));
+    localStorage.setItem('gs_products_v15', JSON.stringify(products));
+    localStorage.setItem('gs_hero_v15', JSON.stringify(heroSettings));
     saveUsersDb();
   }
 
@@ -583,34 +564,37 @@
     updateUIState();
   }
 
-  function handleSaveHeroSettings(e) {
-    e.preventDefault();
-    heroSettings.eyebrow = document.getElementById('adminHeroEyebrow').value;
-    heroSettings.title = document.getElementById('adminHeroTitle').value;
-    heroSettings.desc = document.getElementById('adminHeroDesc').value;
+  // ฟังก์ชันเปลี่ยนรูปพื้นหลังหน้าปกแบบ Canva
+  function triggerBgChange(e) {
+    if (sessionStorage.getItem('admin_ok') !== 'true') return;
+    if (e.target.closest('.hero-content')) return; // ถ้าคลิกโดนข้อความไม่ต้องเปลี่ยนรูป
 
-    let fileInput = document.getElementById('adminHeroBgFile');
-    if (fileInput.files && fileInput.files[0]) {
-      let reader = new FileReader();
-      reader.onload = function(evt) {
-        heroSettings.bgImage = evt.target.result;
-        saveData(); updateUIState();
-        alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
-      };
-      reader.readAsDataURL(fileInput.files[0]);
-    } else {
-      saveData(); updateUIState();
-      alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
-    }
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = function(evt) {
+      let file = evt.target.files[0];
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = function(readerEvent) {
+          heroSettings.bgImage = readerEvent.target.result;
+          saveData();
+          updateUIState();
+          alert('เปลี่ยนรูปภาพพื้นหลังหน้าปกสำเร็จ!');
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    input.click();
   }
 
-  function adminClearAllHistory() {
-    if (confirm('คุณต้องการล้างประวัติการซื้อของทุกบัญชีใช่หรือไม่?')) {
-      Object.keys(usersDb).forEach(email => { usersDb[email].history = []; });
-      saveUsersDb();
-      updateUIState();
-      alert('ล้างประวัติสำเร็จ');
-    }
+  // บันทึกข้อความที่แก้ไขสดบนหน้าจอ
+  function saveCanvasChanges() {
+    heroSettings.eyebrow = document.getElementById('heroEyebrowView').innerHTML;
+    heroSettings.title = document.getElementById('heroTitleView').innerHTML;
+    heroSettings.desc = document.getElementById('heroDescView').innerHTML;
+    saveData();
+    alert('บันทึกข้อความทั้งหมดเรียบร้อยแล้ว!');
   }
 
   function openAuthModal() { if(!currentUser) document.getElementById('authModal').classList.add('active'); }
@@ -629,9 +613,8 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user', currentUser);
+    localStorage.setItem('gs_current_user_v15', currentUser);
 
-    // ถ้ายังไม่เคยมีบัญชีนี้ในระบบ ให้สร้างบัญชีใหม่ เริ่มต้นเงิน 0 บาท
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
       saveUsersDb();
@@ -644,7 +627,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user');
+    localStorage.removeItem('gs_current_user_v15');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -710,7 +693,7 @@
     if (document.getElementById('adminPass').value === 'Piano08102556') {
       sessionStorage.setItem('admin_ok', 'true');
       closeLoginModal(); enableAdminMode();
-      alert('เข้าสู่ระบบแอดมินสำเร็จ');
+      alert('เข้าสู่ระบบแอดมินสำเร็จ! เปิดโหมด Canva Builder แก้ไขหน้าเว็บสดแล้ว');
     } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
 
@@ -719,17 +702,25 @@
     document.getElementById('adminDashboard').classList.add('active');
     document.getElementById('logoutAdminBtn').style.display = 'inline-block';
     
-    document.getElementById('adminHeroEyebrow').value = heroSettings.eyebrow;
-    document.getElementById('adminHeroTitle').value = heroSettings.title;
-    document.getElementById('adminHeroDesc').value = heroSettings.desc;
+    // เปิดใช้งานตัวแก้ไขสดบนหน้าจอ (ContentEditable)
+    document.getElementById('heroEyebrowView').setAttribute('contenteditable', 'true');
+    document.getElementById('heroTitleView').setAttribute('contenteditable', 'true');
+    document.getElementById('heroDescView').setAttribute('contenteditable', 'true');
     updateUIState();
   }
+
   function toggleAdminDashboard() { document.getElementById('adminDashboard').classList.toggle('active'); }
+  
   function logoutAdmin() {
     sessionStorage.removeItem('admin_ok');
     document.body.classList.remove('admin-logged-in');
     document.getElementById('adminDashboard').classList.remove('active');
     document.getElementById('logoutAdminBtn').style.display = 'none';
+    
+    document.getElementById('heroEyebrowView').removeAttribute('contenteditable');
+    document.getElementById('heroTitleView').removeAttribute('contenteditable');
+    document.getElementById('heroDescView').removeAttribute('contenteditable');
+    alert('ออกจากระบบแอดมินแล้ว');
   }
 
   function handleAddNewProduct(e) {
