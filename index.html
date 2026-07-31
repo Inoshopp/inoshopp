@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — ระบบร้านค้าและแอดมิน</title>
+<title>รหัสสุ่ม SHOP — ปรับแต่งหน้าปกจากหลังบ้านได้</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -80,14 +80,16 @@
 
   .hero{
     margin: 26px 5% 10px; border-radius: 18px; position: relative; overflow:hidden;
-    min-height: 320px; display:flex; align-items:center; justify-content:center;
+    min-height: 340px; display:flex; align-items:center; justify-content:center;
     background:
+      linear-gradient(rgba(18, 10, 8, 0.65), rgba(18, 10, 8, 0.65)),
       radial-gradient(circle at 15% 20%, rgba(255,204,51,0.25), transparent 45%),
-      radial-gradient(circle at 85% 80%, rgba(255,204,51,0.18), transparent 45%),
       linear-gradient(135deg, var(--red-deep), #6E0F0A 70%);
+    background-size: cover;
+    background-position: center;
     border: 1px solid var(--line);
   }
-  .hero-content{ position:relative; text-align:center; padding: 30px 20px; }
+  .hero-content{ position:relative; text-align:center; padding: 30px 20px; z-index: 2; }
   .hero-eyebrow{
     display:inline-flex; align-items:center; gap:6px;
     background: rgba(255,204,51,0.15); color: var(--yellow);
@@ -95,12 +97,11 @@
     padding:5px 14px; border-radius:999px; margin-bottom:18px;
   }
   .hero h1{
-    font-size: 52px; font-weight:800; line-height:1.15; color:#fff;
-    -webkit-text-stroke: 2px var(--red-deep);
-    text-shadow: 0 6px 0 var(--red-deep), 0 10px 24px rgba(0,0,0,0.5);
+    font-size: 48px; font-weight:800; line-height:1.15; color:#fff;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
     letter-spacing: 1px;
   }
-  .hero h1 .accent{ color: var(--yellow); -webkit-text-stroke: 2px #7a4b00; }
+  .hero h1 .accent{ color: var(--yellow); }
   .hero p{ color: var(--ink-dim); margin-top:16px; font-size:15px; }
 
   .section{ padding: 40px 5% 20px; }
@@ -113,15 +114,13 @@
   .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000;
-    backdrop-filter: blur(6px);
   }
   .modal-overlay.active { display: flex; }
   .modal-box {
     background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
     width: 100%; max-width: 440px; padding: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    text-align: center; position: relative; animation: popUp .25s ease;
+    text-align: center; position: relative;
   }
-  @keyframes popUp { from{ transform: scale(0.8); opacity: 0; } to{ transform: scale(1); opacity: 1; } }
   .modal-box h3 { margin-bottom: 15px; font-size: 22px; color: #fff; }
 
   .topup-tabs { display: flex; gap: 5px; margin-bottom: 15px; background: var(--panel-2); padding: 5px; border-radius: 10px; }
@@ -168,14 +167,14 @@
   }
   .product-card{
     background: var(--panel); border:1px solid var(--line); border-radius:14px;
-    overflow: hidden; display:flex; flex-direction:column; position: relative; transition: transform .2s;
+    overflow: hidden; display:flex; flex-direction:column; position: relative; transition: transform .15s ease;
   }
   .product-card:hover{ transform: translateY(-3px); }
   
-  .product-card.frame-gold { border: 2px solid var(--yellow); box-shadow: 0 0 15px rgba(255,204,51,0.15); }
-  .product-card.frame-red { border: 2px solid var(--red); box-shadow: 0 0 15px rgba(232,41,28,0.2); }
-  .product-card.frame-neon { border: 2px solid #00ffff; box-shadow: 0 0 15px rgba(0,255,255,0.2); }
-  .product-card.frame-purple { border: 2px solid #a855f7; box-shadow: 0 0 15px rgba(168,85,247,0.2); }
+  .product-card.frame-gold { border: 2px solid var(--yellow); }
+  .product-card.frame-red { border: 2px solid var(--red); }
+  .product-card.frame-neon { border: 2px solid #00ffff; }
+  .product-card.frame-purple { border: 2px solid #a855f7; }
 
   .product-img-wrap{
     height: 160px; width: 100%; background: var(--panel-2); position: relative;
@@ -209,16 +208,11 @@
     margin-top:40px; border-top:1px solid var(--line); padding: 24px 5%;
     text-align:center; color: var(--ink-dim); font-size:12.5px;
   }
-  .disclaimer{
-    max-width:680px; margin: 0 auto 14px; font-size:12px; color:#9c7c72;
-    background: rgba(255,255,255,0.02); border:1px solid var(--line);
-    padding:12px 16px; border-radius:10px;
-  }
 </style>
 </head>
 <body>
 
-<div class="topbar">🔥 ร้านสุ่มรหัสเกม — ระบบจัดการแอดมินและเติมเงินให้ผู้ใช้</div>
+<div class="topbar">⚡ ระบบปรับแต่งเว็บไซต์จากหลังบ้าน (/admin/) เปลี่ยนรูปหน้าปกและข้อความได้ทั้งหมด</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -227,35 +221,58 @@
     <a href="#shop">กล่องสุ่มทั้งหมด</a>
     <a onclick="openHistoryModal()">📜 ประวัติการซื้อ</a>
     <a href="#admin" onclick="openAdminRoute(event)" style="color: var(--yellow);">⚙️ /admin/</a>
-    <button class="btn btn-admin" id="logoutBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ</button>
+    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอดมิน)</button>
   </nav>
   
-  <div class="user-wallet-badge">
+  <div class="user-wallet-badge" id="walletBadgeContainer" style="display:none;">
     💰 ยอดเงิน: <span id="walletDisplay">0</span> บาท
   </div>
 
   <div class="header-actions">
-    <button class="btn btn-wallet" onclick="openTopupModal()">💳 เติมเงิน</button>
+    <button class="btn btn-wallet" id="topupBtn" style="display:none;" onclick="openTopupModal()">💳 เติมเงิน</button>
+    <button class="btn btn-solid" id="loginNavBtn" onclick="openAuthModal()">👤 เข้าสู่ระบบ / สมัครสมาชิก</button>
+    <button class="btn btn-outline" id="logoutUserBtn" style="display:none;" onclick="logoutUser()">ออกจากระบบ</button>
   </div>
 </header>
 
 <div class="crumb">
-  🏠 หน้าแรก &nbsp;›&nbsp; หมวดหมู่ทั้งหมด &nbsp;›&nbsp; <b>[HOT 🔥] สุ่มรหัสเกม ราคาถูก 🎁</b>
+  🏠 หน้าแรก &nbsp;›&nbsp; หมวดหมู่ทั้งหมด &nbsp;›&nbsp; <b id="crumbTitle">[HOT 🔥] สุ่มรหัสเกม ราคาถูก 🎁</b>
 </div>
 
+<!-- ส่วนหน้าปก (Hero Section) ที่ปรับแต่งได้จากแอดมิน -->
 <div class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-eyebrow">● ระบบเติมเงินจริง & แอดมินจัดการหลังบ้าน</div>
-    <h1>วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
-    <p>เลือกช่องทางเติมเงิน TrueMoney ซองอังเปา หรือ QR Code พร้อมเพย์ และกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที</p>
+    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบเสถียรและรวดเร็ว 100%</div>
+    <h1 id="heroTitleView">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
+    <p id="heroDescView">ระบบจัดการเสถียร รวดเร็ว ไม่มีสะดุด ปลอดภัยทุกการใช้งาน</p>
   </div>
 </div>
 
-<!-- หน้าต่าง Login แอดมิน (/admin/) -->
+<!-- Modal: Login / Register -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <h3 id="authModalTitle">👤 เข้าสู่ระบบสมาชิก</h3>
+    <form onsubmit="handleUserAuth(event)">
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label>อีเมลสมาชิก</label>
+        <input type="email" id="authUserEmail" class="form-control" placeholder="user@gmail.com" required>
+      </div>
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label>รหัสผ่าน</label>
+        <input type="password" id="authPassword" class="form-control" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-solid" id="authSubmitBtn" style="width:100%; margin-bottom: 10px;">เข้าสู่ระบบ</button>
+      <button type="button" class="btn btn-outline" style="width:100%; font-size:13px;" onclick="toggleAuthMode()" id="authSwitchToggleBtn">ยังไม่มีบัญชี? สมัครสมาชิกใหม่</button>
+    </form>
+    <button class="btn btn-outline" style="width: 100%; margin-top: 10px; border:none; color:var(--ink-dim);" onclick="closeAuthModal()">ปิดหน้าต่าง</button>
+  </div>
+</div>
+
+<!-- Modal: Admin Login -->
 <div class="modal-overlay" id="adminLoginModal">
   <div class="modal-box">
-    <h3>🔐 เข้าสู่ระบบผู้ดูแลระบบ (/admin/)</h3>
-    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">กรุณากรอกรหัสผ่านผู้ดูแลระบบ</p>
+    <h3>🔐 เข้าสู่ระบบผู้ดูแลระบบ</h3>
+    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">กรุณากรอกรหัสผ่านแอดมิน</p>
     <form onsubmit="handleAdminLogin(event)">
       <div class="form-group" style="margin-bottom: 15px;">
         <label>รหัสผ่านแอดมิน</label>
@@ -263,24 +280,22 @@
       </div>
       <div style="display:flex; gap:10px;">
         <button type="submit" class="btn btn-solid" style="flex:1;">เข้าสู่ระบบ</button>
-        <button type="button" class="btn btn-outline" onclick="closeLoginModal()">ยกเลิก</button>
+        <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeLoginModal()">ยกเลิก</button>
       </div>
     </form>
   </div>
 </div>
 
-<!-- หน้าต่างเติมเงินจริง (Topup Modal) -->
+<!-- Modal: Topup -->
 <div class="modal-overlay" id="topupModal">
   <div class="modal-box" style="max-width: 480px;">
     <h3>💳 เติมเงินเข้าระบบ</h3>
-    
     <div class="topup-tabs">
       <button class="topup-tab-btn active" onclick="switchTopupTab('truemoney', this)">🧧 ซองอังเปา TrueMoney</button>
       <button class="topup-tab-btn" onclick="switchTopupTab('promptpay', this)">📱 สแกน QR พร้อมเพย์</button>
     </div>
-
     <div class="topup-content active" id="tab-truemoney">
-      <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">สร้างซองของขวัญจากแอป TrueMoney (แบบจำนวนเงินเท่ากัน) แล้วนำลิงก์มาวางด้านล่าง</p>
+      <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">สร้างซองของขวัญจากแอป TrueMoney แล้วนำลิงก์มาวางด้านล่าง</p>
       <form onsubmit="handleTrueMoneyTopup(event)">
         <div class="form-group" style="margin-bottom: 15px;">
           <label>ลิงก์ซองของขวัญ TrueMoney</label>
@@ -289,31 +304,28 @@
         <button type="submit" class="btn btn-solid" style="width: 100%;">ยืนยันเติมเงินซองอังเปา</button>
       </form>
     </div>
-
     <div class="topup-content" id="tab-promptpay">
       <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">สแกน QR Code ผ่านแอปธนาคารเพื่อเติมเงินอัตโนมัติ</p>
       <div style="background:#fff; padding:15px; border-radius:10px; display:inline-block; margin-bottom:10px;">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PROMPTPAY_MOCKUP_QR" alt="PromptPay QR" style="display:block; margin:0 auto;">
       </div>
-      <p style="font-size:12px; color:var(--yellow); margin-bottom:15px;">เลขพร้อมเพย์: 0xx-xxx-xxxx (ชื่อบัญชี: ร้านสุ่มรหัสเกม)</p>
-      <button class="btn btn-wallet" style="width: 100%;" onclick="simulatePromptPaySuccess()">จำลองการโอนสำเร็จ (ทดสอบระบบ)</button>
+      <p style="font-size:12px; color:var(--yellow); margin-bottom:15px;">เลขพร้อมเพย์: 0xx-xxx-xxxx</p>
+      <button class="btn btn-wallet" style="width: 100%;" onclick="simulatePromptPaySuccess()">จำลองการโอนสำเร็จ (ทดสอบ)</button>
     </div>
-
     <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" onclick="closeTopupModal()">ปิดหน้าต่าง</button>
   </div>
 </div>
 
-<!-- หน้าต่างประวัติการซื้อย้อนหลัง -->
+<!-- Modal: History -->
 <div class="modal-overlay" id="historyModal">
   <div class="modal-box history-box">
     <h3>📜 ประวัติการซื้อกล่องสุ่มย้อนหลัง</h3>
-    <p style="font-size:13px; color:var(--ink-dim);">รายการกล่องและไอเทมที่คุณเคยได้รับทั้งหมด</p>
     <div class="history-list" id="historyListContainer"></div>
     <button class="btn btn-solid" style="width: 100%;" onclick="closeHistoryModal()">ปิดหน้าต่าง</button>
   </div>
 </div>
 
-<!-- หน้าต่างยืนยันการซื้อ -->
+<!-- Modal: Confirm Purchase -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal-box confirm-box">
     <div style="font-size: 13px; color: var(--red); font-weight: bold; margin-bottom: 5px;">⚠️ ยืนยันการทำรายการ</div>
@@ -326,7 +338,7 @@
   </div>
 </div>
 
-<!-- หน้าต่างแสดงรางวัล -->
+<!-- Modal: Reward -->
 <div class="modal-overlay" id="rewardModal">
   <div class="modal-box reward-box">
     <div style="font-size: 13px; color: var(--yellow); font-weight: bold; margin-bottom: 5px;">🎉 ยินดีด้วย คุณได้รับรางวัล!</div>
@@ -337,22 +349,50 @@
   </div>
 </div>
 
-<!-- ระบบหลังบ้าน Dashboard (/admin/) -->
+<!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการกล่องสุ่มสินค้า และเติมเงินให้ผู้ใช้โดยเลือกชื่อบัญชี</p>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการปรับแต่งหน้าปกเว็บ, เพิ่มกล่องสุ่ม และเติมเงินให้ผู้ใช้</p>
   
+  <!-- เมนูปรับแต่งหน้าปกเว็บ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้ (เลือกชื่อบัญชี)</h4>
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 ปรับแต่งหน้าปกเว็บไซต์ (Hero Banner)</h4>
+    <form onsubmit="handleSaveHeroSettings(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+      <div class="form-group">
+        <label>ข้อความป้ายประกาศเล็กด้านบน</label>
+        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบเสถียรและรวดเร็ว 100%" required>
+      </div>
+      <div class="form-group">
+        <label>หัวข้อหลัก (Title)</label>
+        <input type="text" id="adminHeroTitle" class="form-control" placeholder="เช่น วงล้อสุ่มรหัส เกมมือถือ" required>
+      </div>
+      <div class="form-group full">
+        <label>รายละเอียดคำอธิบายหน้าปก</label>
+        <textarea id="adminHeroDesc" class="form-control" rows="2" placeholder="คำอธิบายหน้าเว็บ..." required></textarea>
+      </div>
+      <div class="form-group full">
+        <label>เปลี่ยนรูปภาพพื้นหลังหน้าปก (เลือกรูปจากเครื่อง)</label>
+        <input type="file" id="adminHeroBgFile" class="form-control" accept="image/*">
+      </div>
+      <div class="form-group full">
+        <button type="submit" class="btn btn-solid" style="width: 100%;">💾 บันทึกเปลี่ยนหน้าปกเว็บไซต์ทันที</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="admin-section-divider"></div>
+
+  <!-- เมนูเติมเงินให้ผู้ใช้ -->
+  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
       <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required>
         <option value="">-- เลือกชื่อบัญชีผู้ใช้ --</option>
-        <option value="user_default">บัญชีผู้ใช้งานทั่วไปหลัก (Current User)</option>
+        <option value="user_general">บัญชีทั่วไป</option>
         <option value="boyburing@gmail.com">boyburing@gmail.com</option>
-        <option value="player123@gmail.com">player123@gmail.com</option>
       </select>
-      <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน (เช่น 500)" style="flex: 1; min-width: 160px;" required min="1">
-      <button type="submit" class="btn btn-wallet">➕ เติมเงินให้บัญชีนี้</button>
+      <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน" style="flex: 1; min-width: 160px;" required min="1">
+      <button type="submit" class="btn btn-wallet">➕ เติมเงิน</button>
     </form>
   </div>
 
@@ -362,35 +402,35 @@
   <form class="admin-form" id="addProductForm" onsubmit="handleAddNewProduct(event)">
     <div class="form-group">
       <label>ชื่อกล่องสุ่ม</label>
-      <input type="text" id="pName" class="form-control" placeholder="เช่น กล่องดาบมังกรไฟ" required>
+      <input type="text" id="pName" class="form-control" placeholder="ชื่อกล่อง" required>
     </div>
     <div class="form-group">
       <label>ระดับกล่อง (Tier)</label>
-      <input type="text" id="pTier" class="form-control" placeholder="เช่น แรร์พิเศษ, เทพเจ้า" required>
+      <input type="text" id="pTier" class="form-control" placeholder="ระดับ" required>
     </div>
     <div class="form-group">
       <label>ราคา (บาท)</label>
-      <input type="number" id="pPrice" class="form-control" placeholder="เช่น 99" required>
+      <input type="number" id="pPrice" class="form-control" placeholder="ราคา" required>
     </div>
     <div class="form-group">
-      <label>เลือกรูปภาพจากไฟล์ในเครื่อง</label>
+      <label>รูปภาพกล่องสุ่ม</label>
       <input type="file" id="pImageFile" class="form-control" accept="image/*">
     </div>
     <div class="form-group">
-      <label>เลือกกรอบดีไซน์กล่อง</label>
+      <label>เลือกกรอบดีไซน์</label>
       <select id="pFrame" class="form-control">
-        <option value="frame-gold">🟡 กรอบทองคำ (Gold)</option>
-        <option value="frame-red">🔴 กรอบสีแดงไฟลุก (Red)</option>
-        <option value="frame-neon">🔵 กรอบนีออนฟ้า (Neon Cyan)</option>
-        <option value="frame-purple">🟣 กรอบม่วงเวทมนตร์ (Purple)</option>
+        <option value="frame-gold">🟡 กรอบทองคำ</option>
+        <option value="frame-red">🔴 กรอบสีแดง</option>
+        <option value="frame-neon">🔵 กรอบนีออน</option>
+        <option value="frame-purple">🟣 กรอบม่วง</option>
       </select>
     </div>
     <div class="form-group full">
-      <label>รายการไอเทมที่จะออกในกล่องนี้ (คั่นแต่ละรายการด้วยเครื่องหมายจุลภาค ,)</label>
-      <textarea id="pItems" class="form-control" rows="3" placeholder="[SSR] ดาบมังกรไฟ +9, [SR] ปีกเทพเจ้า, [R] ชุดเกราะเหล็ก, [R] เพชร 500 เม็ด" required></textarea>
+      <label>รายการไอเทม (คั่นด้วยจุลภาค ,)</label>
+      <textarea id="pItems" class="form-control" rows="3" placeholder="[SSR] ดาบ, [SR] ปีก" required></textarea>
     </div>
     <div class="form-group full" style="margin-top: 5px;">
-      <button type="submit" class="btn btn-solid" style="width: 100%;">💾 บันทึกสร้างกล่องสุ่มใหม่</button>
+      <button type="submit" class="btn btn-solid" style="width: 100%;">💾 บันทึกสร้างกล่องสุ่ม</button>
     </div>
   </form>
 </div>
@@ -401,301 +441,288 @@
 </div>
 
 <footer>
-  <div class="disclaimer">
-    ระบบครบวงจร HTML Single-file รองรับทั้งเติมเงิน TrueMoney, พร้อมเพย์, ประวัติการซื้อ และแอดมิน /admin/
-  </div>
-  © 2026 รหัสสุ่ม SHOP — แพลตฟอร์มจำลองกล่องสุ่มเกม
+  © 2026 รหัสสุ่ม SHOP — แพลตฟอร์มปรับแต่งได้ทั้งหมดผ่าน /admin/
 </footer>
 
 <script>
-  let userWallet = parseFloat(localStorage.getItem('game_shop_wallet')) || 100;
-  let purchaseHistory = JSON.parse(localStorage.getItem('game_shop_history')) || [];
+  let currentUser = localStorage.getItem('gs_user') || null;
+  let userWallet = parseFloat(localStorage.getItem('gs_wallet')) || 100;
+  let purchaseHistory = JSON.parse(localStorage.getItem('gs_history')) || [];
   
-  let products = JSON.parse(localStorage.getItem('game_shop_products_v7')) || [
-    { 
-      id: 1, 
-      name: 'กล่องเริ่มต้น', 
-      tier: 'ธรรมดา', 
-      price: 19, 
-      image: '', 
-      frame: 'frame-gold', 
-      items: ['[R] ไอดีเริ่มต้น ดาบเหล็ก', '[R] ชุดผ้าเก่า +1', '[SR] ธนูไม้ป่า', '[R] ยาฟื้นฟูเลือด x10'] 
-    },
-    { 
-      id: 2, 
-      name: 'กล่องทอง', 
-      tier: 'ยอดนิยม', 
-      price: 59, 
-      image: '', 
-      frame: 'frame-red', 
-      items: ['[SR] ดาบอัศวินเงิน', '[SR] ปีกภูตลม', '[SSR] ขวานยักษ์ทลายภูผา', '[R] เพชร 300 เม็ด'] 
-    }
+  // ข้อมูลตั้งค่าหน้าปก (Hero Banner)
+  let heroSettings = JSON.parse(localStorage.getItem('gs_hero')) || {
+    eyebrow: '● ระบบเสถียรและรวดเร็ว 100%',
+    title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
+    desc: 'ระบบจัดการเสถียร รวดเร็ว ไม่มีสะดุด ปลอดภัยทุกการใช้งาน',
+    bgImage: ''
+  };
+
+  let products = JSON.parse(localStorage.getItem('gs_products_v10')) || [
+    { id: 1, name: 'กล่องเริ่มต้น', tier: 'ธรรมดา', price: 19, image: '', frame: 'frame-gold', items: ['[R] ดาบเหล็ก', '[R] ชุดผ้าเก่า', '[SR] ธนูไม้'] },
+    { id: 2, name: 'กล่องทอง', tier: 'ยอดนิยม', price: 59, image: '', frame: 'frame-red', items: ['[SR] ดาบอัศวิน', '[SSR] ขวานเทพ'] }
   ];
 
   let selectedProductIndex = null;
+  let isRegisterMode = false;
 
-  function updateWalletDisplay() {
-    document.getElementById('walletDisplay').textContent = userWallet.toLocaleString();
-    localStorage.setItem('game_shop_wallet', userWallet);
+  function updateUIState() {
+    const loginBtn = document.getElementById('loginNavBtn');
+    const logoutUserBtn = document.getElementById('logoutUserBtn');
+    const walletContainer = document.getElementById('walletBadgeContainer');
+    const topupBtn = document.getElementById('topupBtn');
+
+    if (currentUser) {
+      loginBtn.textContent = '👤 ' + currentUser;
+      loginBtn.style.background = 'var(--panel-2)';
+      loginBtn.style.color = 'var(--yellow)';
+      logoutUserBtn.style.display = 'inline-block';
+      walletContainer.style.display = 'flex';
+      topupBtn.style.display = 'inline-block';
+      document.getElementById('walletDisplay').textContent = userWallet.toLocaleString();
+    } else {
+      loginBtn.textContent = '👤 เข้าสู่ระบบ / สมัครสมาชิก';
+      loginBtn.style.background = 'linear-gradient(135deg, var(--yellow), #FFA733)';
+      loginBtn.style.color = '#3a1c00';
+      logoutUserBtn.style.display = 'none';
+      walletContainer.style.display = 'none';
+      topupBtn.style.display = 'none';
+    }
+
+    // อัปเดตการแสดงผลหน้าปกเว็บ
+    document.getElementById('heroEyebrowView').textContent = heroSettings.eyebrow;
+    document.getElementById('heroTitleView').innerHTML = heroSettings.title;
+    document.getElementById('heroDescView').textContent = heroSettings.desc;
+    
+    const heroEl = document.getElementById('home');
+    if (heroSettings.bgImage) {
+      heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${heroSettings.bgImage}')`;
+    }
   }
 
-  function saveProducts() {
-    localStorage.setItem('game_shop_products_v7', JSON.stringify(products));
-  }
-
-  function saveHistory() {
-    localStorage.setItem('game_shop_history', JSON.stringify(purchaseHistory));
+  function saveData() {
+    localStorage.setItem('gs_wallet', userWallet);
+    localStorage.setItem('gs_history', JSON.stringify(purchaseHistory));
+    localStorage.setItem('gs_products_v10', JSON.stringify(products));
+    localStorage.setItem('gs_hero', JSON.stringify(heroSettings));
   }
 
   function renderProducts() {
     const grid = document.getElementById('productGrid');
-    grid.innerHTML = '';
+    let html = '';
 
     products.forEach((p, index) => {
-      let imgContent = p.image 
-        ? `<img src="${p.image}" alt="${p.name}">` 
-        : `<div class="product-img-placeholder">🎁 ${p.name}</div>`;
-
-      const card = document.createElement('div');
-      card.className = `product-card ${p.frame}`;
-      card.innerHTML = `
-        <button class="delete-item-btn" onclick="deleteProduct(${index})" title="ลบกล่องนี้">🗑️</button>
-        <div class="product-img-wrap">
-          ${imgContent}
-        </div>
-        <div class="product-card-body">
-          <div class="tier">${p.tier}</div>
-          <h4>${p.name}</h4>
-          <div class="price">฿${p.price}<span> / ครั้ง</span></div>
-          <p style="font-size:12px; color:var(--ink-dim);">ไอเทมในกล่อง: ${p.items.length} รายการ</p>
-          <button class="buy-btn" onclick="promptPurchase(${index})">🛒 ซื้อ (฿${p.price})</button>
+      let imgContent = p.image ? `<img src="${p.image}" alt="${p.name}">` : `<div class="product-img-placeholder">🎁 ${p.name}</div>`;
+      html += `
+        <div class="product-card ${p.frame}">
+          <button class="delete-item-btn" onclick="deleteProduct(${index})" title="ลบ">🗑️</button>
+          <div class="product-img-wrap">${imgContent}</div>
+          <div class="product-card-body">
+            <div class="tier">${p.tier}</div>
+            <h4>${p.name}</h4>
+            <div class="price">฿${p.price}<span> / ครั้ง</span></div>
+            <p style="font-size:12px; color:var(--ink-dim);">ไอเทม: ${p.items.length} รายการ</p>
+            <button class="buy-btn" onclick="promptPurchase(${index})">🛒 ซื้อ (฿${p.price})</button>
+          </div>
         </div>
       `;
-      grid.appendChild(card);
     });
+    grid.innerHTML = html;
+  }
+
+  // ฟังก์ชันบันทึกการเปลี่ยนหน้าปกจากแอดมิน
+  function handleSaveHeroSettings(e) {
+    e.preventDefault();
+    heroSettings.eyebrow = document.getElementById('adminHeroEyebrow').value;
+    heroSettings.title = document.getElementById('adminHeroTitle').value;
+    heroSettings.desc = document.getElementById('adminHeroDesc').value;
+
+    let fileInput = document.getElementById('adminHeroBgFile');
+    if (fileInput.files && fileInput.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function(evt) {
+        heroSettings.bgImage = evt.target.result;
+        saveData();
+        updateUIState();
+        alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      saveData();
+      updateUIState();
+      alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
+    }
+  }
+
+  function openAuthModal() { if(!currentUser) document.getElementById('authModal').classList.add('active'); }
+  function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
+
+  function toggleAuthMode() {
+    isRegisterMode = !isRegisterMode;
+    document.getElementById('authModalTitle').textContent = isRegisterMode ? '📝 สมัครสมาชิกใหม่' : '👤 เข้าสู่ระบบสมาชิก';
+    document.getElementById('authSubmitBtn').textContent = isRegisterMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+    document.getElementById('authSwitchToggleBtn').textContent = isRegisterMode ? 'มีบัญชีอยู่แล้ว? เข้าสู่ระบบ' : 'ยังไม่มีบัญชี? สมัครสมาชิกใหม่';
+  }
+
+  function handleUserAuth(e) {
+    e.preventDefault();
+    currentUser = document.getElementById('authUserEmail').value;
+    localStorage.setItem('gs_user', currentUser);
+    updateUIState();
+    closeAuthModal();
+    alert('สำเร็จ!');
+  }
+
+  function logoutUser() {
+    currentUser = null;
+    localStorage.removeItem('gs_user');
+    updateUIState();
+    alert('ออกจากระบบแล้ว');
   }
 
   function switchTopupTab(tabName, btnEl) {
-    document.querySelectorAll('.topup-tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.topup-content').forEach(content => content.classList.remove('active'));
-    
+    document.querySelectorAll('.topup-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.topup-content').forEach(c => c.classList.remove('active'));
     btnEl.classList.add('active');
     document.getElementById('tab-' + tabName).classList.add('active');
   }
 
   function openTopupModal() {
+    if (!currentUser) { openAuthModal(); return; }
     document.getElementById('topupModal').classList.add('active');
   }
-  function closeTopupModal() {
-    document.getElementById('topupModal').classList.remove('active');
-  }
+  function closeTopupModal() { document.getElementById('topupModal').classList.remove('active'); }
 
   function handleTrueMoneyTopup(e) {
     e.preventDefault();
-    const link = document.getElementById('giftLinkInput').value;
-    if (!link.includes('truemoney.com')) {
-      alert('ลิงก์ซองของขวัญ TrueMoney ไม่ถูกต้อง!');
-      return;
-    }
-
-    const addedAmount = 100;
-    userWallet += addedAmount;
-    updateWalletDisplay();
+    userWallet += 100;
+    saveData();
+    updateUIState();
     closeTopupModal();
-    document.getElementById('giftLinkInput').value = '';
-    alert(`🎉 เติมเงินสำเร็จผ่านซอง TrueMoney! ได้รับเงินเข้ากระเป๋า +${addedAmount} บาท`);
+    alert('เติมเงินสำเร็จ +100 บาท');
   }
 
   function simulatePromptPaySuccess() {
-    const addedAmount = 300;
-    userWallet += addedAmount;
-    updateWalletDisplay();
+    userWallet += 300;
+    saveData();
+    updateUIState();
     closeTopupModal();
-    alert(`🎉 ตรวจพบยอดโอนผ่าน QR พร้อมเพย์สำเร็จ! เพิ่มเงินเข้ากระเป๋า +${addedAmount} บาท`);
+    alert('โอนผ่าน QR สำเร็จ +300 บาท');
   }
 
-  // ระบบแอดมินเติมเงินให้ผู้ใช้ (เลือกชื่อบัญชี)
   function handleAdminAddMoney(e) {
     e.preventDefault();
-    const targetUser = document.getElementById('adminTargetUser').value;
-    const amount = parseFloat(document.getElementById('adminTopupAmount').value);
-    
-    if (!targetUser) {
-      alert('กรุณาเลือกชื่อบัญชีผู้ใช้ที่ต้องการเติมเงิน');
-      return;
-    }
-    if (isNaN(amount) || amount <= 0) return;
-
-    userWallet += amount;
-    updateWalletDisplay();
-    document.getElementById('adminTopupAmount').value = '';
-    document.getElementById('adminTargetUser').value = '';
-    alert(`แอดมินเติมเงินสำเร็จ! เพิ่มเงิน +${amount.toLocaleString()} บาท ให้กับบัญชี (${targetUser}) เรียบร้อย`);
+    let amt = parseFloat(document.getElementById('adminTopupAmount').value);
+    userWallet += amt;
+    saveData();
+    updateUIState();
+    alert('เติมเงินให้ผู้ใช้สำเร็จ');
   }
 
   function openHistoryModal() {
-    const container = document.getElementById('historyListContainer');
-    container.innerHTML = '';
-
-    if (purchaseHistory.length === 0) {
-      container.innerHTML = `<p style="text-align:center; color:var(--ink-dim); padding:20px;">ยังไม่มีประวัติการซื้อกล่องสุ่ม</p>`;
-    } else {
-      purchaseHistory.slice().reverse().forEach(h => {
-        const itemEl = document.createElement('div');
-        itemEl.className = 'history-item';
-        itemEl.innerHTML = `
-          <div>
-            <div style="font-weight:bold; color:#fff;">🎁 ${h.boxName} <span style="color:var(--yellow); font-size:12px;">(฿${h.price})</span></div>
-            <div style="font-size:12px; color:var(--green);">ได้รับ: ${h.itemWon}</div>
-            <div style="font-family:monospace; font-size:11px; color:var(--ink-dim);">${h.code}</div>
-          </div>
-          <div style="font-size:11px; color:var(--ink-dim); text-align:right;">${h.time}</div>
-        `;
-        container.appendChild(itemEl);
-      });
-    }
+    let c = document.getElementById('historyListContainer');
+    c.innerHTML = purchaseHistory.length === 0 ? '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ไม่มีประวัติ</p>' : 
+      purchaseHistory.slice().reverse().map(h => `<div class="history-item"><div><b>🎁 ${h.boxName}</b> (฿${h.price})<br><span style="color:var(--green)">${h.itemWon}</span></div><div style="font-size:11px">${h.time}</div></div>`).join('');
     document.getElementById('historyModal').classList.add('active');
   }
-  function closeHistoryModal() {
-    document.getElementById('historyModal').classList.remove('active');
-  }
+  function closeHistoryModal() { document.getElementById('historyModal').classList.remove('active'); }
 
   function openAdminRoute(e) {
     e.preventDefault();
-    if (sessionStorage.getItem('admin_logged_in') === 'true') {
+    if (sessionStorage.getItem('admin_ok') === 'true') {
       toggleAdminDashboard();
     } else {
       document.getElementById('adminLoginModal').classList.add('active');
     }
   }
-
-  function closeLoginModal() {
-    document.getElementById('adminLoginModal').classList.remove('active');
-  }
+  function closeLoginModal() { document.getElementById('adminLoginModal').classList.remove('active'); }
 
   function handleAdminLogin(e) {
     e.preventDefault();
-    // รหัสผ่านแอดมินคือ Piano08102556
     if (document.getElementById('adminPass').value === 'Piano08102556') {
-      sessionStorage.setItem('admin_logged_in', 'true');
+      sessionStorage.setItem('admin_ok', 'true');
       closeLoginModal();
-      document.getElementById('adminPass').value = '';
       enableAdminMode();
-      alert('เข้าสู่ระบบหลังบ้านสำเร็จ!');
-    } else {
-      alert('รหัสผ่านแอดมินไม่ถูกต้อง!');
-    }
+      alert('เข้าสู่ระบบแอดมินสำเร็จ');
+    } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
 
   function enableAdminMode() {
     document.body.classList.add('admin-logged-in');
     document.getElementById('adminDashboard').classList.add('active');
-    document.getElementById('logoutBtn').style.display = 'inline-block';
-    document.getElementById('adminDashboard').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('logoutAdminBtn').style.display = 'inline-block';
+    
+    // เติมค่าฟอร์มหน้าปกเดิมลงในช่องแอดมิน
+    document.getElementById('adminHeroEyebrow').value = heroSettings.eyebrow;
+    document.getElementById('adminHeroTitle').value = heroSettings.title;
+    document.getElementById('adminHeroDesc').value = heroSettings.desc;
   }
-
-  function toggleAdminDashboard() {
-    const dash = document.getElementById('adminDashboard');
-    dash.classList.toggle('active');
-    if(dash.classList.contains('active')) dash.scrollIntoView({ behavior: 'smooth' });
-  }
-
+  function toggleAdminDashboard() { document.getElementById('adminDashboard').classList.toggle('active'); }
   function logoutAdmin() {
-    sessionStorage.removeItem('admin_logged_in');
+    sessionStorage.removeItem('admin_ok');
     document.body.classList.remove('admin-logged-in');
     document.getElementById('adminDashboard').classList.remove('active');
-    document.getElementById('logoutBtn').style.display = 'none';
-    alert('ออกจากระบบเรียบร้อยแล้ว');
+    document.getElementById('logoutAdminBtn').style.display = 'none';
   }
 
   function handleAddNewProduct(e) {
     e.preventDefault();
-    const name = document.getElementById('pName').value;
-    const tier = document.getElementById('pTier').value;
-    const price = parseFloat(document.getElementById('pPrice').value);
-    const frame = document.getElementById('pFrame').value;
-    const items = document.getElementById('pItems').value.split(',').map(i => i.trim()).filter(i => i);
+    let name = document.getElementById('pName').value;
+    let tier = document.getElementById('pTier').value;
+    let price = parseFloat(document.getElementById('pPrice').value);
+    let frame = document.getElementById('pFrame').value;
+    let items = document.getElementById('pItems').value.split(',').map(i => i.trim()).filter(Boolean);
 
-    const fileInput = document.getElementById('pImageFile');
+    let fileInput = document.getElementById('pImageFile');
     if (fileInput.files && fileInput.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) { saveNewProductData(name, tier, price, frame, items, e.target.result); };
+      let reader = new FileReader();
+      reader.onload = function(evt) {
+        products.push({ id: Date.now(), name, tier, price, frame, items, image: evt.target.result });
+        saveData(); renderProducts();
+        document.getElementById('addProductForm').reset();
+        alert('เพิ่มกล่องสำเร็จ');
+      };
       reader.readAsDataURL(fileInput.files[0]);
     } else {
-      saveNewProductData(name, tier, price, frame, items, '');
+      products.push({ id: Date.now(), name, tier, price, frame, items, image: '' });
+      saveData(); renderProducts();
+      document.getElementById('addProductForm').reset();
+      alert('เพิ่มกล่องสำเร็จ');
     }
-  }
-
-  function saveNewProductData(name, tier, price, frame, items, imageBase64) {
-    products.push({ id: Date.now(), name, tier, price, frame, items, image: imageBase64 });
-    saveProducts();
-    renderProducts();
-    document.getElementById('addProductForm').reset();
-    alert('สร้างกล่องสุ่มสำเร็จ!');
   }
 
   function deleteProduct(index) {
-    if(confirm('ต้องการลบกล่องสุ่มนี้ใช่หรือไม่?')) {
-      products.splice(index, 1);
-      saveProducts();
-      renderProducts();
-    }
+    if(confirm('ลบกล่องนี้?')) { products.splice(index, 1); saveData(); renderProducts(); }
   }
 
   function promptPurchase(index) {
-    const product = products[index];
-    if (!product.items || product.items.length === 0) {
-      alert('กล่องนี้ยังไม่มีไอเทมข้างใน กรุณาเพิ่มไอเทมผ่าน /admin/');
-      return;
-    }
-    if (userWallet < product.price) {
-      alert('ยอดเงินในกระเป๋าไม่เพียงพอ! กรุณากดปุ่ม [เติมเงิน]');
-      return;
-    }
+    if (!currentUser) { openAuthModal(); return; }
+    let p = products[index];
+    if (userWallet < p.price) { alert('เงินไม่พอ!'); return; }
     selectedProductIndex = index;
-    document.getElementById('confirmBoxDetails').innerHTML = `คุณต้องการซื้อ <b>"${product.name}"</b> ในราคา <span style="color:var(--yellow)">฿${product.price}</span><br>ยอดเงินคงเหลือหลังหัก: <b>฿${(userWallet - product.price).toLocaleString()}</b>`;
+    document.getElementById('confirmBoxDetails').innerHTML = `ซื้อ <b>"${p.name}"</b> ราคา ฿${p.price}`;
     document.getElementById('confirmModal').classList.add('active');
   }
-
-  function closeConfirmModal() {
-    document.getElementById('confirmModal').classList.remove('active');
-    selectedProductIndex = null;
-  }
+  function closeConfirmModal() { document.getElementById('confirmModal').classList.remove('active'); }
 
   function executePurchase() {
-    if (selectedProductIndex === null) return;
-    const product = products[selectedProductIndex];
-    
-    userWallet -= product.price;
-    updateWalletDisplay();
-    closeConfirmModal();
+    let p = products[selectedProductIndex];
+    userWallet -= p.price;
+    let won = p.items[Math.floor(Math.random() * p.items.length)];
+    let code = 'CODE-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+    purchaseHistory.push({ boxName: p.name, price: p.price, itemWon: won, code, time: new Date().toLocaleTimeString() });
+    saveData(); updateUIState(); closeConfirmModal();
 
-    const randomItem = product.items[Math.floor(Math.random() * product.items.length)];
-    const randomCode = 'CODE-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
-    
-    purchaseHistory.push({
-      boxName: product.name,
-      price: product.price,
-      itemWon: randomItem,
-      code: randomCode,
-      time: new Date().toLocaleString('th-TH')
-    });
-    saveHistory();
-
-    document.getElementById('rewardBoxTitle').textContent = product.name;
-    document.getElementById('rewardCodeText').textContent = randomCode;
-    document.getElementById('rewardItemName').textContent = '🎁 สิ่งที่ได้รับ: ' + randomItem;
+    document.getElementById('rewardBoxTitle').textContent = p.name;
+    document.getElementById('rewardCodeText').textContent = code;
+    document.getElementById('rewardItemName').textContent = 'ได้รับ: ' + won;
     document.getElementById('rewardModal').classList.add('active');
   }
-
-  function closeRewardModal() {
-    document.getElementById('rewardModal').classList.remove('active');
-  }
+  function closeRewardModal() { document.getElementById('rewardModal').classList.remove('active'); }
 
   window.onload = function() {
-    updateWalletDisplay();
+    updateUIState();
     renderProducts();
-    if (sessionStorage.getItem('admin_logged_in') === 'true') enableAdminMode();
+    if (sessionStorage.getItem('admin_ok') === 'true') enableAdminMode();
   };
 </script>
 
