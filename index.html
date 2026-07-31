@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ร้านสุ่มรหัสเกม — ระบบครบวงจร (TrueMoney / PromptPay / Admin)</title>
+<title>รหัสสุ่ม SHOP — ระบบร้านค้าและแอดมิน</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -60,12 +60,6 @@
     color: var(--yellow); display: flex; align-items: center; gap: 6px;
   }
 
-  .search{
-    flex:1; min-width:180px; max-width:280px;
-    display:flex; align-items:center; gap:8px;
-    background: var(--panel-2); border:1px solid var(--line);
-    border-radius:9px; padding:9px 14px; color: var(--ink-dim); font-size:13.5px;
-  }
   .header-actions{ display:flex; gap:10px; align-items:center; }
   .btn{
     font-family:'Kanit'; font-weight:600; font-size:14px; cursor:pointer;
@@ -116,7 +110,6 @@
   }
   .section-title .dot{ width:8px; height:20px; border-radius:3px; background: var(--red); }
 
-  /* Modal Overlays */
   .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 1000;
@@ -131,14 +124,12 @@
   @keyframes popUp { from{ transform: scale(0.8); opacity: 0; } to{ transform: scale(1); opacity: 1; } }
   .modal-box h3 { margin-bottom: 15px; font-size: 22px; color: #fff; }
 
-  /* Tab เมนูเลือกช่องทางเติมเงิน */
   .topup-tabs { display: flex; gap: 5px; margin-bottom: 15px; background: var(--panel-2); padding: 5px; border-radius: 10px; }
   .topup-tab-btn { flex: 1; background: transparent; border: none; padding: 8px; color: var(--ink-dim); font-family: 'Kanit'; font-size: 13.5px; border-radius: 8px; cursor: pointer; }
   .topup-tab-btn.active { background: var(--red); color: #fff; }
   .topup-content { display: none; text-align: left; }
   .topup-content.active { display: block; }
 
-  /* History Table Style */
   .history-box { max-width: 650px; text-align: left; }
   .history-list { max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin: 15px 0; }
   .history-item {
@@ -154,7 +145,6 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
-  /* Admin Dashboard Panel (/admin/) */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
@@ -228,7 +218,7 @@
 </head>
 <body>
 
-<div class="topbar">🔥 ร้านสุ่มรหัสเกม — รองรับระบบเติมเงินจริง TrueMoney / PromptPay และ /admin/ ครบจบในไฟล์เดียว</div>
+<div class="topbar">🔥 ร้านสุ่มรหัสเกม — ระบบจัดการแอดมินและเติมเงินให้ผู้ใช้</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -265,7 +255,7 @@
 <div class="modal-overlay" id="adminLoginModal">
   <div class="modal-box">
     <h3>🔐 เข้าสู่ระบบผู้ดูแลระบบ (/admin/)</h3>
-    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">รหัสผ่านเริ่มต้น: admin123</p>
+    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">กรุณากรอกรหัสผ่านผู้ดูแลระบบ</p>
     <form onsubmit="handleAdminLogin(event)">
       <div class="form-group" style="margin-bottom: 15px;">
         <label>รหัสผ่านแอดมิน</label>
@@ -284,13 +274,11 @@
   <div class="modal-box" style="max-width: 480px;">
     <h3>💳 เติมเงินเข้าระบบ</h3>
     
-    <!-- ปุ่มเลือกช่องทางเติมเงิน -->
     <div class="topup-tabs">
       <button class="topup-tab-btn active" onclick="switchTopupTab('truemoney', this)">🧧 ซองอังเปา TrueMoney</button>
       <button class="topup-tab-btn" onclick="switchTopupTab('promptpay', this)">📱 สแกน QR พร้อมเพย์</button>
     </div>
 
-    <!-- แท็บ TrueMoney ซองอังเปา -->
     <div class="topup-content active" id="tab-truemoney">
       <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">สร้างซองของขวัญจากแอป TrueMoney (แบบจำนวนเงินเท่ากัน) แล้วนำลิงก์มาวางด้านล่าง</p>
       <form onsubmit="handleTrueMoneyTopup(event)">
@@ -302,11 +290,9 @@
       </form>
     </div>
 
-    <!-- แท็บ QR Code พร้อมเพย์ -->
     <div class="topup-content" id="tab-promptpay">
       <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">สแกน QR Code ผ่านแอปธนาคารเพื่อเติมเงินอัตโนมัติ</p>
       <div style="background:#fff; padding:15px; border-radius:10px; display:inline-block; margin-bottom:10px;">
-        <!-- QR Code ตัวอย่างจำลอง -->
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PROMPTPAY_MOCKUP_QR" alt="PromptPay QR" style="display:block; margin:0 auto;">
       </div>
       <p style="font-size:12px; color:var(--yellow); margin-bottom:15px;">เลขพร้อมเพย์: 0xx-xxx-xxxx (ชื่อบัญชี: ร้านสุ่มรหัสเกม)</p>
@@ -317,7 +303,7 @@
   </div>
 </div>
 
-<!-- หน้าต่างประวัติการซื้อย้อนหลัง (History Modal) -->
+<!-- หน้าต่างประวัติการซื้อย้อนหลัง -->
 <div class="modal-overlay" id="historyModal">
   <div class="modal-box history-box">
     <h3>📜 ประวัติการซื้อกล่องสุ่มย้อนหลัง</h3>
@@ -327,7 +313,7 @@
   </div>
 </div>
 
-<!-- หน้าต่างยืนยันการซื้อ (Confirmation Modal) -->
+<!-- หน้าต่างยืนยันการซื้อ -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal-box confirm-box">
     <div style="font-size: 13px; color: var(--red); font-weight: bold; margin-bottom: 5px;">⚠️ ยืนยันการทำรายการ</div>
@@ -340,7 +326,7 @@
   </div>
 </div>
 
-<!-- หน้าต่างแสดงผลลัพธ์รางวัลหลังซื้อสำเร็จ -->
+<!-- หน้าต่างแสดงรางวัล -->
 <div class="modal-overlay" id="rewardModal">
   <div class="modal-box reward-box">
     <div style="font-size: 13px; color: var(--yellow); font-weight: bold; margin-bottom: 5px;">🎉 ยินดีด้วย คุณได้รับรางวัล!</div>
@@ -354,13 +340,19 @@
 <!-- ระบบหลังบ้าน Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการกล่องสุ่มสินค้า และเติมเงินให้ผู้ใช้โดยตรง</p>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการกล่องสุ่มสินค้า และเติมเงินให้ผู้ใช้โดยเลือกชื่อบัญชี</p>
   
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้ (เลือกชื่อบัญชี)</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน (เช่น 500)" style="flex: 1; min-width: 200px;" required min="1">
-      <button type="submit" class="btn btn-wallet">➕ เติมเงินเข้าบัญชีทันที</button>
+      <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required>
+        <option value="">-- เลือกชื่อบัญชีผู้ใช้ --</option>
+        <option value="user_default">บัญชีผู้ใช้งานทั่วไปหลัก (Current User)</option>
+        <option value="boyburing@gmail.com">boyburing@gmail.com</option>
+        <option value="player123@gmail.com">player123@gmail.com</option>
+      </select>
+      <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน (เช่น 500)" style="flex: 1; min-width: 160px;" required min="1">
+      <button type="submit" class="btn btn-wallet">➕ เติมเงินให้บัญชีนี้</button>
     </form>
   </div>
 
@@ -419,7 +411,7 @@
   let userWallet = parseFloat(localStorage.getItem('game_shop_wallet')) || 100;
   let purchaseHistory = JSON.parse(localStorage.getItem('game_shop_history')) || [];
   
-  let products = JSON.parse(localStorage.getItem('game_shop_products_v6')) || [
+  let products = JSON.parse(localStorage.getItem('game_shop_products_v7')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -448,7 +440,7 @@
   }
 
   function saveProducts() {
-    localStorage.setItem('game_shop_products_v6', JSON.stringify(products));
+    localStorage.setItem('game_shop_products_v7', JSON.stringify(products));
   }
 
   function saveHistory() {
@@ -483,7 +475,6 @@
     });
   }
 
-  // ระบบแท็บเลือกช่องทางเติมเงิน
   function switchTopupTab(tabName, btnEl) {
     document.querySelectorAll('.topup-tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.topup-content').forEach(content => content.classList.remove('active'));
@@ -499,7 +490,6 @@
     document.getElementById('topupModal').classList.remove('active');
   }
 
-  // จำลองระบบเติมเงิน TrueMoney ซองอังเปา
   function handleTrueMoneyTopup(e) {
     e.preventDefault();
     const link = document.getElementById('giftLinkInput').value;
@@ -508,7 +498,6 @@
       return;
     }
 
-    // จำลองการดึงยอดเงินจากซองสำเร็จ (เช่น ได้รับ 100 บาท)
     const addedAmount = 100;
     userWallet += addedAmount;
     updateWalletDisplay();
@@ -517,7 +506,6 @@
     alert(`🎉 เติมเงินสำเร็จผ่านซอง TrueMoney! ได้รับเงินเข้ากระเป๋า +${addedAmount} บาท`);
   }
 
-  // จำลองการโอนผ่าน QR พร้อมเพย์สำเร็จ
   function simulatePromptPaySuccess() {
     const addedAmount = 300;
     userWallet += addedAmount;
@@ -526,19 +514,25 @@
     alert(`🎉 ตรวจพบยอดโอนผ่าน QR พร้อมเพย์สำเร็จ! เพิ่มเงินเข้ากระเป๋า +${addedAmount} บาท`);
   }
 
-  // ระบบแอดมินเติมเงินให้ผู้ใช้
+  // ระบบแอดมินเติมเงินให้ผู้ใช้ (เลือกชื่อบัญชี)
   function handleAdminAddMoney(e) {
     e.preventDefault();
+    const targetUser = document.getElementById('adminTargetUser').value;
     const amount = parseFloat(document.getElementById('adminTopupAmount').value);
+    
+    if (!targetUser) {
+      alert('กรุณาเลือกชื่อบัญชีผู้ใช้ที่ต้องการเติมเงิน');
+      return;
+    }
     if (isNaN(amount) || amount <= 0) return;
 
     userWallet += amount;
     updateWalletDisplay();
     document.getElementById('adminTopupAmount').value = '';
-    alert(`แอดมินเติมเงินสำเร็จ! เพิ่มเงิน +${amount.toLocaleString()} บาท`);
+    document.getElementById('adminTargetUser').value = '';
+    alert(`แอดมินเติมเงินสำเร็จ! เพิ่มเงิน +${amount.toLocaleString()} บาท ให้กับบัญชี (${targetUser}) เรียบร้อย`);
   }
 
-  // ระบบประวัติการซื้อ
   function openHistoryModal() {
     const container = document.getElementById('historyListContainer');
     container.innerHTML = '';
@@ -566,7 +560,6 @@
     document.getElementById('historyModal').classList.remove('active');
   }
 
-  // ระบบเส้นทาง /admin/
   function openAdminRoute(e) {
     e.preventDefault();
     if (sessionStorage.getItem('admin_logged_in') === 'true') {
@@ -582,13 +575,15 @@
 
   function handleAdminLogin(e) {
     e.preventDefault();
-    if (document.getElementById('adminPass').value === 'admin123') {
+    // รหัสผ่านแอดมินคือ Piano08102556
+    if (document.getElementById('adminPass').value === 'Piano08102556') {
       sessionStorage.setItem('admin_logged_in', 'true');
       closeLoginModal();
+      document.getElementById('adminPass').value = '';
       enableAdminMode();
       alert('เข้าสู่ระบบหลังบ้านสำเร็จ!');
     } else {
-      alert('รหัสผ่านไม่ถูกต้อง! (รหัสเริ่มต้น: admin123)');
+      alert('รหัสผ่านแอดมินไม่ถูกต้อง!');
     }
   }
 
