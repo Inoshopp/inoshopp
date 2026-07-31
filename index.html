@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIGHPERBIT SHOP — ระบบจัดการสินค้า Pro</title>
+<title>HIGHPERBIT SHOP — High Performance & Stable Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -164,7 +164,6 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
-  /* Admin Dashboard Styles */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
@@ -198,7 +197,6 @@
   }
   .form-control:focus { outline: none; border-color: var(--yellow); }
 
-  /* Admin Table */
   .admin-table-wrap { overflow-x: auto; margin-top: 15px; }
   .admin-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; }
   .admin-table th { background: var(--bg); padding: 12px; color: var(--yellow); border-bottom: 1px solid var(--line); font-family: 'Kanit'; }
@@ -283,7 +281,7 @@
     <a href="#shop">กล่องสุ่มทั้งหมด</a>
     <a onclick="openHistoryModal()">📜 ประวัติการซื้อ</a>
     <a href="#admin" onclick="openAdminRoute(event)" style="color: var(--yellow);">⚙️ /admin/</a>
-    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอนมิน)</button>
+    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอดมิน)</button>
   </nav>
   
   <div class="user-wallet-badge" id="walletBadgeContainer" style="display:none;">
@@ -403,7 +401,7 @@
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ HIGHPERBIT Control Center (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการโลโก้, ปกเว็บ, ระบบเติมเงิน และเพิ่ม/แก้ไขรายการกล่องสุ่มสินค้าอย่างละเอียด</p>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการโลโก้, ปกเว็บ, ระบบเติมเงิน และเพิ่ม/แก้ไขรายการกล่องสุ่มสินค้าอย่างเสถียร</p>
   
   <div class="admin-stats-grid">
     <div class="stat-card">
@@ -455,7 +453,7 @@
   <!-- ฟอร์มสร้าง/แก้ไขกล่องสุ่มสินค้า -->
   <div class="admin-box-card" style="border:1px solid var(--yellow);">
     <h4 id="productFormTitle">📦 ระบบเพิ่ม / แก้ไขกล่องสุ่มสินค้า</h4>
-    <p style="font-size:12px; color:var(--ink-dim); margin-bottom:15px;">คุณสามารถใส่รูปผ่านการเลือกไฟล์ในเครื่อง หรือวางลิงก์รูปภาพ (URL) ได้ทันที</p>
+    <p style="font-size:12px; color:var(--ink-dim); margin-bottom:15px;">ระบบเพิ่มสินค้าเสถียร รวดเร็ว รองรับไฟล์อัปโหลดและลิงก์ภาพ</p>
 
     <form class="admin-form" id="addProductForm" onsubmit="handleProductFormSubmit(event)">
       <input type="hidden" id="editingProductId" value="">
@@ -495,7 +493,7 @@
         <textarea id="pItems" class="form-control" rows="4" placeholder="[SSR] รหัส RoV สกินแท้ | 5,
 [SR] ไอดีเลเวล 30 | 25,
 [R] บัตรเติมเงิน 20 บาท | 70" required></textarea>
-        <small style="color:var(--yellow); font-size:11.5px; margin-top:3px;">💡 ตัวอย่าง: [SSR] ดาบเทพ | 10, [R] ยาเพิ่มเลือด | 90 (ผลรวมควรได้ 100%)</small>
+        <small style="color:var(--yellow); font-size:11.5px; margin-top:3px;">💡 ตัวอย่าง: [SSR] ดาบเทพ | 10, [R] ยาเพิ่มเลือด | 90</small>
       </div>
 
       <div class="form-group full" style="display:flex; gap:10px; margin-top: 10px;">
@@ -535,15 +533,15 @@
 </div>
 
 <footer>
-  © 2026 HIGHPERBIT SHOP — All Rights Reserved.
+  © 2026 HIGHPERBIT SHOP — High Performance Edition.
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user_v24') || null;
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v24')) || {};
-  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v24')) || [];
+  let currentUser = localStorage.getItem('hpb_current_user_v26') || null;
+  let usersDb = JSON.parse(localStorage.getItem('hpb_users_db_v26')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('hpb_used_gifts_v26')) || [];
 
-  let siteSettings = JSON.parse(localStorage.getItem('gs_settings_v24')) || {
+  let siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v26')) || {
     logoImage: '',
     announcement: 'ยินดีต้อนรับสู่ HIGHPERBIT SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
     eyebrow: '● WELCOME TO HIGHPERBIT',
@@ -552,7 +550,7 @@
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v24')) || [
+  let products = JSON.parse(localStorage.getItem('hpb_products_v26')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -579,9 +577,25 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('gs_users_db_v24', JSON.stringify(usersDb)); 
-    localStorage.setItem('gs_used_gifts_v24', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('hpb_users_db_v26', JSON.stringify(usersDb)); 
+    localStorage.setItem('hpb_used_gifts_v26', JSON.stringify(usedGiftLinks));
   }
+
+  function saveData() {
+    localStorage.setItem('hpb_products_v26', JSON.stringify(products));
+    localStorage.setItem('hpb_settings_v26', JSON.stringify(siteSettings));
+    saveUsersDb();
+  }
+
+  // ระบบดึงข้อมูลอัปเดตแบบเรียลไทม์ข้ามแท็บ/ผู้ใช้
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'hpb_settings_v26' || e.key === 'hpb_products_v26') {
+      siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v26')) || siteSettings;
+      products = JSON.parse(localStorage.getItem('hpb_products_v26')) || products;
+      updateUIState();
+      renderProducts();
+    }
+  });
 
   function updateUIState() {
     const loginBtn = document.getElementById('loginNavBtn');
@@ -641,12 +655,6 @@
       optionsHtml += `<option value="${email}">${email} (ยอดเงิน: ${usersDb[email].wallet} ฿)</option>`;
     });
     selectEl.innerHTML = optionsHtml;
-  }
-
-  function saveData() {
-    localStorage.setItem('gs_products_v24', JSON.stringify(products));
-    localStorage.setItem('gs_settings_v24', JSON.stringify(siteSettings));
-    saveUsersDb();
   }
 
   function renderProducts() {
@@ -794,7 +802,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user_v24', currentUser);
+    localStorage.setItem('hpb_current_user_v26', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -808,7 +816,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user_v24');
+    localStorage.removeItem('hpb_current_user_v26');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -915,7 +923,6 @@
     alert('ออกจากระบบแอดมินแล้ว');
   }
 
-  // ระบบประมวลผลฟอร์มกล่องสุ่มสินค้า (ทั้งสร้างใหม่ และ แก้ไข)
   function handleProductFormSubmit(e) {
     e.preventDefault();
     let editId = document.getElementById('editingProductId').value;
@@ -947,7 +954,6 @@
 
     let processProductSave = (finalImage) => {
       if (editId) {
-        // กรณีโหมดแก้ไข (Update)
         let index = products.findIndex(p => p.id == editId);
         if (index !== -1) {
           products[index].name = name;
@@ -959,7 +965,6 @@
         }
         alert('✏️ แก้ไขข้อมูลกล่องสุ่มสำเร็จ!');
       } else {
-        // กรณีโหมดสร้างใหม่ (Create)
         products.push({
           id: Date.now(),
           name,
@@ -988,7 +993,6 @@
     }
   }
 
-  // ดึงข้อมูลมาใส่ฟอร์มเพื่อกดแก้ไข
   function editProduct(id) {
     let p = products.find(prod => prod.id == id);
     if (!p) return;
@@ -1007,11 +1011,9 @@
     document.getElementById('saveProductBtn').textContent = '💾 บันทึกการแก้ไข';
     document.getElementById('cancelEditBtn').style.display = 'inline-block';
 
-    // เลื่อนหน้าจอไปที่ฟอร์ม
     document.getElementById('addProductForm').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // รีเซ็ตฟอร์มกลับเป็นโหมดเพิ่มกล่องสุ่มใหม่
   function resetProductForm() {
     document.getElementById('addProductForm').reset();
     document.getElementById('editingProductId').value = '';
