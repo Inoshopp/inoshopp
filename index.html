@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIGHPERBIT SHOP — High Performance & Stable Edition</title>
+<title>HIGHPERBIT SHOP — Global Link Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -401,7 +401,7 @@
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ HIGHPERBIT Control Center (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการโลโก้, ปกเว็บ, ระบบเติมเงิน และเพิ่ม/แก้ไขรายการกล่องสุ่มสินค้าอย่างเสถียร</p>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">วางลิงก์รูปภาพ (รองรับ Google Drive และลิงก์ทั่วไป) เพื่อให้ทุกคนเห็นรูปโลโก้และรูปปกตรงกันเป๊ะ!</p>
   
   <div class="admin-stats-grid">
     <div class="stat-card">
@@ -418,22 +418,20 @@
     </div>
   </div>
 
-  <!-- ตกแต่งโลโก้ & ปกเว็บ -->
+  <!-- ตั้งค่าลิงก์รูปโลโก้ & รูปปก -->
   <div class="admin-box-card">
-    <h4>🎨 จัดการดีไซน์และรูปภาพเว็บไซต์</h4>
+    <h4>🌐 ตั้งค่าลิงก์รูปโลโก้และรูปปก (ซิงค์ให้ทุกคนเห็นตรงกัน)</h4>
     <div class="admin-form">
       <div class="form-group">
-        <label>⭕ อัปโหลดรูปโลโก้วงกลม</label>
-        <input type="file" id="adminLogoFileInput" class="form-control" accept="image/*">
-        <button class="btn btn-solid" style="margin-top:5px;" onclick="adminUploadLogoImage()">💾 บันทึกรูปโลโก้</button>
+        <label>⭕ ลิงก์รูปโลโก้วงกลม (URL)</label>
+        <input type="text" id="adminLogoUrlInput" class="form-control" placeholder="วางลิงก์ Drive หรือ URL..." oninput="updateLogoUrlLive(this.value)">
       </div>
       <div class="form-group">
-        <label>🎬 อัปโหลดรูปภาพปก (รองรับ GIF)</label>
-        <input type="file" id="adminBgFileInput" class="form-control" accept="image/*,.gif">
-        <button class="btn btn-solid" style="margin-top:5px;" onclick="adminUploadBgImage()">📷 บันทึกรูปปกหน้าเว็บ</button>
+        <label>🎬 ลิงก์รูปปก / GIF (URL)</label>
+        <input type="text" id="adminBgUrlInput" class="form-control" placeholder="วางลิงก์ Drive หรือ URL..." oninput="updateBgUrlLive(this.value)">
       </div>
       <div class="form-group full">
-        <button class="btn btn-solid" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff;" onclick="saveCanvasChanges()">💾 บันทึกการแก้ไขข้อความ Canva Pro ทั้งหมด</button>
+        <button class="btn btn-solid" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff;" onclick="saveCanvasChanges()">💾 บันทึกข้อความ Canva Pro</button>
       </div>
     </div>
   </div>
@@ -453,7 +451,7 @@
   <!-- ฟอร์มสร้าง/แก้ไขกล่องสุ่มสินค้า -->
   <div class="admin-box-card" style="border:1px solid var(--yellow);">
     <h4 id="productFormTitle">📦 ระบบเพิ่ม / แก้ไขกล่องสุ่มสินค้า</h4>
-    <p style="font-size:12px; color:var(--ink-dim); margin-bottom:15px;">ระบบเพิ่มสินค้าเสถียร รวดเร็ว รองรับไฟล์อัปโหลดและลิงก์ภาพ</p>
+    <p style="font-size:12px; color:var(--ink-dim); margin-bottom:15px;">วางลิงก์รูปภาพของกล่องสุ่ม เพื่อให้ผู้เล่นทุกคนเห็นรูปสินค้าเหมือนกัน</p>
 
     <form class="admin-form" id="addProductForm" onsubmit="handleProductFormSubmit(event)">
       <input type="hidden" id="editingProductId" value="">
@@ -481,19 +479,15 @@
       </div>
 
       <div class="form-group full">
-        <label>รูปภาพกล่องสุ่ม (เลือกวิธีใดวิธีหนึ่ง)</label>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <input type="file" id="pImageFile" class="form-control" accept="image/*" style="flex:1; min-width:200px;">
-          <input type="url" id="pImageUrl" class="form-control" placeholder="หรือวาง ลิงก์รูปภาพ (https://...)" style="flex:1; min-width:200px;">
-        </div>
+        <label>ลิงก์รูปภาพกล่องสุ่ม (รองรับลิงก์ Google Drive หรือ URL ทั่วไป)</label>
+        <input type="text" id="pImageUrl" class="form-control" placeholder="https://..." required>
       </div>
 
       <div class="form-group full">
-        <label>รายการไอเทมและอัตราดรอป % (กรอกรูปแบบ: ชื่อไอเทม | เปอร์เซ็นต์ , คั่นด้วยเครื่องหมายจุลภาค ,)</label>
+        <label>รายการไอเทมและอัตราดรอป % (รูปแบบ: ชื่อไอเทม | เปอร์เซ็นต์ , คั่นด้วยจุลภาค ,)</label>
         <textarea id="pItems" class="form-control" rows="4" placeholder="[SSR] รหัส RoV สกินแท้ | 5,
 [SR] ไอดีเลเวล 30 | 25,
 [R] บัตรเติมเงิน 20 บาท | 70" required></textarea>
-        <small style="color:var(--yellow); font-size:11.5px; margin-top:3px;">💡 ตัวอย่าง: [SSR] ดาบเทพ | 10, [R] ยาเพิ่มเลือด | 90</small>
       </div>
 
       <div class="form-group full" style="display:flex; gap:10px; margin-top: 10px;">
@@ -533,15 +527,15 @@
 </div>
 
 <footer>
-  © 2026 HIGHPERBIT SHOP — High Performance Edition.
+  © 2026 HIGHPERBIT SHOP — Global Link Edition.
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('hpb_current_user_v26') || null;
-  let usersDb = JSON.parse(localStorage.getItem('hpb_users_db_v26')) || {};
-  let usedGiftLinks = JSON.parse(localStorage.getItem('hpb_used_gifts_v26')) || [];
+  let currentUser = localStorage.getItem('hpb_current_user_v29') || null;
+  let usersDb = JSON.parse(localStorage.getItem('hpb_users_db_v29')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('hpb_used_gifts_v29')) || [];
 
-  let siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v26')) || {
+  let siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v29')) || {
     logoImage: '',
     announcement: 'ยินดีต้อนรับสู่ HIGHPERBIT SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
     eyebrow: '● WELCOME TO HIGHPERBIT',
@@ -550,7 +544,7 @@
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('hpb_products_v26')) || [
+  let products = JSON.parse(localStorage.getItem('hpb_products_v29')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -570,6 +564,19 @@
   let isRegisterMode = false;
   let activeEditableElement = null;
 
+  // ฟังก์ชันแปลงลิงก์ Google Drive อัตโนมัติให้เป็นรูปภาพตรง
+  function formatImageUrl(url) {
+    if (!url) return '';
+    let trimmed = url.trim();
+    if (trimmed.includes('drive.google.com')) {
+      let match = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || trimmed.match(/id=([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        return `https://lh3.googleusercontent.com/d/${match[1]}`;
+      }
+    }
+    return trimmed;
+  }
+
   function getActiveUserData() {
     if (!currentUser) return { wallet: 0, history: [] };
     if (!usersDb[currentUser]) { usersDb[currentUser] = { wallet: 0, history: [] }; }
@@ -577,21 +584,21 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('hpb_users_db_v26', JSON.stringify(usersDb)); 
-    localStorage.setItem('hpb_used_gifts_v26', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('hpb_users_db_v29', JSON.stringify(usersDb)); 
+    localStorage.setItem('hpb_used_gifts_v29', JSON.stringify(usedGiftLinks));
   }
 
   function saveData() {
-    localStorage.setItem('hpb_products_v26', JSON.stringify(products));
-    localStorage.setItem('hpb_settings_v26', JSON.stringify(siteSettings));
+    localStorage.setItem('hpb_products_v29', JSON.stringify(products));
+    localStorage.setItem('hpb_settings_v29', JSON.stringify(siteSettings));
     saveUsersDb();
   }
 
-  // ระบบดึงข้อมูลอัปเดตแบบเรียลไทม์ข้ามแท็บ/ผู้ใช้
+  // ระบบซิงค์ข้อมูลอัตโนมัติเมื่อผู้เล่นอื่นเข้ามาในเว็บ
   window.addEventListener('storage', function(e) {
-    if (e.key === 'hpb_settings_v26' || e.key === 'hpb_products_v26') {
-      siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v26')) || siteSettings;
-      products = JSON.parse(localStorage.getItem('hpb_products_v26')) || products;
+    if (e.key === 'hpb_settings_v29' || e.key === 'hpb_products_v29') {
+      siteSettings = JSON.parse(localStorage.getItem('hpb_settings_v29')) || siteSettings;
+      products = JSON.parse(localStorage.getItem('hpb_products_v29')) || products;
       updateUIState();
       renderProducts();
     }
@@ -623,8 +630,9 @@
     }
 
     const logoContainer = document.getElementById('logoContainerView');
-    if (siteSettings.logoImage) {
-      logoContainer.innerHTML = `<img src="${siteSettings.logoImage}" alt="Logo">`;
+    let formattedLogo = formatImageUrl(siteSettings.logoImage);
+    if (formattedLogo) {
+      logoContainer.innerHTML = `<img src="${formattedLogo}" alt="Logo">`;
     } else {
       logoContainer.innerHTML = `<span>LOGO</span>`;
     }
@@ -635,8 +643,16 @@
     document.getElementById('heroDescView').innerHTML = siteSettings.desc;
     
     const heroEl = document.getElementById('home');
-    if (siteSettings.bgImage) {
-      heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${siteSettings.bgImage}')`;
+    let formattedBg = formatImageUrl(siteSettings.bgImage);
+    if (formattedBg) {
+      heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${formattedBg}')`;
+    }
+
+    if (document.getElementById('adminLogoUrlInput') && document.getElementById('adminLogoUrlInput').value !== siteSettings.logoImage) {
+      document.getElementById('adminLogoUrlInput').value = siteSettings.logoImage;
+    }
+    if (document.getElementById('adminBgUrlInput') && document.getElementById('adminBgUrlInput').value !== siteSettings.bgImage) {
+      document.getElementById('adminBgUrlInput').value = siteSettings.bgImage;
     }
 
     updateAdminUserSelect();
@@ -662,7 +678,8 @@
     let html = '';
 
     products.forEach((p, index) => {
-      let imgContent = p.image ? `<img src="${p.image}" alt="${p.name}">` : `<div class="product-img-placeholder">🎁 ${p.name}</div>`;
+      let formattedProductImg = formatImageUrl(p.image);
+      let imgContent = formattedProductImg ? `<img src="${formattedProductImg}" alt="${p.name}">` : `<div class="product-img-placeholder">🎁 ${p.name}</div>`;
       let itemsListText = p.items.map(i => `${i.name} (${i.rate}%)`).join(', ');
 
       html += `
@@ -695,7 +712,8 @@
     }
     let html = '';
     products.forEach((p, index) => {
-      let imgPreview = p.image ? `<img src="${p.image}" style="width:36px; height:36px; object-fit:cover; border-radius:6px;">` : '🎁';
+      let formattedProductImg = formatImageUrl(p.image);
+      let imgPreview = formattedProductImg ? `<img src="${formattedProductImg}" style="width:36px; height:36px; object-fit:cover; border-radius:6px;">` : '🎁';
       html += `
         <tr>
           <td>${imgPreview}</td>
@@ -713,36 +731,16 @@
     tbody.innerHTML = html;
   }
 
-  function adminUploadLogoImage() {
-    let fileInput = document.getElementById('adminLogoFileInput');
-    if (fileInput.files && fileInput.files[0]) {
-      let reader = new FileReader();
-      reader.onload = function(evt) {
-        siteSettings.logoImage = evt.target.result;
-        saveData();
-        updateUIState();
-        alert('อัปโหลดและบันทึกโลโก้วงกลมสำเร็จ!');
-      };
-      reader.readAsDataURL(fileInput.files[0]);
-    } else {
-      alert('กรุณาเลือกไฟล์รูปโลโก้ก่อนกดบันทึก');
-    }
+  function updateLogoUrlLive(url) {
+    siteSettings.logoImage = url.trim();
+    saveData();
+    updateUIState();
   }
 
-  function adminUploadBgImage() {
-    let fileInput = document.getElementById('adminBgFileInput');
-    if (fileInput.files && fileInput.files[0]) {
-      let reader = new FileReader();
-      reader.onload = function(evt) {
-        siteSettings.bgImage = evt.target.result;
-        saveData();
-        updateUIState();
-        alert('อัปโหลดและเปลี่ยนรูปปกหน้าเว็บ (รองรับ GIF) สำเร็จ!');
-      };
-      reader.readAsDataURL(fileInput.files[0]);
-    } else {
-      alert('กรุณาเลือกไฟล์รูปภาพหน้าปกก่อนกดบันทึก');
-    }
+  function updateBgUrlLive(url) {
+    siteSettings.bgImage = url.trim();
+    saveData();
+    updateUIState();
   }
 
   function setupCanvaListeners() {
@@ -783,7 +781,7 @@
     siteSettings.title = document.getElementById('heroTitleView').innerHTML;
     siteSettings.desc = document.getElementById('heroDescView').innerHTML;
     saveData();
-    alert('บันทึกข้อความและดีไซน์ Canva Pro สำเร็จเรียบร้อยแล้ว!');
+    alert('บันทึกข้อความ Canva สำเร็จ!');
   }
 
   function openAuthModal() { if(!currentUser) document.getElementById('authModal').classList.add('active'); }
@@ -802,7 +800,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('hpb_current_user_v26', currentUser);
+    localStorage.setItem('hpb_current_user_v29', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -816,7 +814,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('hpb_current_user_v26');
+    localStorage.removeItem('hpb_current_user_v29');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -889,7 +887,7 @@
     if (document.getElementById('adminPass').value === 'Piano08102556') {
       sessionStorage.setItem('admin_ok', 'true');
       closeLoginModal(); enableAdminMode();
-      alert('เข้าสู่ระบบแอดมินสำเร็จ! เปิดโหมด Canva Pro Builder เรียบร้อย');
+      alert('เข้าสู่ระบบแอดมินสำเร็จ!');
     } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
 
@@ -950,47 +948,33 @@
       return;
     }
 
-    let fileInput = document.getElementById('pImageFile');
-
-    let processProductSave = (finalImage) => {
-      if (editId) {
-        let index = products.findIndex(p => p.id == editId);
-        if (index !== -1) {
-          products[index].name = name;
-          products[index].tier = tier;
-          products[index].price = price;
-          products[index].frame = frame;
-          products[index].items = parsedItems;
-          if (finalImage || finalImage === '') products[index].image = finalImage;
-        }
-        alert('✏️ แก้ไขข้อมูลกล่องสุ่มสำเร็จ!');
-      } else {
-        products.push({
-          id: Date.now(),
-          name,
-          tier,
-          price,
-          frame,
-          items: parsedItems,
-          image: finalImage || ''
-        });
-        alert('🎉 เพิ่มกล่องสุ่มใหม่เรียบร้อยแล้ว!');
+    if (editId) {
+      let index = products.findIndex(p => p.id == editId);
+      if (index !== -1) {
+        products[index].name = name;
+        products[index].tier = tier;
+        products[index].price = price;
+        products[index].frame = frame;
+        products[index].items = parsedItems;
+        products[index].image = imageUrlInput;
       }
-
-      saveData();
-      renderProducts();
-      resetProductForm();
-    };
-
-    if (fileInput.files && fileInput.files[0]) {
-      let reader = new FileReader();
-      reader.onload = function(evt) {
-        processProductSave(evt.target.result);
-      };
-      reader.readAsDataURL(fileInput.files[0]);
+      alert('✏️ อัปเดตกล่องสุ่มสำเร็จ!');
     } else {
-      processProductSave(imageUrlInput);
+      products.push({
+        id: Date.now(),
+        name,
+        tier,
+        price,
+        frame,
+        items: parsedItems,
+        image: imageUrlInput
+      });
+      alert('🎉 เพิ่มกล่องสุ่มสำเร็จ!');
     }
+
+    saveData();
+    renderProducts();
+    resetProductForm();
   }
 
   function editProduct(id) {
@@ -1002,7 +986,7 @@
     document.getElementById('pTier').value = p.tier;
     document.getElementById('pPrice').value = p.price;
     document.getElementById('pFrame').value = p.frame;
-    document.getElementById('pImageUrl').value = p.image && !p.image.startsWith('data:') ? p.image : '';
+    document.getElementById('pImageUrl').value = p.image;
 
     let formattedItemsText = p.items.map(i => `${i.name} | ${i.rate}`).join(',\n');
     document.getElementById('pItems').value = formattedItemsText;
