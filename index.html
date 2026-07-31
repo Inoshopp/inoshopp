@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — แอดมินฟังก์ชันจัดเต็ม</title>
+<title>รหัสสุ่ม SHOP — ระบบสมาชิกแยกกระเป๋าเงินอิสระ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -142,7 +142,6 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
-  /* Admin Dashboard Styles */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
@@ -219,7 +218,7 @@
 </head>
 <body>
 
-<div class="topbar">⚡ รหัสสุ่ม SHOP — ระบบแอดมินขั้นสูง ฟังก์ชันจัดเต็ม</div>
+<div class="topbar">⚡ รหัสสุ่ม SHOP — ระบบแยกกระเป๋าเงินและบัญชีอิสระ 100%</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -248,7 +247,7 @@
 
 <div class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrowView">● สมัครสมาชิกใหม่เริ่มต้น 0 บาท</div>
+    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบสมาชิกแยกกระเป๋าอิสระ เริ่มต้น 0 บาท</div>
     <h1 id="heroTitleView">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
     <p id="heroDescView">เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที</p>
   </div>
@@ -360,38 +359,34 @@
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้านขั้นสูง (/admin/)</div>
   <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการภาพรวมระบบ, ปรับแต่งหน้าเว็บ, เพิ่มกล่องสุ่ม และจัดการสมาชิก</p>
   
-  <!-- สถิติภาพรวมร้านค้า -->
   <div class="admin-stats-grid">
     <div class="stat-card">
       <div style="font-size:12px; color:var(--ink-dim);">จำนวนกล่องสุ่มทั้งหมด</div>
       <div class="num" id="statTotalBoxes">0</div>
     </div>
     <div class="stat-card">
-      <div style="font-size:12px; color:var(--ink-dim);">ประวัติการซื้อรวม</div>
-      <div class="num" id="statTotalSales">0</div>
+      <div style="font-size:12px; color:var(--ink-dim);">สมาชิกทั้งหมดในระบบ</div>
+      <div class="num" id="statTotalUsers">0</div>
     </div>
     <div class="stat-card">
-      <div style="font-size:12px; color:var(--ink-dim);">ยอดเงินในบัญชีปัจจุบัน</div>
+      <div style="font-size:12px; color:var(--ink-dim);">ยอดเงินสมาชิกปัจจุบัน</div>
       <div class="num" id="statUserWallet">0 ฿</div>
     </div>
   </div>
 
-  <!-- ระบบจัดการข้อมูลด่วน (Reset & Clear) -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:#ef4444; margin-bottom:10px;">🛠️ เครื่องมือจัดการและรีเซ็ตระบบ</h4>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button class="btn btn-danger" onclick="adminClearHistory()">🗑️ ล้างประวัติการซื้อทั้งหมด</button>
-      <button class="btn btn-outline" onclick="adminResetWallet()">🔄 รีเซ็ตยอดเงินผู้ใช้เป็น 0</button>
+      <button class="btn btn-danger" onclick="adminClearAllHistory()">🗑️ ล้างประวัติการซื้อของแอดมิน</button>
     </div>
   </div>
 
-  <!-- เมนูปรับแต่งหน้าปกเว็บ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 ปรับแต่งหน้าปกเว็บไซต์ (Hero Banner)</h4>
     <form onsubmit="handleSaveHeroSettings(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
       <div class="form-group">
         <label>ข้อความป้ายประกาศเล็กด้านบน</label>
-        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● สมัครสมาชิกใหม่เริ่มต้น 0 บาท" required>
+        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบสมาชิกแยกกระเป๋าอิสระ" required>
       </div>
       <div class="form-group">
         <label>หัวข้อหลัก (Title)</label>
@@ -413,14 +408,11 @@
 
   <div class="admin-section-divider"></div>
 
-  <!-- เมนูเติมเงินให้ผู้ใช้ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
       <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required>
-        <option value="">-- เลือกชื่อบัญชีผู้ใช้ --</option>
-        <option value="user_general">บัญชีทั่วไป</option>
-        <option value="boyburing@gmail.com">boyburing@gmail.com</option>
+        <!-- รายชื่อสมาชิกจะอัปเดตอัตโนมัติ -->
       </select>
       <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน" style="flex: 1; min-width: 160px;" required min="1">
       <button type="submit" class="btn btn-wallet">➕ เติมเงิน</button>
@@ -472,23 +464,23 @@
 </div>
 
 <footer>
-  © 2026 รหัสสุ่ม SHOP — แพลตฟอร์มแอดมินฟังก์ชันจัดเต็มผ่าน /admin/
+  © 2026 รหัสสุ่ม SHOP — ระบบฐานข้อมูลสมาชิกแยกบัญชีอิสระ
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_user') || null;
-  // ตั้งค่าเริ่มต้นยอดเงินสมาชิกใหม่เป็น 0 บาท
-  let userWallet = parseFloat(localStorage.getItem('gs_wallet')) || 0;
-  let purchaseHistory = JSON.parse(localStorage.getItem('gs_history')) || [];
+  let currentUser = localStorage.getItem('gs_current_user') || null;
+  
+  // ฐานข้อมูลผู้ใช้ทั้งหมด (เก็บบัญชี กระเป๋าเงิน และประวัติแยกตามอีเมล)
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db')) || {};
   
   let heroSettings = JSON.parse(localStorage.getItem('gs_hero')) || {
-    eyebrow: '● สมัครสมาชิกใหม่เริ่มต้น 0 บาท',
+    eyebrow: '● ระบบสมาชิกแยกกระเป๋าอิสระ เริ่มต้น 0 บาท',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
     desc: 'เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v12')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v13')) || [
     { id: 1, name: 'กล่องเริ่มต้น', tier: 'ธรรมดา', price: 19, image: '', frame: 'frame-gold', items: ['[R] ดาบเหล็ก', '[R] ชุดผ้าเก่า', '[SR] ธนูไม้'] },
     { id: 2, name: 'กล่องทอง', tier: 'ยอดนิยม', price: 59, image: '', frame: 'frame-red', items: ['[SR] ดาบอัศวิน', '[SSR] ขวานเทพ'] }
   ];
@@ -496,11 +488,25 @@
   let selectedProductIndex = null;
   let isRegisterMode = false;
 
+  function getActiveUserData() {
+    if (!currentUser) return { wallet: 0, history: [] };
+    if (!usersDb[currentUser]) {
+      usersDb[currentUser] = { wallet: 0, history: [] };
+    }
+    return usersDb[currentUser];
+  }
+
+  function saveUsersDb() {
+    localStorage.setItem('gs_users_db', JSON.stringify(usersDb));
+  }
+
   function updateUIState() {
     const loginBtn = document.getElementById('loginNavBtn');
     const logoutUserBtn = document.getElementById('logoutUserBtn');
     const walletContainer = document.getElementById('walletBadgeContainer');
     const topupBtn = document.getElementById('topupBtn');
+
+    let userData = getActiveUserData();
 
     if (currentUser) {
       loginBtn.textContent = '👤 ' + currentUser;
@@ -509,7 +515,7 @@
       logoutUserBtn.style.display = 'inline-block';
       walletContainer.style.display = 'flex';
       topupBtn.style.display = 'inline-block';
-      document.getElementById('walletDisplay').textContent = userWallet.toLocaleString();
+      document.getElementById('walletDisplay').textContent = userData.wallet.toLocaleString();
     } else {
       loginBtn.textContent = '👤 เข้าสู่ระบบ / สมัครสมาชิก';
       loginBtn.style.background = 'linear-gradient(135deg, var(--yellow), #FFA733)';
@@ -528,17 +534,29 @@
       heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${heroSettings.bgImage}')`;
     }
 
-    // อัปเดตข้อมูลสถิติในหน้าแอดมิน
+    // อัปเดตรายชื่อใน Select แอดมินอัตโนมัติ
+    updateAdminUserSelect();
+
+    // สถิติแอดมิน
     document.getElementById('statTotalBoxes').textContent = products.length;
-    document.getElementById('statTotalSales').textContent = purchaseHistory.length;
-    document.getElementById('statUserWallet').textContent = userWallet.toLocaleString() + ' ฿';
+    document.getElementById('statTotalUsers').textContent = Object.keys(usersDb).length;
+    document.getElementById('statUserWallet').textContent = userData.wallet.toLocaleString() + ' ฿';
+  }
+
+  function updateAdminUserSelect() {
+    const selectEl = document.getElementById('adminTargetUser');
+    if (!selectEl) return;
+    let optionsHtml = '<option value="">-- เลือกชื่อบัญชีผู้ใช้ --</option>';
+    Object.keys(usersDb).forEach(email => {
+      optionsHtml += `<option value="${email}">${email} (${usersDb[email].wallet} ฿)</option>`;
+    });
+    selectEl.innerHTML = optionsHtml;
   }
 
   function saveData() {
-    localStorage.setItem('gs_wallet', userWallet);
-    localStorage.setItem('gs_history', JSON.stringify(purchaseHistory));
-    localStorage.setItem('gs_products_v12', JSON.stringify(products));
+    localStorage.setItem('gs_products_v13', JSON.stringify(products));
     localStorage.setItem('gs_hero', JSON.stringify(heroSettings));
+    saveUsersDb();
   }
 
   function renderProducts() {
@@ -586,21 +604,12 @@
     }
   }
 
-  function adminClearHistory() {
-    if (confirm('คุณต้องการล้างประวัติการซื้อทั้งหมดใช่หรือไม่?')) {
-      purchaseHistory = [];
-      saveData();
+  function adminClearAllHistory() {
+    if (confirm('คุณต้องการล้างประวัติการซื้อของทุกบัญชีใช่หรือไม่?')) {
+      Object.keys(usersDb).forEach(email => { usersDb[email].history = []; });
+      saveUsersDb();
       updateUIState();
-      alert('ล้างประวัติการซื้อเรียบร้อยแล้ว');
-    }
-  }
-
-  function adminResetWallet() {
-    if (confirm('คุณต้องการรีเซ็ตยอดเงินผู้ใช้ให้เหลือ 0 บาทใช่หรือไม่?')) {
-      userWallet = 0;
-      saveData();
-      updateUIState();
-      alert('รีเซ็ตยอดเงินสำเร็จ');
+      alert('ล้างประวัติสำเร็จ');
     }
   }
 
@@ -616,15 +625,26 @@
 
   function handleUserAuth(e) {
     e.preventDefault();
-    currentUser = document.getElementById('authUserEmail').value;
-    localStorage.setItem('gs_user', currentUser);
-    updateUIState(); closeAuthModal();
+    let email = document.getElementById('authUserEmail').value.trim();
+    if (!email) return;
+
+    currentUser = email;
+    localStorage.setItem('gs_current_user', currentUser);
+
+    // ถ้ายังไม่เคยมีบัญชีนี้ในระบบ ให้สร้างบัญชีใหม่ เริ่มต้นเงิน 0 บาท
+    if (!usersDb[currentUser]) {
+      usersDb[currentUser] = { wallet: 0, history: [] };
+      saveUsersDb();
+    }
+
+    updateUIState();
+    closeAuthModal();
     alert('เข้าสู่ระบบสำเร็จ!');
   }
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_user');
+    localStorage.removeItem('gs_current_user');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -644,29 +664,36 @@
 
   function handleTrueMoneyTopup(e) {
     e.preventDefault();
-    userWallet += 100;
-    saveData(); updateUIState(); closeTopupModal();
+    let userData = getActiveUserData();
+    userData.wallet += 100;
+    saveUsersDb(); updateUIState(); closeTopupModal();
     alert('เติมเงินสำเร็จ +100 บาท');
   }
 
   function simulatePromptPaySuccess() {
-    userWallet += 300;
-    saveData(); updateUIState(); closeTopupModal();
+    let userData = getActiveUserData();
+    userData.wallet += 300;
+    saveUsersDb(); updateUIState(); closeTopupModal();
     alert('โอนผ่าน QR สำเร็จ +300 บาท');
   }
 
   function handleAdminAddMoney(e) {
     e.preventDefault();
+    let target = document.getElementById('adminTargetUser').value;
     let amt = parseFloat(document.getElementById('adminTopupAmount').value);
-    userWallet += amt;
-    saveData(); updateUIState();
-    alert('เติมเงินให้ผู้ใช้สำเร็จ');
+    if (!target || !usersDb[target]) { alert('กรุณาเลือกบัญชีผู้ใช้'); return; }
+
+    usersDb[target].wallet += amt;
+    saveUsersDb(); updateUIState();
+    alert(`เติมเงิน +${amt} บาท ให้กับ ${target} สำเร็จ!`);
   }
 
   function openHistoryModal() {
+    if (!currentUser) { openAuthModal(); return; }
+    let userData = getActiveUserData();
     let c = document.getElementById('historyListContainer');
-    c.innerHTML = purchaseHistory.length === 0 ? '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ไม่มีประวัติ</p>' : 
-      purchaseHistory.slice().reverse().map(h => `<div class="history-item"><div><b>🎁 ${h.boxName}</b> (฿${h.price})<br><span style="color:var(--green)">${h.itemWon}</span></div><div style="font-size:11px">${h.time}</div></div>`).join('');
+    c.innerHTML = userData.history.length === 0 ? '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ไม่มีประวัติการซื้อ</p>' : 
+      userData.history.slice().reverse().map(h => `<div class="history-item"><div><b>🎁 ${h.boxName}</b> (฿${h.price})<br><span style="color:var(--green)">${h.itemWon}</span><br><span style="font-family:monospace; font-size:11px; color:var(--yellow);">${h.code}</span></div><div style="font-size:11px">${h.time}</div></div>`).join('');
     document.getElementById('historyModal').classList.add('active');
   }
   function closeHistoryModal() { document.getElementById('historyModal').classList.remove('active'); }
@@ -737,21 +764,24 @@
 
   function promptPurchase(index) {
     if (!currentUser) { openAuthModal(); return; }
+    let userData = getActiveUserData();
     let p = products[index];
-    if (userWallet < p.price) { alert('เงินไม่พอ! กรุณาเติมเงิน'); return; }
+    if (userData.wallet < p.price) { alert('เงินในกระเป๋าไม่พอ! กรุณาเติมเงิน'); return; }
     selectedProductIndex = index;
-    document.getElementById('confirmBoxDetails').innerHTML = `ซื้อ <b>"${p.name}"</b> ราคา ฿${p.price}`;
+    document.getElementById('confirmBoxDetails').innerHTML = `ซื้อ <b>"${p.name}"</b> ราคา ฿${p.price} (ยอดเงินคงเหลือ: ฿${userData.wallet - p.price})`;
     document.getElementById('confirmModal').classList.add('active');
   }
   function closeConfirmModal() { document.getElementById('confirmModal').classList.remove('active'); }
 
   function executePurchase() {
+    let userData = getActiveUserData();
     let p = products[selectedProductIndex];
-    userWallet -= p.price;
+    userData.wallet -= p.price;
     let won = p.items[Math.floor(Math.random() * p.items.length)];
     let code = 'CODE-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-    purchaseHistory.push({ boxName: p.name, price: p.price, itemWon: won, code, time: new Date().toLocaleTimeString() });
-    saveData(); updateUIState(); closeConfirmModal();
+    
+    userData.history.push({ boxName: p.name, price: p.price, itemWon: won, code, time: new Date().toLocaleTimeString() });
+    saveUsersDb(); updateUIState(); closeConfirmModal();
 
     document.getElementById('rewardBoxTitle').textContent = p.name;
     document.getElementById('rewardCodeText').textContent = code;
