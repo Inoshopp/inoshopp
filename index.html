@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — Canva Builder Pro Edition</title>
+<title>รหัสสุ่ม SHOP — โลโก้วงกลมสุดเท่</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -42,13 +42,17 @@
     border-bottom: 1px solid var(--line);
     flex-wrap: wrap;
   }
-  .logo{ display:flex; align-items:center; gap:10px; font-family:'Kanit'; font-weight:800; font-size:19px;}
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Kanit'; font-weight:800; font-size:19px;}
+  
+  /* ปรับแต่งโลโก้วงกลมให้สวยงามโดดเด่น */
   .logo-mark{
-    width:38px; height:38px; border-radius:50%;
-    background: conic-gradient(from 180deg, var(--yellow), var(--red), var(--yellow));
+    width:42px; height:42px; border-radius:50%;
+    overflow: hidden; border: 2px solid var(--yellow);
     display:flex; align-items:center; justify-content:center;
-    font-weight:800; color:#1a0d0a; font-size:15px;
+    box-shadow: 0 0 10px rgba(255,204,51,0.4);
   }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+
   nav{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   nav a{
     color: var(--ink-dim); text-decoration:none; font-size:14.5px; font-weight:500;
@@ -236,7 +240,6 @@
 </head>
 <body>
 
-<!-- แถบเครื่องมือลอยตัวสไตล์ Canva Pro (จะแสดงเฉพาะตอนแอดมินคลิกข้อความบนหน้าเว็บ) -->
 <div id="canvaToolbar">
   <span style="font-size:12px; color:var(--yellow);">🎨 Canva Editor:</span>
   <button onclick="canvaChangeStyle('fontWeight', 'bold')"><b>B</b></button>
@@ -253,7 +256,10 @@
 </div>
 
 <header>
-  <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
+  <div class="logo">
+    <div class="logo-mark"><img src="mp4_60.jpg" alt="Logo"></div>
+    รหัสสุ่ม SHOP
+  </div>
   <nav>
     <a href="#home">หน้าแรก</a>
     <a href="#shop">กล่องสุ่มทั้งหมด</a>
@@ -277,12 +283,11 @@
   🏠 หน้าแรก &nbsp;›&nbsp; หมวดหมู่ทั้งหมด &nbsp;›&nbsp; <b id="crumbTitle">[HOT 🔥] สุ่มรหัสเกม ราคาถูก 🎁</b>
 </div>
 
-<!-- หน้าปกเว็บไซต์ Canva Builder (รองรับคลิกแก้ข้อความ และคลิกเปลี่ยนรูป/GIF พื้นหลัง) -->
-<div class="hero" id="home" style="cursor: default;" title="">
+<div class="hero" id="home">
   <div class="hero-content" id="heroContentBox">
     <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● ระบบ Canva Pro Builder</div>
     <h1 id="heroTitleView" contenteditable="false">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
-    <p id="heroDescView" contenteditable="false">คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือคลิกปุ่มด้านล่างเพื่อเปลี่ยนรูปปก (รองรับ GIF)</p>
+    <p id="heroDescView" contenteditable="false">คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือจัดการหลังบ้านผ่าน /admin/</p>
   </div>
 </div>
 
@@ -329,8 +334,8 @@
   <div class="modal-box" style="max-width: 460px;">
     <h3>🧧 เติมเงินด้วยซองอังเปา TrueMoney</h3>
     <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px; text-align:left;">
-      1. ไปที่แอป TrueMoney เลือก <b>"ส่งซองของขวัญ"</b><br>
-      2. กำหนดจำนวนเงิน (แบบแบ่งจำนวนเท่ากัน หรือสุ่มก็ได้)<br>
+      1. ไปที่แอป TrueMoney (เช่น เบอร์ 098-145-3150) เลือก <b>"ส่งซองของขวัญ"</b><br>
+      2. กำหนดจำนวนเงินตามต้องการ<br>
       3. คัดลอกลิงก์ซองของขวัญมาวางด้านล่างนี้
     </p>
     <form onsubmit="handleTrueMoneyTopup(event)">
@@ -398,7 +403,7 @@
   </div>
 
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎬 เครื่องมือเปลี่ยนรูปภาพปก (รองรับไฟล์รูปภาพ & GIF แอนิเมชัน)</h4>
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎬 เครื่องมือเปลี่ยนรูปภาพปก (รองรับไฟล์รูปภาพ & GIF)</h4>
     <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
       <input type="file" id="adminBgFileInput" class="form-control" accept="image/*,.gif" style="flex:1; min-width:220px;">
       <button class="btn btn-solid" onclick="adminUploadBgImage()">📷 อัปโหลดและเปลี่ยนรูปปกทันที</button>
@@ -468,19 +473,19 @@
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user_v20') || null;
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v20')) || {};
-  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v20')) || [];
+  let currentUser = localStorage.getItem('gs_current_user_v21') || null;
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v21')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v21')) || [];
 
-  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v20')) || {
-    announcement: 'ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปาและลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
+  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v21')) || {
+    announcement: 'ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
     eyebrow: '● ระบบ Canva Pro Builder',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
-    desc: 'คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือคลิกปุ่มด้านล่างเพื่อเปลี่ยนรูปปก (รองรับ GIF)',
+    desc: 'คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือจัดการหลังบ้านผ่าน /admin/',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v20')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v21')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -507,8 +512,8 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('gs_users_db_v20', JSON.stringify(usersDb)); 
-    localStorage.setItem('gs_used_gifts_v20', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('gs_users_db_v21', JSON.stringify(usersDb)); 
+    localStorage.setItem('gs_used_gifts_v21', JSON.stringify(usedGiftLinks));
   }
 
   function updateUIState() {
@@ -563,8 +568,8 @@
   }
 
   function saveData() {
-    localStorage.setItem('gs_products_v20', JSON.stringify(products));
-    localStorage.setItem('gs_hero_v20', JSON.stringify(heroSettings));
+    localStorage.setItem('gs_products_v21', JSON.stringify(products));
+    localStorage.setItem('gs_hero_v21', JSON.stringify(heroSettings));
     saveUsersDb();
   }
 
@@ -594,7 +599,6 @@
     updateUIState();
   }
 
-  // อัปโหลดรูปภาพปกจากหน้าแอดมิน (รองรับไฟล์รูปทั่วไปและ GIF)
   function adminUploadBgImage() {
     let fileInput = document.getElementById('adminBgFileInput');
     if (fileInput.files && fileInput.files[0]) {
@@ -611,7 +615,6 @@
     }
   }
 
-  // ฟังก์ชันควบคุม Canva Toolbar
   function setupCanvaListeners() {
     document.querySelectorAll('[contenteditable="true"]').forEach(el => {
       el.addEventListener('focus', function() {
@@ -669,7 +672,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user_v20', currentUser);
+    localStorage.setItem('gs_current_user_v21', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -683,7 +686,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user_v20');
+    localStorage.removeItem('gs_current_user_v21');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -720,7 +723,7 @@
     updateUIState();
     closeTopupModal();
 
-    alert(`🎉 เติมเงินสำเร็จ! ได้รับยอดเงินเข้ากระเป๋า +${topupAmount} บาท`);
+    alert(`🎉 เติมเงินสำเร็จผ่านเบอร์ 098-145-3150! ได้รับยอดเงินเข้ากระเป๋า +${topupAmount} บาท`);
   }
 
   function handleAdminAddMoney(e) {
