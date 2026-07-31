@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — ระบบซองอังเปา TrueMoney</title>
+<title>รหัสสุ่ม SHOP — ระบบประกาศและซองอังเปา</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -27,10 +27,14 @@
   }
   h1,h2,h3,.display{ font-family:'Kanit', sans-serif; }
 
-  .topbar{
-    background: linear-gradient(90deg, var(--red-deep), var(--red));
-    color:#fff; text-align:center; font-size:13.5px; padding:8px 12px;
+  /* แถบระบบประกาศด้านบนสุด */
+  .announcement-bar{
+    background: linear-gradient(90deg, #b91c1c, #dc2626, #f59e0b);
+    color: #fff; text-align: center; font-size: 13.5px; font-weight: 500;
+    padding: 9px 15px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
   }
+  .announcement-bar b { background: rgba(0,0,0,0.2); padding: 2px 8px; border-radius: 4px; font-family: 'Kanit'; }
 
   header{
     display:flex; align-items:center; justify-content:space-between;
@@ -229,7 +233,10 @@
 </head>
 <body>
 
-<div class="topbar">🧧 ระบบเติมเงินด้วยซองอังเปา TrueMoney พร้อมใช้งาน</div>
+<!-- แถบประกาศข่าวสาร (Announcement Ticker) -->
+<div class="announcement-bar">
+  <b>📢 ประกาศ:</b> <span id="announcementTextView" contenteditable="false">ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปาและลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!</span>
+</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -258,7 +265,7 @@
 
 <div class="hero editable-img" id="home" onclick="triggerBgChange(event)" title="คลิกเพื่อเปลี่ยนรูปพื้นหลังหน้าปก">
   <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● ระบบเติมเงินซองอังเปา TrueMoney อัตโนมัติ</div>
+    <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● ระบบประกาศและซองอังเปาออโต้</div>
     <h1 id="heroTitleView" contenteditable="false">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
     <p id="heroDescView" contenteditable="false">เติมเงินด้วยซองของขวัญ TrueMoney ง่ายๆ สะดวก รวดเร็ว ตลอด 24 ชม.</p>
   </div>
@@ -357,8 +364,8 @@
 
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน ซองอังเปา (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการกล่องสุ่ม ตั้งค่าเรทเปอร์เซ็นต์ และเติมเงินให้ผู้ใช้</p>
+  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน ระบบประกาศ (/admin/)</div>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">คุณสามารถแก้ไขข้อความประกาศด้านบนหรือหน้าเว็บได้แบบสดๆ แล้วกดปุ่มบันทึกด้านล่าง</p>
   
   <div class="admin-stats-grid">
     <div class="stat-card">
@@ -376,8 +383,8 @@
   </div>
 
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 บันทึกการเปลี่ยนแปลงหน้าเว็บ (Canvas Sync)</h4>
-    <button class="btn btn-solid" style="width: 100%;" onclick="saveCanvasChanges()">💾 บันทึกข้อความหน้าเว็บเรียบร้อย</button>
+    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">💾 บันทึกการแก้ไขข้อความและประกาศทั้งหมด</h4>
+    <button class="btn btn-solid" style="width: 100%;" onclick="saveCanvasChanges()">บันทึกข้อความประกาศและหน้าปกเว็บไซต์</button>
   </div>
 
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
@@ -434,24 +441,23 @@
 </div>
 
 <footer>
-  © 2026 รหัสสุ่ม SHOP — ระบบซองอังเปา TrueMoney
+  © 2026 รหัสสุ่ม SHOP — ระบบประกาศและซองอังเปา
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user_v17') || null;
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v17')) || {};
-  
-  // เก็บประวัติลิงก์ซองอังเปาที่ใช้แล้ว เพื่อป้องกันการเอาซองเดิมมาเติมซ้ำ
-  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v17')) || [];
+  let currentUser = localStorage.getItem('gs_current_user_v18') || null;
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v18')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v18')) || [];
 
-  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v17')) || {
-    eyebrow: '● ระบบเติมเงินซองอังเปา TrueMoney อัตโนมัติ',
+  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v18')) || {
+    announcement: 'ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปาและลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
+    eyebrow: '● ระบบประกาศและซองอังเปาออโต้',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
     desc: 'เติมเงินด้วยซองของขวัญ TrueMoney ง่ายๆ สะดวก รวดเร็ว ตลอด 24 ชม.',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v17')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v18')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -477,8 +483,8 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('gs_users_db_v17', JSON.stringify(usersDb)); 
-    localStorage.setItem('gs_used_gifts_v17', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('gs_users_db_v18', JSON.stringify(usersDb)); 
+    localStorage.setItem('gs_used_gifts_v18', JSON.stringify(usedGiftLinks));
   }
 
   function updateUIState() {
@@ -506,6 +512,7 @@
       topupBtn.style.display = 'none';
     }
 
+    document.getElementById('announcementTextView').innerHTML = heroSettings.announcement;
     document.getElementById('heroEyebrowView').innerHTML = heroSettings.eyebrow;
     document.getElementById('heroTitleView').innerHTML = heroSettings.title;
     document.getElementById('heroDescView').innerHTML = heroSettings.desc;
@@ -532,8 +539,8 @@
   }
 
   function saveData() {
-    localStorage.setItem('gs_products_v17', JSON.stringify(products));
-    localStorage.setItem('gs_hero_v17', JSON.stringify(heroSettings));
+    localStorage.setItem('gs_products_v18', JSON.stringify(products));
+    localStorage.setItem('gs_hero_v18', JSON.stringify(heroSettings));
     saveUsersDb();
   }
 
@@ -586,11 +593,12 @@
   }
 
   function saveCanvasChanges() {
+    heroSettings.announcement = document.getElementById('announcementTextView').innerHTML;
     heroSettings.eyebrow = document.getElementById('heroEyebrowView').innerHTML;
     heroSettings.title = document.getElementById('heroTitleView').innerHTML;
     heroSettings.desc = document.getElementById('heroDescView').innerHTML;
     saveData();
-    alert('บันทึกข้อความหน้าเว็บเรียบร้อยแล้ว!');
+    alert('บันทึกข้อความประกาศและหน้าเว็บเรียบร้อยแล้ว!');
   }
 
   function openAuthModal() { if(!currentUser) document.getElementById('authModal').classList.add('active'); }
@@ -609,7 +617,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user_v17', currentUser);
+    localStorage.setItem('gs_current_user_v18', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -623,7 +631,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user_v17');
+    localStorage.removeItem('gs_current_user_v18');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -635,7 +643,6 @@
   }
   function closeTopupModal() { document.getElementById('topupModal').classList.remove('active'); }
 
-  // ระบบประมวลผลซองอังเปา TrueMoney
   function handleTrueMoneyTopup(e) {
     e.preventDefault();
     let link = document.getElementById('giftLinkInput').value.trim();
@@ -645,21 +652,16 @@
       return;
     }
 
-    // ตรวจสอบว่าซองนี้เคยถูกใช้งานไปแล้วหรือยัง (ป้องกันการใช้ซองซ้ำ)
     if (usedGiftLinks.includes(link)) {
       alert('❌ ซองของขวัญนี้ถูกใช้งานไปแล้ว ไม่สามารถใช้ซองซ้ำได้!');
       return;
     }
 
-    // จำลองการตรวจสอบซองอังเปา (ในระบบจริงส่วนนี้จะต้องยิง API ไปเช็คกับระบบซอง)
-    // ระบบจำลองจะสุ่มยอดเงินให้ 50, 100, หรือ 300 บาทเพื่อความสมจริงในการทดสอบ
     let possibleAmounts = [50, 100, 300, 500];
     let topupAmount = possibleAmounts[Math.floor(Math.random() * possibleAmounts.length)];
 
-    // บันทึกลิงก์ว่าใช้แล้ว
     usedGiftLinks.push(link);
 
-    // เติมเงินเข้ากระเป๋าผู้ใช้ปัจจุบัน
     let userData = getActiveUserData();
     userData.wallet += topupAmount;
     saveUsersDb();
@@ -702,7 +704,7 @@
     if (document.getElementById('adminPass').value === 'Piano08102556') {
       sessionStorage.setItem('admin_ok', 'true');
       closeLoginModal(); enableAdminMode();
-      alert('เข้าสู่ระบบแอดมินสำเร็จ!');
+      alert('เข้าสู่ระบบแอดมินสำเร็จ! สามารถคลิกแก้ข้อความประกาศด้านบนได้ทันที');
     } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
 
@@ -711,6 +713,7 @@
     document.getElementById('adminDashboard').classList.add('active');
     document.getElementById('logoutAdminBtn').style.display = 'inline-block';
     
+    document.getElementById('announcementTextView').setAttribute('contenteditable', 'true');
     document.getElementById('heroEyebrowView').setAttribute('contenteditable', 'true');
     document.getElementById('heroTitleView').setAttribute('contenteditable', 'true');
     document.getElementById('heroDescView').setAttribute('contenteditable', 'true');
@@ -725,6 +728,7 @@
     document.getElementById('adminDashboard').classList.remove('active');
     document.getElementById('logoutAdminBtn').style.display = 'none';
     
+    document.getElementById('announcementTextView').removeAttribute('contenteditable');
     document.getElementById('heroEyebrowView').removeAttribute('contenteditable');
     document.getElementById('heroTitleView').removeAttribute('contenteditable');
     document.getElementById('heroDescView').removeAttribute('contenteditable');
