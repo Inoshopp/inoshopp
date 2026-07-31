@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — ปรับแต่งหน้าปกจากหลังบ้านได้</title>
+<title>รหัสสุ่ม SHOP — ระบบครบครัน</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -30,7 +30,6 @@
   .topbar{
     background: linear-gradient(90deg, var(--red-deep), var(--red));
     color:#fff; text-align:center; font-size:13.5px; padding:8px 12px;
-    display:flex; align-items:center; justify-content:center; gap:8px;
   }
 
   header{
@@ -85,8 +84,7 @@
       linear-gradient(rgba(18, 10, 8, 0.65), rgba(18, 10, 8, 0.65)),
       radial-gradient(circle at 15% 20%, rgba(255,204,51,0.25), transparent 45%),
       linear-gradient(135deg, var(--red-deep), #6E0F0A 70%);
-    background-size: cover;
-    background-position: center;
+    background-size: cover; background-position: center;
     border: 1px solid var(--line);
   }
   .hero-content{ position:relative; text-align:center; padding: 30px 20px; z-index: 2; }
@@ -99,7 +97,6 @@
   .hero h1{
     font-size: 48px; font-weight:800; line-height:1.15; color:#fff;
     text-shadow: 0 4px 12px rgba(0,0,0,0.7);
-    letter-spacing: 1px;
   }
   .hero h1 .accent{ color: var(--yellow); }
   .hero p{ color: var(--ink-dim); margin-top:16px; font-size:15px; }
@@ -212,7 +209,7 @@
 </head>
 <body>
 
-<div class="topbar">⚡ ระบบปรับแต่งเว็บไซต์จากหลังบ้าน (/admin/) เปลี่ยนรูปหน้าปกและข้อความได้ทั้งหมด</div>
+<div class="topbar">⚡ ร้านสุ่มรหัสเกม — ระบบสมาชิก, เติมเงิน และจัดการแอดมิน</div>
 
 <header>
   <div class="logo"><div class="logo-mark">RS</div>รหัสสุ่ม SHOP</div>
@@ -239,12 +236,11 @@
   🏠 หน้าแรก &nbsp;›&nbsp; หมวดหมู่ทั้งหมด &nbsp;›&nbsp; <b id="crumbTitle">[HOT 🔥] สุ่มรหัสเกม ราคาถูก 🎁</b>
 </div>
 
-<!-- ส่วนหน้าปก (Hero Section) ที่ปรับแต่งได้จากแอดมิน -->
 <div class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบเสถียรและรวดเร็ว 100%</div>
+    <div class="hero-eyebrow" id="heroEyebrowView">● ระบบสมาชิกและเติมเงินจริง</div>
     <h1 id="heroTitleView">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
-    <p id="heroDescView">ระบบจัดการเสถียร รวดเร็ว ไม่มีสะดุด ปลอดภัยทุกการใช้งาน</p>
+    <p id="heroDescView">เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที</p>
   </div>
 </div>
 
@@ -354,13 +350,12 @@
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ แผงควบคุมหลังบ้าน (/admin/)</div>
   <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการปรับแต่งหน้าปกเว็บ, เพิ่มกล่องสุ่ม และเติมเงินให้ผู้ใช้</p>
   
-  <!-- เมนูปรับแต่งหน้าปกเว็บ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎨 ปรับแต่งหน้าปกเว็บไซต์ (Hero Banner)</h4>
     <form onsubmit="handleSaveHeroSettings(event)" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
       <div class="form-group">
         <label>ข้อความป้ายประกาศเล็กด้านบน</label>
-        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบเสถียรและรวดเร็ว 100%" required>
+        <input type="text" id="adminHeroEyebrow" class="form-control" placeholder="เช่น ● ระบบสมาชิกและเติมเงินจริง" required>
       </div>
       <div class="form-group">
         <label>หัวข้อหลัก (Title)</label>
@@ -382,7 +377,6 @@
 
   <div class="admin-section-divider"></div>
 
-  <!-- เมนูเติมเงินให้ผู้ใช้ -->
   <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
     <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
     <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
@@ -449,15 +443,14 @@
   let userWallet = parseFloat(localStorage.getItem('gs_wallet')) || 100;
   let purchaseHistory = JSON.parse(localStorage.getItem('gs_history')) || [];
   
-  // ข้อมูลตั้งค่าหน้าปก (Hero Banner)
   let heroSettings = JSON.parse(localStorage.getItem('gs_hero')) || {
-    eyebrow: '● ระบบเสถียรและรวดเร็ว 100%',
+    eyebrow: '● ระบบสมาชิกและเติมเงินจริง',
     title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
-    desc: 'ระบบจัดการเสถียร รวดเร็ว ไม่มีสะดุด ปลอดภัยทุกการใช้งาน',
+    desc: 'เข้าสู่ระบบสมาชิก สมัครใช้งานฟรี และเลือกช่องทางเติมเงินเพื่อกดซื้อกล่องสุ่มลุ้นรางวัลได้ทันที',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v10')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v11')) || [
     { id: 1, name: 'กล่องเริ่มต้น', tier: 'ธรรมดา', price: 19, image: '', frame: 'frame-gold', items: ['[R] ดาบเหล็ก', '[R] ชุดผ้าเก่า', '[SR] ธนูไม้'] },
     { id: 2, name: 'กล่องทอง', tier: 'ยอดนิยม', price: 59, image: '', frame: 'frame-red', items: ['[SR] ดาบอัศวิน', '[SSR] ขวานเทพ'] }
   ];
@@ -488,7 +481,6 @@
       topupBtn.style.display = 'none';
     }
 
-    // อัปเดตการแสดงผลหน้าปกเว็บ
     document.getElementById('heroEyebrowView').textContent = heroSettings.eyebrow;
     document.getElementById('heroTitleView').innerHTML = heroSettings.title;
     document.getElementById('heroDescView').textContent = heroSettings.desc;
@@ -502,7 +494,7 @@
   function saveData() {
     localStorage.setItem('gs_wallet', userWallet);
     localStorage.setItem('gs_history', JSON.stringify(purchaseHistory));
-    localStorage.setItem('gs_products_v10', JSON.stringify(products));
+    localStorage.setItem('gs_products_v11', JSON.stringify(products));
     localStorage.setItem('gs_hero', JSON.stringify(heroSettings));
   }
 
@@ -529,7 +521,6 @@
     grid.innerHTML = html;
   }
 
-  // ฟังก์ชันบันทึกการเปลี่ยนหน้าปกจากแอดมิน
   function handleSaveHeroSettings(e) {
     e.preventDefault();
     heroSettings.eyebrow = document.getElementById('adminHeroEyebrow').value;
@@ -541,14 +532,12 @@
       let reader = new FileReader();
       reader.onload = function(evt) {
         heroSettings.bgImage = evt.target.result;
-        saveData();
-        updateUIState();
+        saveData(); updateUIState();
         alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
       };
       reader.readAsDataURL(fileInput.files[0]);
     } else {
-      saveData();
-      updateUIState();
+      saveData(); updateUIState();
       alert('บันทึกเปลี่ยนหน้าปกเว็บไซต์สำเร็จ!');
     }
   }
@@ -567,9 +556,8 @@
     e.preventDefault();
     currentUser = document.getElementById('authUserEmail').value;
     localStorage.setItem('gs_user', currentUser);
-    updateUIState();
-    closeAuthModal();
-    alert('สำเร็จ!');
+    updateUIState(); closeAuthModal();
+    alert('เข้าสู่ระบบสำเร็จ!');
   }
 
   function logoutUser() {
@@ -595,17 +583,13 @@
   function handleTrueMoneyTopup(e) {
     e.preventDefault();
     userWallet += 100;
-    saveData();
-    updateUIState();
-    closeTopupModal();
+    saveData(); updateUIState(); closeTopupModal();
     alert('เติมเงินสำเร็จ +100 บาท');
   }
 
   function simulatePromptPaySuccess() {
     userWallet += 300;
-    saveData();
-    updateUIState();
-    closeTopupModal();
+    saveData(); updateUIState(); closeTopupModal();
     alert('โอนผ่าน QR สำเร็จ +300 บาท');
   }
 
@@ -613,8 +597,7 @@
     e.preventDefault();
     let amt = parseFloat(document.getElementById('adminTopupAmount').value);
     userWallet += amt;
-    saveData();
-    updateUIState();
+    saveData(); updateUIState();
     alert('เติมเงินให้ผู้ใช้สำเร็จ');
   }
 
@@ -628,11 +611,8 @@
 
   function openAdminRoute(e) {
     e.preventDefault();
-    if (sessionStorage.getItem('admin_ok') === 'true') {
-      toggleAdminDashboard();
-    } else {
-      document.getElementById('adminLoginModal').classList.add('active');
-    }
+    if (sessionStorage.getItem('admin_ok') === 'true') toggleAdminDashboard();
+    else document.getElementById('adminLoginModal').classList.add('active');
   }
   function closeLoginModal() { document.getElementById('adminLoginModal').classList.remove('active'); }
 
@@ -640,8 +620,7 @@
     e.preventDefault();
     if (document.getElementById('adminPass').value === 'Piano08102556') {
       sessionStorage.setItem('admin_ok', 'true');
-      closeLoginModal();
-      enableAdminMode();
+      closeLoginModal(); enableAdminMode();
       alert('เข้าสู่ระบบแอดมินสำเร็จ');
     } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
@@ -651,7 +630,6 @@
     document.getElementById('adminDashboard').classList.add('active');
     document.getElementById('logoutAdminBtn').style.display = 'inline-block';
     
-    // เติมค่าฟอร์มหน้าปกเดิมลงในช่องแอดมิน
     document.getElementById('adminHeroEyebrow').value = heroSettings.eyebrow;
     document.getElementById('adminHeroTitle').value = heroSettings.title;
     document.getElementById('adminHeroDesc').value = heroSettings.desc;
@@ -697,7 +675,7 @@
   function promptPurchase(index) {
     if (!currentUser) { openAuthModal(); return; }
     let p = products[index];
-    if (userWallet < p.price) { alert('เงินไม่พอ!'); return; }
+    if (userWallet < p.price) { alert('เงินไม่พอ! กรุณาเติมเงิน'); return; }
     selectedProductIndex = index;
     document.getElementById('confirmBoxDetails').innerHTML = `ซื้อ <b>"${p.name}"</b> ราคา ฿${p.price}`;
     document.getElementById('confirmModal').classList.add('active');
