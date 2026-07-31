@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIGHPERBIT SHOP — ระบบสุ่มรหัสออนไลน์</title>
+<title>HIGHPERBIT SHOP — ระบบจัดการสินค้า Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -44,15 +44,15 @@
   }
   .logo{ display:flex; align-items:center; gap:12px; font-family:'Kanit'; font-weight:800; font-size:19px;}
   
-  /* ปรับแต่งโลโก้วงกลมให้ดึงรูป highperbit.jpg มาแสดงอย่างพอดี */
   .logo-mark{
     width:45px; height:45px; border-radius:50%;
     overflow: hidden; border: 2px solid var(--yellow);
     display:flex; align-items:center; justify-content:center;
     box-shadow: 0 0 10px rgba(255,204,51,0.4);
-    background: #000;
+    background: #2a1714;
   }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+  .logo-mark span { font-size: 11px; color: var(--yellow); text-align: center; font-weight: bold; }
 
   nav{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   nav a{
@@ -79,7 +79,6 @@
   .btn-admin{ background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff; display:none; }
   .btn-wallet { background: linear-gradient(135deg, var(--green), #15803d); color:#fff; }
 
-  /* Canva Pro Floating Editor Toolbar */
   #canvaToolbar {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
     background: #1e1e24; border: 2px solid var(--yellow); border-radius: 14px;
@@ -165,6 +164,7 @@
     color: var(--yellow); margin: 20px 0; letter-spacing: 2px; font-weight: bold;
   }
 
+  /* Admin Dashboard Styles */
   .admin-dashboard {
     display: none; background: var(--panel); border: 1px solid var(--red);
     border-radius: 16px; padding: 30px; margin: 20px 5%;
@@ -179,6 +179,13 @@
   .stat-card .num { font-family: 'Kanit'; font-size: 24px; font-weight: bold; color: var(--yellow); margin-top: 5px; }
   
   .admin-section-divider { border-top: 1px solid var(--line); margin: 25px 0 20px; padding-top: 20px; }
+  
+  .admin-box-card {
+    background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; margin-bottom: 25px;
+  }
+  .admin-box-card h4 { font-family: 'Kanit'; font-size: 16px; color: var(--yellow); margin-bottom: 12px; }
+
   .admin-form {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 15px;
   }
@@ -186,10 +193,17 @@
   .form-group.full { grid-column: 1 / -1; }
   .form-group label { font-size: 13px; color: var(--ink-dim); font-weight: 500; }
   .form-control {
-    background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
     padding: 10px; color: #fff; font-family: 'Sarabun'; font-size: 14px;
   }
   .form-control:focus { outline: none; border-color: var(--yellow); }
+
+  /* Admin Table */
+  .admin-table-wrap { overflow-x: auto; margin-top: 15px; }
+  .admin-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; }
+  .admin-table th { background: var(--bg); padding: 12px; color: var(--yellow); border-bottom: 1px solid var(--line); font-family: 'Kanit'; }
+  .admin-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .admin-table tr:hover { background: rgba(255,255,255,0.02); }
 
   .product-grid{
     display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px;
@@ -219,19 +233,20 @@
   .product-card .price span{ font-size:12px; color:var(--ink-dim); font-weight:400; font-family:'Sarabun'; }
   
   .buy-btn{
-    margin-top:auto; padding:11px; border-radius:9px; border:none;
+    margin-top:auto; padding:11px; border-radius:99px; border:none;
     background: linear-gradient(135deg, var(--red), var(--red-deep)); color:#fff;
     font-family:'Kanit'; font-weight:600; font-size:14px; cursor:pointer;
   }
   .buy-btn:hover{ filter: brightness(1.1); }
   
-  .delete-item-btn{
-    position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8);
-    color: #ff4d4d; border: 1px solid #ff4d4d; border-radius: 50%;
-    width: 32px; height: 32px; cursor: pointer; font-size: 13px;
-    display: none; align-items: center; justify-content: center; z-index: 10;
+  .card-admin-action-btn{
+    position: absolute; top: 10px; right: 10px; display: none; gap: 5px; z-index: 10;
   }
-  body.admin-logged-in .delete-item-btn { display: flex; }
+  .card-admin-action-btn button{
+    background: rgba(0,0,0,0.85); border: 1px solid var(--line); border-radius: 6px;
+    padding: 4px 8px; font-size: 12px; color: #fff; cursor: pointer;
+  }
+  body.admin-logged-in .card-admin-action-btn { display: flex; }
 
   footer{
     margin-top:40px; border-top:1px solid var(--line); padding: 24px 5%;
@@ -258,7 +273,9 @@
 
 <header>
   <div class="logo">
-    <div class="logo-mark"><img src="highperbit.jpg" alt="Logo"></div>
+    <div class="logo-mark" id="logoContainerView">
+      <span>LOGO</span>
+    </div>
     HIGHPERBIT
   </div>
   <nav>
@@ -266,7 +283,7 @@
     <a href="#shop">กล่องสุ่มทั้งหมด</a>
     <a onclick="openHistoryModal()">📜 ประวัติการซื้อ</a>
     <a href="#admin" onclick="openAdminRoute(event)" style="color: var(--yellow);">⚙️ /admin/</a>
-    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอดมิน)</button>
+    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอนมิน)</button>
   </nav>
   
   <div class="user-wallet-badge" id="walletBadgeContainer" style="display:none;">
@@ -386,7 +403,7 @@
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
   <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ HIGHPERBIT Control Center (/admin/)</div>
-  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">ปรับแต่งหน้าเว็บ, เปลี่ยนรูป GIF หน้าปก, เติมเงิน และสร้างกล่องสุ่ม</p>
+  <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">จัดการโลโก้, ปกเว็บ, ระบบเติมเงิน และเพิ่ม/แก้ไขรายการกล่องสุ่มสินค้าอย่างละเอียด</p>
   
   <div class="admin-stats-grid">
     <div class="stat-card">
@@ -403,22 +420,30 @@
     </div>
   </div>
 
-  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">🎬 เครื่องมือเปลี่ยนรูปภาพปก (รองรับไฟล์รูปภาพ & GIF)</h4>
-    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-      <input type="file" id="adminBgFileInput" class="form-control" accept="image/*,.gif" style="flex:1; min-width:220px;">
-      <button class="btn btn-solid" onclick="adminUploadBgImage()">📷 อัปโหลดและเปลี่ยนรูปปกทันที</button>
+  <!-- ตกแต่งโลโก้ & ปกเว็บ -->
+  <div class="admin-box-card">
+    <h4>🎨 จัดการดีไซน์และรูปภาพเว็บไซต์</h4>
+    <div class="admin-form">
+      <div class="form-group">
+        <label>⭕ อัปโหลดรูปโลโก้วงกลม</label>
+        <input type="file" id="adminLogoFileInput" class="form-control" accept="image/*">
+        <button class="btn btn-solid" style="margin-top:5px;" onclick="adminUploadLogoImage()">💾 บันทึกรูปโลโก้</button>
+      </div>
+      <div class="form-group">
+        <label>🎬 อัปโหลดรูปภาพปก (รองรับ GIF)</label>
+        <input type="file" id="adminBgFileInput" class="form-control" accept="image/*,.gif">
+        <button class="btn btn-solid" style="margin-top:5px;" onclick="adminUploadBgImage()">📷 บันทึกรูปปกหน้าเว็บ</button>
+      </div>
+      <div class="form-group full">
+        <button class="btn btn-solid" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color:#fff;" onclick="saveCanvasChanges()">💾 บันทึกการแก้ไขข้อความ Canva Pro ทั้งหมด</button>
+      </div>
     </div>
   </div>
 
-  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--yellow); margin-bottom:15px;">💾 บันทึกการแก้ไขข้อความ Canva Builder ทั้งหมด</h4>
-    <button class="btn btn-solid" style="width: 100%;" onclick="saveCanvasChanges()">บันทึกข้อความและดีไซน์หน้าเว็บ</button>
-  </div>
-
-  <div style="background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; margin-bottom: 25px;">
-    <h4 style="font-family:'Kanit'; font-size:16px; color:var(--green); margin-bottom:10px;">💵 ระบบแอดมินเติมเงินให้ผู้ใช้</h4>
-    <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <!-- เติมเงินให้สมาชิก -->
+  <div class="admin-box-card">
+    <h4 style="color:var(--green);">💵 ระบบแอดมินเติมเงินให้สมาชิก</h4>
+    <form onsubmit="handleAdminAddMoney(event)" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top:10px;">
       <select id="adminTargetUser" class="form-control" style="flex: 1; min-width: 200px;" required></select>
       <input type="number" id="adminTopupAmount" class="form-control" placeholder="ระบุจำนวนเงิน" style="flex: 1; min-width: 160px;" required min="1">
       <button type="submit" class="btn btn-wallet">➕ เติมเงิน</button>
@@ -426,42 +451,82 @@
   </div>
 
   <div class="admin-section-divider"></div>
-  <h4 style="font-family:'Kanit'; font-size:16px; color:#fff; margin-bottom:10px;">📦 เพิ่มกล่องสุ่มพร้อมตั้งค่าเปอร์เซ็นต์ (Drop Rate %)</h4>
 
-  <form class="admin-form" id="addProductForm" onsubmit="handleAddNewProduct(event)">
-    <div class="form-group">
-      <label>ชื่อกล่องสุ่ม</label>
-      <input type="text" id="pName" class="form-control" placeholder="ชื่อกล่อง" required>
+  <!-- ฟอร์มสร้าง/แก้ไขกล่องสุ่มสินค้า -->
+  <div class="admin-box-card" style="border:1px solid var(--yellow);">
+    <h4 id="productFormTitle">📦 ระบบเพิ่ม / แก้ไขกล่องสุ่มสินค้า</h4>
+    <p style="font-size:12px; color:var(--ink-dim); margin-bottom:15px;">คุณสามารถใส่รูปผ่านการเลือกไฟล์ในเครื่อง หรือวางลิงก์รูปภาพ (URL) ได้ทันที</p>
+
+    <form class="admin-form" id="addProductForm" onsubmit="handleProductFormSubmit(event)">
+      <input type="hidden" id="editingProductId" value="">
+      
+      <div class="form-group">
+        <label>ชื่อกล่องสุ่ม *</label>
+        <input type="text" id="pName" class="form-control" placeholder="เช่น กล่องลุ้นไอดีแรร์" required>
+      </div>
+      <div class="form-group">
+        <label>ระดับกล่อง (Tier Badge) *</label>
+        <input type="text" id="pTier" class="form-control" placeholder="เช่น SSR, HOT 🔥, แรร์" required>
+      </div>
+      <div class="form-group">
+        <label>ราคาเปิดต่อครั้ง (บาท) *</label>
+        <input type="number" id="pPrice" class="form-control" placeholder="เช่น 20" required min="1">
+      </div>
+      <div class="form-group">
+        <label>เลือกสไตล์กรอบการ์ด</label>
+        <select id="pFrame" class="form-control">
+          <option value="frame-gold">🟡 กรอบทองคำ (Gold)</option>
+          <option value="frame-red">🔴 กรอบแดงไฟ (Red)</option>
+          <option value="frame-neon">🔵 กรอบนีออน (Neon Blue)</option>
+          <option value="frame-purple">🟣 กรอบม่วงตำนาน (Purple)</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label>รูปภาพกล่องสุ่ม (เลือกวิธีใดวิธีหนึ่ง)</label>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <input type="file" id="pImageFile" class="form-control" accept="image/*" style="flex:1; min-width:200px;">
+          <input type="url" id="pImageUrl" class="form-control" placeholder="หรือวาง ลิงก์รูปภาพ (https://...)" style="flex:1; min-width:200px;">
+        </div>
+      </div>
+
+      <div class="form-group full">
+        <label>รายการไอเทมและอัตราดรอป % (กรอกรูปแบบ: ชื่อไอเทม | เปอร์เซ็นต์ , คั่นด้วยเครื่องหมายจุลภาค ,)</label>
+        <textarea id="pItems" class="form-control" rows="4" placeholder="[SSR] รหัส RoV สกินแท้ | 5,
+[SR] ไอดีเลเวล 30 | 25,
+[R] บัตรเติมเงิน 20 บาท | 70" required></textarea>
+        <small style="color:var(--yellow); font-size:11.5px; margin-top:3px;">💡 ตัวอย่าง: [SSR] ดาบเทพ | 10, [R] ยาเพิ่มเลือด | 90 (ผลรวมควรได้ 100%)</small>
+      </div>
+
+      <div class="form-group full" style="display:flex; gap:10px; margin-top: 10px;">
+        <button type="submit" class="btn btn-solid" style="flex:2;" id="saveProductBtn">💾 บันทึกสร้างกล่องสุ่ม</button>
+        <button type="button" class="btn btn-outline" style="flex:1; display:none;" id="cancelEditBtn" onclick="resetProductForm()">ยกเลิกการแก้ไข</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ตารางจัดการรายการกล่องสุ่มทั้งหมด -->
+  <div class="admin-box-card">
+    <h4>📋 รายการกล่องสุ่มทั้งหมดในระบบ</h4>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>รูป</th>
+            <th>ชื่อกล่องสุ่ม</th>
+            <th>ระดับ</th>
+            <th>ราคา</th>
+            <th>จำนวนไอเทม</th>
+            <th>การจัดการ</th>
+          </tr>
+        </thead>
+        <tbody id="adminProductTableBody">
+          <!-- ตารางโหลดสดผ่าน JS -->
+        </tbody>
+      </table>
     </div>
-    <div class="form-group">
-      <label>ระดับกล่อง (Tier)</label>
-      <input type="text" id="pTier" class="form-control" placeholder="ระดับ" required>
-    </div>
-    <div class="form-group">
-      <label>ราคา (บาท)</label>
-      <input type="number" id="pPrice" class="form-control" placeholder="ราคา" required>
-    </div>
-    <div class="form-group">
-      <label>รูปภาพกล่องสุ่ม</label>
-      <input type="file" id="pImageFile" class="form-control" accept="image/*">
-    </div>
-    <div class="form-group">
-      <label>เลือกกรอบดีไซน์</label>
-      <select id="pFrame" class="form-control">
-        <option value="frame-gold">🟡 กรอบทองคำ</option>
-        <option value="frame-red">🔴 กรอบสีแดง</option>
-        <option value="frame-neon">🔵 กรอบนีออน</option>
-        <option value="frame-purple">🟣 กรอบม่วง</option>
-      </select>
-    </div>
-    <div class="form-group full">
-      <label>รายการไอเทมและเปอร์เซ็นต์ (ชื่อไอเทม | เรท%, คั่นด้วยจุลภาค ,)</label>
-      <textarea id="pItems" class="form-control" rows="4" placeholder="[SSR] ดาบมังกร | 5, [SR] ปีกเทพ | 25, [R] ยาฟื้นฟู | 70" required></textarea>
-    </div>
-    <div class="form-group full" style="margin-top: 5px;">
-      <button type="submit" class="btn btn-solid" style="width: 100%;">💾 บันทึกสร้างกล่องสุ่ม</button>
-    </div>
-  </form>
+  </div>
+
 </div>
 
 <div class="section" id="shop">
@@ -474,11 +539,12 @@
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user_v22') || null;
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v22')) || {};
-  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v22')) || [];
+  let currentUser = localStorage.getItem('gs_current_user_v24') || null;
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v24')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v24')) || [];
 
-  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v22')) || {
+  let siteSettings = JSON.parse(localStorage.getItem('gs_settings_v24')) || {
+    logoImage: '',
     announcement: 'ยินดีต้อนรับสู่ HIGHPERBIT SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
     eyebrow: '● WELCOME TO HIGHPERBIT',
     title: 'วงล้อสุ่มรหัส <span class="accent">HIGHPERBIT</span>',
@@ -486,7 +552,7 @@
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v22')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v24')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -513,8 +579,8 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('gs_users_db_v22', JSON.stringify(usersDb)); 
-    localStorage.setItem('gs_used_gifts_v22', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('gs_users_db_v24', JSON.stringify(usersDb)); 
+    localStorage.setItem('gs_used_gifts_v24', JSON.stringify(usedGiftLinks));
   }
 
   function updateUIState() {
@@ -542,20 +608,29 @@
       topupBtn.style.display = 'none';
     }
 
-    document.getElementById('announcementTextView').innerHTML = heroSettings.announcement;
-    document.getElementById('heroEyebrowView').innerHTML = heroSettings.eyebrow;
-    document.getElementById('heroTitleView').innerHTML = heroSettings.title;
-    document.getElementById('heroDescView').innerHTML = heroSettings.desc;
+    const logoContainer = document.getElementById('logoContainerView');
+    if (siteSettings.logoImage) {
+      logoContainer.innerHTML = `<img src="${siteSettings.logoImage}" alt="Logo">`;
+    } else {
+      logoContainer.innerHTML = `<span>LOGO</span>`;
+    }
+
+    document.getElementById('announcementTextView').innerHTML = siteSettings.announcement;
+    document.getElementById('heroEyebrowView').innerHTML = siteSettings.eyebrow;
+    document.getElementById('heroTitleView').innerHTML = siteSettings.title;
+    document.getElementById('heroDescView').innerHTML = siteSettings.desc;
     
     const heroEl = document.getElementById('home');
-    if (heroSettings.bgImage) {
-      heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${heroSettings.bgImage}')`;
+    if (siteSettings.bgImage) {
+      heroEl.style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.7), rgba(18, 10, 8, 0.7)), url('${siteSettings.bgImage}')`;
     }
 
     updateAdminUserSelect();
     document.getElementById('statTotalBoxes').textContent = products.length;
     document.getElementById('statTotalUsers').textContent = Object.keys(usersDb).length;
     document.getElementById('statUserWallet').textContent = userData.wallet.toLocaleString() + ' ฿';
+
+    renderAdminProductTable();
   }
 
   function updateAdminUserSelect() {
@@ -569,8 +644,8 @@
   }
 
   function saveData() {
-    localStorage.setItem('gs_products_v22', JSON.stringify(products));
-    localStorage.setItem('gs_hero_v22', JSON.stringify(heroSettings));
+    localStorage.setItem('gs_products_v24', JSON.stringify(products));
+    localStorage.setItem('gs_settings_v24', JSON.stringify(siteSettings));
     saveUsersDb();
   }
 
@@ -584,7 +659,10 @@
 
       html += `
         <div class="product-card ${p.frame}">
-          <button class="delete-item-btn" onclick="deleteProduct(${index})" title="ลบ">🗑️</button>
+          <div class="card-admin-action-btn">
+            <button onclick="editProduct(${p.id})">✏️ แก้ไข</button>
+            <button onclick="deleteProduct(${index})" style="color:#ff4d4d;">🗑️ ลบ</button>
+          </div>
           <div class="product-img-wrap">${imgContent}</div>
           <div class="product-card-body">
             <div class="tier">${p.tier}</div>
@@ -600,19 +678,62 @@
     updateUIState();
   }
 
+  function renderAdminProductTable() {
+    const tbody = document.getElementById('adminProductTableBody');
+    if (!tbody) return;
+    if (products.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--ink-dim);">ยังไม่มีรายการกล่องสุ่ม</td></tr>';
+      return;
+    }
+    let html = '';
+    products.forEach((p, index) => {
+      let imgPreview = p.image ? `<img src="${p.image}" style="width:36px; height:36px; object-fit:cover; border-radius:6px;">` : '🎁';
+      html += `
+        <tr>
+          <td>${imgPreview}</td>
+          <td><b>${p.name}</b></td>
+          <td><span style="color:var(--yellow); font-size:12px;">${p.tier}</span></td>
+          <td>฿${p.price}</td>
+          <td>${p.items.length} รายการ</td>
+          <td>
+            <button class="btn btn-solid" style="padding:4px 10px; font-size:12px;" onclick="editProduct(${p.id})">✏️ แก้ไข</button>
+            <button class="btn btn-outline" style="padding:4px 10px; font-size:12px; color:#ef4444; border-color:#ef4444;" onclick="deleteProduct(${index})">🗑️ ลบ</button>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  }
+
+  function adminUploadLogoImage() {
+    let fileInput = document.getElementById('adminLogoFileInput');
+    if (fileInput.files && fileInput.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function(evt) {
+        siteSettings.logoImage = evt.target.result;
+        saveData();
+        updateUIState();
+        alert('อัปโหลดและบันทึกโลโก้วงกลมสำเร็จ!');
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      alert('กรุณาเลือกไฟล์รูปโลโก้ก่อนกดบันทึก');
+    }
+  }
+
   function adminUploadBgImage() {
     let fileInput = document.getElementById('adminBgFileInput');
     if (fileInput.files && fileInput.files[0]) {
       let reader = new FileReader();
       reader.onload = function(evt) {
-        heroSettings.bgImage = evt.target.result;
+        siteSettings.bgImage = evt.target.result;
         saveData();
         updateUIState();
-        alert('เปลี่ยนรูปปกพื้นหลัง (รองรับ GIF) สำเร็จ!');
+        alert('อัปโหลดและเปลี่ยนรูปปกหน้าเว็บ (รองรับ GIF) สำเร็จ!');
       };
       reader.readAsDataURL(fileInput.files[0]);
     } else {
-      alert('กรุณาเลือกไฟล์รูปภาพก่อนกดอัปโหลด');
+      alert('กรุณาเลือกไฟล์รูปภาพหน้าปกก่อนกดบันทึก');
     }
   }
 
@@ -649,10 +770,10 @@
   }
 
   function saveCanvasChanges() {
-    heroSettings.announcement = document.getElementById('announcementTextView').innerHTML;
-    heroSettings.eyebrow = document.getElementById('heroEyebrowView').innerHTML;
-    heroSettings.title = document.getElementById('heroTitleView').innerHTML;
-    heroSettings.desc = document.getElementById('heroDescView').innerHTML;
+    siteSettings.announcement = document.getElementById('announcementTextView').innerHTML;
+    siteSettings.eyebrow = document.getElementById('heroEyebrowView').innerHTML;
+    siteSettings.title = document.getElementById('heroTitleView').innerHTML;
+    siteSettings.desc = document.getElementById('heroDescView').innerHTML;
     saveData();
     alert('บันทึกข้อความและดีไซน์ Canva Pro สำเร็จเรียบร้อยแล้ว!');
   }
@@ -673,7 +794,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user_v22', currentUser);
+    localStorage.setItem('gs_current_user_v24', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -687,7 +808,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user_v22');
+    localStorage.removeItem('gs_current_user_v24');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
@@ -794,18 +915,22 @@
     alert('ออกจากระบบแอดมินแล้ว');
   }
 
-  function handleAddNewProduct(e) {
+  // ระบบประมวลผลฟอร์มกล่องสุ่มสินค้า (ทั้งสร้างใหม่ และ แก้ไข)
+  function handleProductFormSubmit(e) {
     e.preventDefault();
-    let name = document.getElementById('pName').value;
-    let tier = document.getElementById('pTier').value;
+    let editId = document.getElementById('editingProductId').value;
+    let name = document.getElementById('pName').value.trim();
+    let tier = document.getElementById('pTier').value.trim();
     let price = parseFloat(document.getElementById('pPrice').value);
     let frame = document.getElementById('pFrame').value;
+    let imageUrlInput = document.getElementById('pImageUrl').value.trim();
     
     let rawItemsText = document.getElementById('pItems').value;
     let parsedItems = [];
     
     let parts = rawItemsText.split(',');
     for (let part of parts) {
+      if(!part.trim()) continue;
       let sub = part.split('|');
       let itemName = sub[0] ? sub[0].trim() : 'ไอเทม';
       let itemRate = sub[1] ? parseFloat(sub[1].trim()) : 10;
@@ -813,26 +938,94 @@
       parsedItems.push({ name: itemName, rate: itemRate });
     }
 
+    if (parsedItems.length === 0) {
+      alert('กรุณากรอกอย่างน้อย 1 ไอเทม');
+      return;
+    }
+
     let fileInput = document.getElementById('pImageFile');
+
+    let processProductSave = (finalImage) => {
+      if (editId) {
+        // กรณีโหมดแก้ไข (Update)
+        let index = products.findIndex(p => p.id == editId);
+        if (index !== -1) {
+          products[index].name = name;
+          products[index].tier = tier;
+          products[index].price = price;
+          products[index].frame = frame;
+          products[index].items = parsedItems;
+          if (finalImage || finalImage === '') products[index].image = finalImage;
+        }
+        alert('✏️ แก้ไขข้อมูลกล่องสุ่มสำเร็จ!');
+      } else {
+        // กรณีโหมดสร้างใหม่ (Create)
+        products.push({
+          id: Date.now(),
+          name,
+          tier,
+          price,
+          frame,
+          items: parsedItems,
+          image: finalImage || ''
+        });
+        alert('🎉 เพิ่มกล่องสุ่มใหม่เรียบร้อยแล้ว!');
+      }
+
+      saveData();
+      renderProducts();
+      resetProductForm();
+    };
+
     if (fileInput.files && fileInput.files[0]) {
       let reader = new FileReader();
       reader.onload = function(evt) {
-        products.push({ id: Date.now(), name, tier, price, frame, items: parsedItems, image: evt.target.result });
-        saveData(); renderProducts();
-        document.getElementById('addProductForm').reset();
-        alert('เพิ่มกล่องสุ่มสำเร็จ!');
+        processProductSave(evt.target.result);
       };
       reader.readAsDataURL(fileInput.files[0]);
     } else {
-      products.push({ id: Date.now(), name, tier, price, frame, items: parsedItems, image: '' });
-      saveData(); renderProducts();
-      document.getElementById('addProductForm').reset();
-      alert('เพิ่มกล่องสุ่มสำเร็จ!');
+      processProductSave(imageUrlInput);
     }
   }
 
+  // ดึงข้อมูลมาใส่ฟอร์มเพื่อกดแก้ไข
+  function editProduct(id) {
+    let p = products.find(prod => prod.id == id);
+    if (!p) return;
+
+    document.getElementById('editingProductId').value = p.id;
+    document.getElementById('pName').value = p.name;
+    document.getElementById('pTier').value = p.tier;
+    document.getElementById('pPrice').value = p.price;
+    document.getElementById('pFrame').value = p.frame;
+    document.getElementById('pImageUrl').value = p.image && !p.image.startsWith('data:') ? p.image : '';
+
+    let formattedItemsText = p.items.map(i => `${i.name} | ${i.rate}`).join(',\n');
+    document.getElementById('pItems').value = formattedItemsText;
+
+    document.getElementById('productFormTitle').textContent = `✏️ แก้ไขกล่องสุ่ม: ${p.name}`;
+    document.getElementById('saveProductBtn').textContent = '💾 บันทึกการแก้ไข';
+    document.getElementById('cancelEditBtn').style.display = 'inline-block';
+
+    // เลื่อนหน้าจอไปที่ฟอร์ม
+    document.getElementById('addProductForm').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // รีเซ็ตฟอร์มกลับเป็นโหมดเพิ่มกล่องสุ่มใหม่
+  function resetProductForm() {
+    document.getElementById('addProductForm').reset();
+    document.getElementById('editingProductId').value = '';
+    document.getElementById('productFormTitle').textContent = '📦 ระบบเพิ่ม / แก้ไขกล่องสุ่มสินค้า';
+    document.getElementById('saveProductBtn').textContent = '💾 บันทึกสร้างกล่องสุ่ม';
+    document.getElementById('cancelEditBtn').style.display = 'none';
+  }
+
   function deleteProduct(index) {
-    if(confirm('ลบกล่องนี้?')) { products.splice(index, 1); saveData(); renderProducts(); }
+    if(confirm(`คุณแน่ใจนะว่าต้องการลบกล่อง "${products[index].name}"?`)) { 
+      products.splice(index, 1); 
+      saveData(); 
+      renderProducts(); 
+    }
   }
 
   function promptPurchase(index) {
