@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>รหัสสุ่ม SHOP — โลโก้วงกลมสุดเท่</title>
+<title>HIGHPERBIT SHOP — ระบบสุ่มรหัสออนไลน์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -44,12 +44,13 @@
   }
   .logo{ display:flex; align-items:center; gap:12px; font-family:'Kanit'; font-weight:800; font-size:19px;}
   
-  /* ปรับแต่งโลโก้วงกลมให้สวยงามโดดเด่น */
+  /* ปรับแต่งโลโก้วงกลมให้ดึงรูป highperbit.jpg มาแสดงอย่างพอดี */
   .logo-mark{
-    width:42px; height:42px; border-radius:50%;
+    width:45px; height:45px; border-radius:50%;
     overflow: hidden; border: 2px solid var(--yellow);
     display:flex; align-items:center; justify-content:center;
     box-shadow: 0 0 10px rgba(255,204,51,0.4);
+    background: #000;
   }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -252,13 +253,13 @@
 </div>
 
 <div class="announcement-bar">
-  <b>📢 ประกาศ:</b> <span id="announcementTextView" contenteditable="false">ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปาและลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!</span>
+  <b>📢 ประกาศ:</b> <span id="announcementTextView" contenteditable="false">ยินดีต้อนรับสู่ HIGHPERBIT SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!</span>
 </div>
 
 <header>
   <div class="logo">
-    <div class="logo-mark"><img src="mp4_60.jpg" alt="Logo"></div>
-    รหัสสุ่ม SHOP
+    <div class="logo-mark"><img src="highperbit.jpg" alt="Logo"></div>
+    HIGHPERBIT
   </div>
   <nav>
     <a href="#home">หน้าแรก</a>
@@ -285,8 +286,8 @@
 
 <div class="hero" id="home">
   <div class="hero-content" id="heroContentBox">
-    <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● ระบบ Canva Pro Builder</div>
-    <h1 id="heroTitleView" contenteditable="false">วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span></h1>
+    <div class="hero-eyebrow" id="heroEyebrowView" contenteditable="false">● WELCOME TO HIGHPERBIT</div>
+    <h1 id="heroTitleView" contenteditable="false">วงล้อสุ่มรหัส <span class="accent">HIGHPERBIT</span></h1>
     <p id="heroDescView" contenteditable="false">คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือจัดการหลังบ้านผ่าน /admin/</p>
   </div>
 </div>
@@ -334,7 +335,7 @@
   <div class="modal-box" style="max-width: 460px;">
     <h3>🧧 เติมเงินด้วยซองอังเปา TrueMoney</h3>
     <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px; text-align:left;">
-      1. ไปที่แอป TrueMoney (เช่น เบอร์ 098-145-3150) เลือก <b>"ส่งซองของขวัญ"</b><br>
+      1. ไปที่แอป TrueMoney ส่งซองมาที่เบอร์ <b>098-145-3150</b><br>
       2. กำหนดจำนวนเงินตามต้องการ<br>
       3. คัดลอกลิงก์ซองของขวัญมาวางด้านล่างนี้
     </p>
@@ -384,7 +385,7 @@
 
 <!-- Admin Dashboard (/admin/) -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ Canva Pro Control Center (/admin/)</div>
+  <div class="section-title" style="margin-bottom: 5px;"><span class="dot"></span>⚙️ HIGHPERBIT Control Center (/admin/)</div>
   <p style="font-size: 13px; color: var(--ink-dim); margin-bottom: 20px;">ปรับแต่งหน้าเว็บ, เปลี่ยนรูป GIF หน้าปก, เติมเงิน และสร้างกล่องสุ่ม</p>
   
   <div class="admin-stats-grid">
@@ -469,23 +470,23 @@
 </div>
 
 <footer>
-  © 2026 รหัสสุ่ม SHOP — Canva Pro Builder Edition
+  © 2026 HIGHPERBIT SHOP — All Rights Reserved.
 </footer>
 
 <script>
-  let currentUser = localStorage.getItem('gs_current_user_v21') || null;
-  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v21')) || {};
-  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v21')) || [];
+  let currentUser = localStorage.getItem('gs_current_user_v22') || null;
+  let usersDb = JSON.parse(localStorage.getItem('gs_users_db_v22')) || {};
+  let usedGiftLinks = JSON.parse(localStorage.getItem('gs_used_gifts_v22')) || [];
 
-  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v21')) || {
-    announcement: 'ยินดีต้อนรับสู่ร้านรหัสสุ่ม SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
-    eyebrow: '● ระบบ Canva Pro Builder',
-    title: 'วงล้อสุ่มรหัส <span class="accent">เกมมือถือ</span>',
+  let heroSettings = JSON.parse(localStorage.getItem('gs_hero_v22')) || {
+    announcement: 'ยินดีต้อนรับสู่ HIGHPERBIT SHOP เติมเงินผ่านซองอังเปา (เบอร์ 098-145-3150) และลุ้นรับไอเทมแรร์ได้ตลอด 24 ชม.!',
+    eyebrow: '● WELCOME TO HIGHPERBIT',
+    title: 'วงล้อสุ่มรหัส <span class="accent">HIGHPERBIT</span>',
     desc: 'คลิกเลือกข้อความเพื่อตกแต่งสไตล์ Canva หรือจัดการหลังบ้านผ่าน /admin/',
     bgImage: ''
   };
 
-  let products = JSON.parse(localStorage.getItem('gs_products_v21')) || [
+  let products = JSON.parse(localStorage.getItem('gs_products_v22')) || [
     { 
       id: 1, 
       name: 'กล่องเริ่มต้น', 
@@ -512,8 +513,8 @@
   }
 
   function saveUsersDb() { 
-    localStorage.setItem('gs_users_db_v21', JSON.stringify(usersDb)); 
-    localStorage.setItem('gs_used_gifts_v21', JSON.stringify(usedGiftLinks));
+    localStorage.setItem('gs_users_db_v22', JSON.stringify(usersDb)); 
+    localStorage.setItem('gs_used_gifts_v22', JSON.stringify(usedGiftLinks));
   }
 
   function updateUIState() {
@@ -568,8 +569,8 @@
   }
 
   function saveData() {
-    localStorage.setItem('gs_products_v21', JSON.stringify(products));
-    localStorage.setItem('gs_hero_v21', JSON.stringify(heroSettings));
+    localStorage.setItem('gs_products_v22', JSON.stringify(products));
+    localStorage.setItem('gs_hero_v22', JSON.stringify(heroSettings));
     saveUsersDb();
   }
 
@@ -672,7 +673,7 @@
     if (!email) return;
 
     currentUser = email;
-    localStorage.setItem('gs_current_user_v21', currentUser);
+    localStorage.setItem('gs_current_user_v22', currentUser);
 
     if (!usersDb[currentUser]) {
       usersDb[currentUser] = { wallet: 0, history: [] };
@@ -686,7 +687,7 @@
 
   function logoutUser() {
     currentUser = null;
-    localStorage.removeItem('gs_current_user_v21');
+    localStorage.removeItem('gs_current_user_v22');
     updateUIState();
     alert('ออกจากระบบแล้ว');
   }
