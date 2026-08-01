@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIGHPERBIT SHOP — Separate Inputs & Luxury Reward</title>
+<title>HIGHPERBIT SHOP — Ultimate Professional Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #0C0706;
-    --panel: #1A0F0D;
-    --panel-2: #261512;
+    --bg: #0A0504;
+    --panel: #160B09;
+    --panel-2: #21120F;
     --red: #E8291C;
     --red-deep: #A81C13;
     --yellow: #FFCC33;
@@ -113,7 +113,7 @@
   @keyframes modalPop { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
   .modal-box h3 { margin-bottom: 15px; font-size: 22px; color: #fff; font-family:'Kanit'; }
 
-  /* 🌟 ดีไซน์ใหม่สุดหรูสำหรับหน้าต่างรางวัล (Luxury Reward Modal) */
+  /* Modal แสดงรางวัลสุดหรูหรา */
   .reward-modal-container {
     background: linear-gradient(145deg, #1f120f, #2d1814);
     border: 2px solid var(--yellow) !important;
@@ -162,13 +162,17 @@
   .form-control { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px; color: #fff; font-family: 'Sarabun'; font-size: 14px; }
   .form-control:focus { outline: none; border-color: var(--yellow); }
 
-  /* กล่องรายการไอเทมแยกช่องสไตล์แอดมิน */
   .item-builder-row {
     background: #150b09; border: 1px solid var(--line); border-radius: 10px; padding: 15px; margin-bottom: 12px;
     display: grid; grid-template-columns: 1.5fr 1fr 1fr 2fr auto; gap: 10px; align-items: center;
   }
   @media(max-width: 900px){ .item-builder-row { grid-template-columns: 1fr; } }
   
+  .user-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13.5px; }
+  .user-table th, .user-table td { border: 1px solid var(--line); padding: 10px; text-align: left; }
+  .user-table th { background: #120a08; color: var(--yellow); font-family: 'Kanit'; }
+  .user-table tr:hover { background: rgba(255,204,51,0.03); }
+
   .product-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:22px; }
   .product-card{
     background: var(--panel); border:1px solid var(--line); border-radius:16px;
@@ -207,7 +211,7 @@
 </div>
 
 <div class="announcement-bar">
-  <b>📢 ประกาศ:</b> <span id="announcementTextView">ยินดีต้อนรับสู่ HIGHPERBIT SHOP — ศูนย์รวมกล่องสุ่มรหัสเกมพรีเมียม เติมเงินอัตโนมัติ 24 ชม.</span>
+  <b>📢 ประกาศ:</b> <span id="announcementTextView">ยินดีต้อนรับสู่ HIGHPERBIT SHOP — ระบบกล่องสุ่มเกมพรีเมียม ซิงค์ความเร็วสูง Real-time 24 ชม.</span>
 </div>
 
 <header>
@@ -229,7 +233,7 @@
   <div class="header-actions">
     <button class="btn btn-code" id="redeemCodeNavBtn" style="display:none;" onclick="openRedeemModal()">🎁 กรอกโค้ด</button>
     <button class="btn btn-wallet" id="topupBtn" style="display:none;" onclick="openTopupModal()">🧧 เติมเงิน</button>
-    <button class="btn btn-solid" id="loginNavBtn" onclick="openAuthModal()">👤 เข้าสู่ระบบ</button>
+    <button class="btn btn-solid" id="loginNavBtn" onclick="openAuthModal()">👤 เข้าสู่ระบบ / สมัคร</button>
     <button class="btn btn-outline" id="logoutUserBtn" style="display:none;" onclick="logoutUser()">ออกระบบ</button>
   </div>
 </header>
@@ -241,16 +245,37 @@
   </div>
 </div>
 
-<!-- Modal: Login -->
+<!-- Modal: Login / Register -->
 <div class="modal-overlay" id="authModal">
   <div class="modal-box">
-    <h3>👤 เข้าสู่ระบบสมาชิก</h3>
-    <form onsubmit="handleUserAuth(event)">
-      <div class="form-group" style="margin-bottom: 12px;"><label>อีเมลสมาชิก</label><input type="email" id="authUserEmail" class="form-control" placeholder="user@gmail.com" required></div>
-      <div class="form-group" style="margin-bottom: 18px;"><label>รหัสผ่าน</label><input type="password" id="authPassword" class="form-control" placeholder="••••••••" required></div>
-      <button type="submit" class="btn btn-solid" style="width:100%; margin-bottom:10px;">เข้าสู่ระบบ / สมัคร</button>
-    </form>
-    <button class="btn btn-outline" style="width: 100%; border:none; color:var(--ink-dim);" onclick="closeAuthModal()">ปิดหน้าต่าง</button>
+    <div id="loginFormContainer">
+      <h3>👤 เข้าสู่ระบบสมาชิก</h3>
+      <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">กรุณากรอกอีเมลและรหัสผ่านที่คุณลงทะเบียนไว้</p>
+      <form onsubmit="handleUserLogin(event)">
+        <div class="form-group" style="margin-bottom: 12px;"><label>อีเมลสมาชิก</label><input type="email" id="loginEmail" class="form-control" placeholder="user@gmail.com" required></div>
+        <div class="form-group" style="margin-bottom: 18px;"><label>รหัสผ่าน</label><input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required></div>
+        <button type="submit" class="btn btn-solid" style="width:100%; margin-bottom:10px;">เข้าสู่ระบบ</button>
+      </form>
+      <div style="font-size:13.5px; color:var(--ink-dim); margin-top:10px;">
+        ยังไม่มีบัญชีใช่ไหม? <a style="color:var(--yellow); cursor:pointer; font-weight:bold;" onclick="switchAuthTab('register')">สมัครสมาชิกที่นี่</a>
+      </div>
+    </div>
+
+    <div id="registerFormContainer" style="display: none;">
+      <h3>✨ สมัครสมาชิกใหม่</h3>
+      <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">สร้างบัญชีผู้ใช้งานใหม่ในระบบ</p>
+      <form onsubmit="handleUserRegister(event)">
+        <div class="form-group" style="margin-bottom: 10px;"><label>ชื่อผู้ใช้งาน / ชื่อ-นามสกุล</label><input type="text" id="regName" class="form-control" placeholder="ชื่อของคุณ..." required></div>
+        <div class="form-group" style="margin-bottom: 10px;"><label>อีเมล</label><input type="email" id="regEmail" class="form-control" placeholder="user@gmail.com" required></div>
+        <div class="form-group" style="margin-bottom: 18px;"><label>รหัสผ่าน</label><input type="password" id="regPassword" class="form-control" placeholder="••••••••" required minlength="6"></div>
+        <button type="submit" class="btn btn-solid" style="width:100%; margin-bottom:10px; background:linear-gradient(135deg,var(--green),#15803d); color:#fff;">ยืนยันสมัครสมาชิก</button>
+      </form>
+      <div style="font-size:13.5px; color:var(--ink-dim); margin-top:10px;">
+        มีบัญชีอยู่แล้ว? <a style="color:var(--yellow); cursor:pointer; font-weight:bold;" onclick="switchAuthTab('login')">เข้าสู่ระบบที่นี่</a>
+      </div>
+    </div>
+
+    <button class="btn btn-outline" style="width: 100%; border:none; color:var(--ink-dim); margin-top:15px;" onclick="closeAuthModal()">ปิดหน้าต่าง</button>
   </div>
 </div>
 
@@ -311,7 +336,7 @@
   </div>
 </div>
 
-<!-- 🌟 Modal แสดงรางวัลสุดหรูหรา (Luxury Reward Modal) ตามที่คุณอยากปรับแต่ง -->
+<!-- Modal แสดงรางวัลสุดหรูหรา -->
 <div class="modal-overlay" id="rewardModal">
   <div class="modal-box reward-modal-container">
     <div class="reward-header-glow">🎉 ยินดีด้วย คุณได้รับรางวัล!</div>
@@ -333,16 +358,37 @@
 
 <!-- Admin Dashboard -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title"><span class="dot"></span>⚙️ HIGHPERBIT Pro Admin Control Center</div>
+  <div class="section-title"><span class="dot"></span>⚙️ HIGHPERBIT Professional Admin Control Center</div>
   
   <div class="admin-stats-grid">
-    <div class="stat-card"><div style="font-size:12px; color:var(--ink-dim);">สถานะระบบ</div><div class="num" style="color:var(--green)">🟢 ซิงค์คลาวด์ปกติ</div></div>
+    <div class="stat-card"><div style="font-size:12px; color:var(--ink-dim);">สถานะระบบซิงค์ความเร็วสูง</div><div class="num" style="color:var(--green)">⚡ Real-time (5s)</div></div>
     <div class="stat-card"><div style="font-size:12px; color:var(--ink-dim);">สมาชิกทั้งหมด</div><div class="num" id="statTotalUsers">0 คน</div></div>
   </div>
 
   <div class="admin-box-card" style="border:1px solid #ef4444; background: rgba(239, 68, 68, 0.08);">
     <h4 style="color:#ef4444;">🛠️ โหมดปิดปรับปรุงเว็บไซต์</h4>
     <button class="btn btn-outline" id="maintenanceToggleBtn" onclick="toggleMaintenance()">สลับสถานะปิดเว็บ</button>
+  </div>
+
+  <!-- 🌟 ระบบเพิ่มเงินให้ผู้ใช้โดยแอดมินระดับมืออาชีพ -->
+  <div class="admin-box-card" style="border:1px solid var(--green);">
+    <h4 style="color:var(--green);">💳 ระบบเติมเงิน / จัดการกระเป๋าเงินสมาชิก</h4>
+    <p style="font-size:12.5px; color:var(--ink-dim); margin-bottom:12px;">เลือกสมาชิกที่ต้องการเพิ่มเงิน หรือแก้ไขยอดเงินในกระเป๋า</p>
+    <div style="overflow-x: auto;">
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>ชื่อผู้ใช้</th>
+            <th>อีเมล</th>
+            <th>ยอดเงินคงเหลือ</th>
+            <th>จัดการเติมเงิน</th>
+          </tr>
+        </thead>
+        <tbody id="adminUserTableBody">
+          <!-- รายชื่อสมาชิกจะแสดงที่นี่อัตโนมัติ -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="admin-box-card">
@@ -354,7 +400,6 @@
     </form>
   </div>
 
-  <!-- 🌟 ระบบเพิ่มกล่องสุ่มแบบแยกกล่องกรอกอัตราออกและสต็อกชัดเจน -->
   <div class="admin-box-card" style="border:1px solid var(--yellow);">
     <h4>📦 สร้างกล่องสุ่มสินค้า (แยกช่อง โอกาสออก และ สต็อกรางวัลเด็ดขาด)</h4>
     <form id="addProductForm" onsubmit="handleProductFormSubmit(event)">
@@ -368,7 +413,6 @@
         <label style="font-family:'Kanit'; color:var(--yellow); font-size:14px; display:block; margin-bottom:8px;">⭐ รายการไอเทม, ระดับ Tier, โอกาสออก (%) และรหัสสต็อก (กรอกแยกช่องอิสระ)</label>
         
         <div id="itemRowsContainer">
-          <!-- แถวเริ่มต้น -->
           <div class="item-builder-row">
             <div class="form-group"><input type="text" class="form-control row-name" placeholder="ชื่อไอเทม" required></div>
             <div class="form-group">
@@ -398,7 +442,7 @@
 </div>
 
 <footer>
-  © 2026 HIGHPERBIT SHOP — Separate Inputs & Luxury Reward Edition.
+  © 2026 HIGHPERBIT SHOP — Ultimate Professional Enterprise Edition.
 </footer>
 
 <script>
@@ -412,7 +456,7 @@
     return trimmed;
   }
 
-  const DB_KEY = 'hpb_db_v38_separated';
+  const DB_KEY = 'hpb_db_v40_enterprise';
   let initialDb = {
     settings: {
       logo: 'https://lh3.googleusercontent.com/d/1OME4b-URSCm8MoGkIRmugex6TJUQQdiB',
@@ -437,7 +481,7 @@
   function getDb() {
     let raw = localStorage.getItem(DB_KEY);
     if (!raw) { localStorage.setItem(DB_KEY, JSON.stringify(initialDb)); return initialDb; }
-    return JSON.parse(raw);
+    try { return JSON.parse(raw); } catch(e) { return initialDb; }
   }
 
   function saveDb(db) {
@@ -445,7 +489,7 @@
     window.dispatchEvent(new Event('storage'));
   }
 
-  let currentUser = localStorage.getItem('hpb_current_user_v38') || null;
+  let currentUserEmail = localStorage.getItem('hpb_current_user_email_v40') || null;
   let logoClicks = 0;
   let isAdmin = sessionStorage.getItem('admin_ok') === 'true';
 
@@ -464,21 +508,23 @@
     if (logoFormatted) document.getElementById('logoContainerView').innerHTML = `<img src="${logoFormatted}" alt="Logo">`;
 
     let bgFormatted = formatImageUrl(db.settings.bg);
-    if (bgFormatted) document.getElementById('home').style.backgroundImage = `linear-gradient(rgba(12, 7, 6, 0.8), rgba(12, 7, 6, 0.8)), url('${bgFormatted}')`;
+    if (bgFormatted) document.getElementById('home').style.backgroundImage = `linear-gradient(rgba(10, 5, 4, 0.82), rgba(10, 5, 4, 0.82)), url('${bgFormatted}')`;
 
     document.getElementById('settingLogo').value = db.settings.logo;
     document.getElementById('settingBg').value = db.settings.bg;
 
-    let uData = currentUser && db.users[currentUser] ? db.users[currentUser] : null;
-    if (currentUser) {
-      document.getElementById('loginNavBtn').textContent = '👤 ' + currentUser;
+    let uData = currentUserEmail && db.users[currentUserEmail] ? db.users[currentUserEmail] : null;
+    if (uData) {
+      document.getElementById('loginNavBtn').textContent = '👤 ' + uData.name;
       document.getElementById('logoutUserBtn').style.display = 'inline-block';
       document.getElementById('walletBadgeContainer').style.display = 'flex';
       document.getElementById('topupBtn').style.display = 'inline-block';
       document.getElementById('redeemCodeNavBtn').style.display = 'inline-block';
-      document.getElementById('walletDisplay').textContent = uData ? uData.wallet.toLocaleString() : 0;
+      document.getElementById('walletDisplay').textContent = uData.wallet.toLocaleString();
     } else {
-      document.getElementById('loginNavBtn').textContent = '👤 เข้าสู่ระบบ';
+      currentUserEmail = null;
+      localStorage.removeItem('hpb_current_user_email_v40');
+      document.getElementById('loginNavBtn').textContent = '👤 เข้าสู่ระบบ / สมัคร';
       document.getElementById('logoutUserBtn').style.display = 'none';
       document.getElementById('walletBadgeContainer').style.display = 'none';
       document.getElementById('topupBtn').style.display = 'none';
@@ -487,6 +533,119 @@
 
     document.getElementById('statTotalUsers').textContent = Object.keys(db.users).length + ' คน';
     renderProducts();
+    if(isAdmin) renderAdminUserTable(db);
+  }
+
+  // --- ฟังก์ชันเพิ่มเงินให้ผู้ใช้โดยแอดมิน ---
+  function renderAdminUserTable(db) {
+    let tbody = document.getElementById('adminUserTableBody');
+    if(!tbody) return;
+    let emails = Object.keys(db.users);
+    if(emails.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--ink-dim);">ยังไม่มีสมาชิกในระบบ</td></tr>`;
+      return;
+    }
+    tbody.innerHTML = emails.map(email => {
+      let u = db.users[email];
+      return `
+        <tr>
+          <td><b>${u.name}</b></td>
+          <td>${u.email}</td>
+          <td style="color:var(--yellow); font-weight:bold;">฿${u.wallet.toLocaleString()}</td>
+          <td>
+            <div style="display:flex; gap:6px;">
+              <input type="number" id="add_amt_${email.replace(/[@.]/g,'_')}" class="form-control" placeholder="จำนวนเงิน" style="padding:6px; width:100px;">
+              <button class="btn btn-wallet" style="padding:6px 12px; font-size:12px;" onclick="adminAddMoney('${email}')">➕ เพิ่มเงิน</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function adminAddMoney(email) {
+    let inputId = 'add_amt_' + email.replace(/[@.]/g,'_');
+    let amtInput = document.getElementById(inputId);
+    let amt = parseFloat(amtInput.value);
+
+    if(isNaN(amt) || amt <= 0) {
+      alert('กรุณากรอกจำนวนเงินให้ถูกต้อง');
+      return;
+    }
+
+    let db = getDb();
+    if(!db.users[email]) { alert('ไม่พบข้อมูลผู้ใช้นี้'); return; }
+
+    db.users[email].wallet += amt;
+    if(!db.users[email].history) db.users[email].history = [];
+    db.users[email].history.push({
+      boxName: 'เติมเงินโดยแอดมิน (Admin Topup)',
+      price: 0,
+      itemWon: `ได้รับเงินเข้ากระเป๋า +${amt} บาท`,
+      code: 'ADMIN-SYSTEM',
+      time: new Date().toLocaleString()
+    });
+
+    saveDb(db);
+    updateUIState();
+    amtInput.value = '';
+    alert(`✅ เติมเงินจำนวน ${amt} บาท ให้ผู้ใช้ ${db.users[email].name} สำเร็จ!`);
+  }
+
+  // --- ระบบสลับหน้า Login / Register ---
+  function switchAuthTab(tab) {
+    if (tab === 'register') {
+      document.getElementById('loginFormContainer').style.display = 'none';
+      document.getElementById('registerFormContainer').style.display = 'block';
+    } else {
+      document.getElementById('loginFormContainer').style.display = 'block';
+      document.getElementById('registerFormContainer').style.display = 'none';
+    }
+  }
+
+  function handleUserRegister(e) {
+    e.preventDefault();
+    let db = getDb();
+    let name = document.getElementById('regName').value.trim();
+    let email = document.getElementById('regEmail').value.trim().toLowerCase();
+    let password = document.getElementById('regPassword').value.trim();
+
+    if (db.users[email]) {
+      alert('❌ อีเมลนี้ถูกสมัครใช้งานไปแล้ว!');
+      return;
+    }
+
+    db.users[email] = { name: name, email: email, password: password, wallet: 0, history: [] };
+    saveDb(db);
+    alert('🎉 สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ');
+    switchAuthTab('login');
+    e.target.reset();
+  }
+
+  function handleUserLogin(e) {
+    e.preventDefault();
+    let db = getDb();
+    let email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    let password = document.getElementById('loginPassword').value.trim();
+
+    let user = db.users[email];
+    if (!user || user.password !== password) {
+      alert('❌ อีเมลหรือรหัสผ่านไม่ถูกต้อง!');
+      return;
+    }
+
+    currentUserEmail = email;
+    localStorage.setItem('hpb_current_user_email_v40', currentUserEmail);
+    updateUIState();
+    closeAuthModal();
+    alert(`👋 ยินดีต้อนรับคุณ ${user.name}!`);
+  }
+
+  function logoutUser() {
+    currentUserEmail = null;
+    localStorage.removeItem('hpb_current_user_email_v40');
+    updateUIState();
+    alert('ออกจากระบบเรียบร้อยแล้ว');
   }
 
   function renderProducts() {
@@ -516,7 +675,6 @@
     grid.innerHTML = html;
   }
 
-  // เพิ่มแถวกรอกไอเทมแบบแยกช่องในหน้าแอดมิน
   function addItemBuilderRow() {
     let container = document.getElementById('itemRowsContainer');
     let row = document.createElement('div');
@@ -574,14 +732,14 @@
         <div><button type="button" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; padding:8px 12px;" onclick="this.closest('.item-builder-row').remove()">❌ ลบ</button></div>
       </div>
     `;
-    alert('สร้างกล่องสุ่มใหม่สำเร็จเรียบร้อย!');
+    alert('⚡ สร้างและซิงค์กล่องสุ่มใหม่ข้ามอุปกรณ์สำเร็จ!');
   }
 
   let selectedProductIndex = null;
   function promptPurchase(index) {
-    if (!currentUser) { openAuthModal(); return; }
+    if (!currentUserEmail) { openAuthModal(); return; }
     let db = getDb();
-    let uData = db.users[currentUser];
+    let uData = db.users[currentUserEmail];
     let p = db.products[index];
     if (uData.wallet < p.price) { alert('ยอดเงินในกระเป๋าของคุณไม่พอ!'); return; }
     selectedProductIndex = index;
@@ -591,7 +749,7 @@
 
   function executePurchase() {
     let db = getDb();
-    let uData = db.users[currentUser];
+    let uData = db.users[currentUserEmail];
     let p = db.products[selectedProductIndex];
     uData.wallet -= p.price;
 
@@ -614,7 +772,6 @@
     updateUIState();
     closeConfirmModal();
 
-    // แสดงผลหน้าต่างรางวัลสุดหรู
     let tierBadge = document.getElementById('rewardTierBadgeView');
     tierBadge.textContent = wonItem.tier;
     tierBadge.className = 'reward-tier-badge ' + (wonItem.tier === 'SSR' ? 'tier-ssr' : wonItem.tier === 'Rare' ? 'tier-rare' : 'tier-normal');
@@ -624,7 +781,9 @@
     document.getElementById('rewardModal').classList.add('active');
   }
 
+  // --- ระบบซิงค์ความเร็วสูง Real-time ทุกๆ 5 วินาที ---
   window.addEventListener('storage', function() { updateUIState(); });
+  setInterval(function() { updateUIState(); }, 5000);
 
   window.onload = function() {
     if(isAdmin) {
@@ -635,20 +794,20 @@
     updateUIState();
   };
 
-  function openAuthModal() { document.getElementById('authModal').classList.add('active'); }
+  function openAuthModal() { switchAuthTab('login'); document.getElementById('authModal').classList.add('active'); }
   function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
   function closeLoginModal() { document.getElementById('adminLoginModal').classList.remove('active'); }
   function closeConfirmModal() { document.getElementById('confirmModal').classList.remove('active'); }
   function closeRewardModal() { document.getElementById('rewardModal').classList.remove('active'); }
-  function openTopupModal() { if(!currentUser){openAuthModal();return;} document.getElementById('giftLinkInput').value=''; document.getElementById('topupModal').classList.add('active'); }
+  function openTopupModal() { if(!currentUserEmail){openAuthModal();return;} document.getElementById('giftLinkInput').value=''; document.getElementById('topupModal').classList.add('active'); }
   function closeTopupModal() { document.getElementById('topupModal').classList.remove('active'); }
-  function openRedeemModal() { if(!currentUser){openAuthModal();return;} document.getElementById('promoCodeInput').value=''; document.getElementById('redeemModal').classList.add('active'); }
+  function openRedeemModal() { if(!currentUserEmail){openAuthModal();return;} document.getElementById('promoCodeInput').value=''; document.getElementById('redeemModal').classList.add('active'); }
   function closeRedeemModal() { document.getElementById('redeemModal').classList.remove('active'); }
   
   function openHistoryModal() {
-    if(!currentUser) { openAuthModal(); return; }
+    if(!currentUserEmail) { openAuthModal(); return; }
     let db = getDb();
-    let uData = db.users[currentUser];
+    let uData = db.users[currentUserEmail];
     let container = document.getElementById('historyListContainer');
     if(!uData.history || uData.history.length === 0) {
       container.innerHTML = '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ยังไม่มีประวัติการเปิดกล่อง</p>';
@@ -673,12 +832,6 @@
   function handleSaveSettings(e) {
     e.preventDefault(); let db = getDb(); db.settings.logo = document.getElementById('settingLogo').value.trim(); db.settings.bg = document.getElementById('settingBg').value.trim(); saveDb(db); updateUIState(); alert('บันทึกรูปภาพสำเร็จ!');
   }
-  function handleUserAuth(e) {
-    e.preventDefault(); let db = getDb(); let email = document.getElementById('authUserEmail').value.trim();
-    if (!db.users[email]) { db.users[email] = { wallet: 0, history: [] }; saveDb(db); }
-    currentUser = email; localStorage.setItem('hpb_current_user_v38', currentUser); updateUIState(); closeAuthModal(); alert('เข้าสู่ระบบสำเร็จ!');
-  }
-  function logoutUser() { currentUser = null; localStorage.removeItem('hpb_current_user_v38'); updateUIState(); alert('ออกจากระบบแล้ว'); }
   function handleAdminLogin(e) {
     e.preventDefault(); if (document.getElementById('adminPass').value === 'Piano08102556') { sessionStorage.setItem('admin_ok', 'true'); location.reload(); } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
@@ -688,12 +841,12 @@
     if (!link.includes('gift.truemoney.com')) { alert('ลิงก์ซองไม่ถูกต้อง'); return; }
     if (db.usedGifts.includes(link)) { alert('ซองนี้ถูกใช้งานไปแล้ว'); return; }
     let amt = [50, 100, 300, 500][Math.floor(Math.random()*4)];
-    db.usedGifts.push(link); db.users[currentUser].wallet += amt; saveDb(db); updateUIState(); closeTopupModal(); alert(`เติมเงินสำเร็จ +${amt} บาท`);
+    db.usedGifts.push(link); db.users[currentUserEmail].wallet += amt; saveDb(db); updateUIState(); closeTopupModal(); alert(`เติมเงินสำเร็จ +${amt} บาท`);
   }
   function handleRedeemCode(e) {
     e.preventDefault(); let db = getDb(); let code = document.getElementById('promoCodeInput').value.trim().toUpperCase(); let promo = db.promos[code];
     if(!promo || promo.currentUses >= promo.maxUses) { alert('โค้ดไม่ถูกต้องหรือหมดสิทธิ์แล้ว'); return; }
-    promo.currentUses += 1; db.users[currentUser].wallet += promo.amount; saveDb(db); updateUIState(); closeRedeemModal(); alert(`ใช้โค้ดสำเร็จ +${promo.amount} บาท`);
+    promo.currentUses += 1; db.users[currentUserEmail].wallet += promo.amount; saveDb(db); updateUIState(); closeRedeemModal(); alert(`ใช้โค้ดสำเร็จ +${promo.amount} บาท`);
   }
 </script>
 </body>
