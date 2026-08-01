@@ -117,7 +117,7 @@
     display:inline-flex; align-items:center; gap:6px;
     background: rgba(255,204,51,0.15); color: var(--yellow);
     border:1px solid rgba(255,204,51,0.4); font-size:13px; font-weight:600;
-    padding:5px 14px; border-radius:999px; margin-bottom:18px;
+    padding:5px 14px; border-radius:99px; margin-bottom:18px;
   }
   .hero h1{
     font-size: 48px; font-weight:800; line-height:1.15; color:#fff;
@@ -244,7 +244,7 @@
 
   footer{
     margin-top:40px; border-top:1px solid var(--line); padding: 24px 5%;
-    text-align:center; color: var(--ink-dim); font-size:12.5px;
+    text-align:center; color: var(--ink-dim); font-size:12.5px; cursor: pointer; user-select: none;
   }
 </style>
 </head>
@@ -276,7 +276,6 @@
     <a href="#home">หน้าแรก</a>
     <a href="#shop">กล่องสุ่มทั้งหมด</a>
     <a onclick="openHistoryModal()">📜 ประวัติการซื้อ</a>
-    <!-- 🔒 ปุ่มเข้าระบบแอดมินถูกซ่อนไว้จากหน้าเว็บทั่วไป เพื่อความปลอดภัยสูงสุด -->
     <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบ (แอดมิน)</button>
   </nav>
   
@@ -513,8 +512,8 @@
   <div class="product-grid" id="productGrid"></div>
 </div>
 
-<footer>
-  © 2026 HIGHPERBIT SHOP — Ultimate Secure Edition.
+<footer ondblclick="triggerSecretAdmin()">
+  © 2026 HIGHPERBIT SHOP — Ultimate Secure Edition. (ดับเบิลคลิกที่นี่เพื่อเข้าแอดมิน)
 </footer>
 
 <script>
@@ -860,20 +859,17 @@
   }
   function closeHistoryModal() { document.getElementById('historyModal').classList.remove('active'); }
 
-  // 🔒 ระบบตรวจสอบลิงก์ลับเข้าแอดมินโดยอัตโนมัติ
-  function checkSecretAdminRoute() {
-    if (window.location.hash === '#admin-secret-login' || window.location.search.includes('admin=secret')) {
-      if (sessionStorage.getItem('admin_ok') === 'true') {
-        enableAdminMode();
-      } else {
-        document.getElementById('adminLoginModal').classList.add('active');
-      }
+  // ฟังก์ชันเรียกหน้าแอดมินลับเมื่อดับเบิลคลิกที่ฟุตเตอร์
+  function triggerSecretAdmin() {
+    if (sessionStorage.getItem('admin_ok') === 'true') {
+      enableAdminMode();
+    } else {
+      document.getElementById('adminLoginModal').classList.add('active');
     }
   }
 
   function closeLoginModal() { 
     document.getElementById('adminLoginModal').classList.remove('active'); 
-    window.location.hash = '';
   }
 
   function handleAdminLogin(e) {
@@ -905,7 +901,6 @@
     document.getElementById('adminDashboard').classList.remove('active');
     document.getElementById('logoutAdminBtn').style.display = 'none';
     closeCanvaToolbar();
-    window.location.hash = '';
     
     document.getElementById('announcementTextView').removeAttribute('contenteditable');
     document.getElementById('heroEyebrowView').removeAttribute('contenteditable');
@@ -992,7 +987,7 @@
   }
 
   function resetProductForm() {
-    document.getElementById('addProductForm'].reset();
+    document.getElementById('addProductForm').reset();
     document.getElementById('editingProductId').value = '';
     document.getElementById('productFormTitle').textContent = '📦 ระบบเพิ่ม / แก้ไขกล่องสุ่มสินค้า';
     document.getElementById('saveProductBtn').textContent = '💾 บันทึกสร้างกล่องสุ่ม';
@@ -1052,7 +1047,6 @@
   window.onload = function() {
     updateUIState();
     renderProducts();
-    checkSecretAdminRoute();
     if (sessionStorage.getItem('admin_ok') === 'true') enableAdminMode();
   };
 </script>
