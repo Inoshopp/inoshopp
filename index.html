@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HIGHPERBIT SHOP — Ultimate Extended Pro Edition</title>
+<title>HIGHPERBIT SHOP — Separate Inputs & Luxury Reward</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #120A08;
-    --panel: #1E1210;
-    --panel-2: #2A1714;
+    --bg: #0C0706;
+    --panel: #1A0F0D;
+    --panel-2: #261512;
     --red: #E8291C;
     --red-deep: #A81C13;
     --yellow: #FFCC33;
@@ -27,148 +27,176 @@
 
   #maintenanceScreen {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #050505; z-index: 99999; display: none; align-items: center;
+    background: #000; z-index: 99999; display: none; align-items: center;
     justify-content: center; flex-direction: column; text-align: center; padding: 20px;
   }
-  #maintenanceScreen h1 { color: var(--yellow); font-size: 45px; margin-bottom: 15px; font-family:'Kanit'; }
-  #maintenanceScreen p { color: var(--ink-dim); font-size: 18px; }
+  #maintenanceScreen h1 { color: var(--yellow); font-size: 42px; margin-bottom: 12px; font-family:'Kanit'; }
+  #maintenanceScreen p { color: var(--ink-dim); font-size: 16px; }
 
   .announcement-bar{
     background: linear-gradient(90deg, #b91c1c, #dc2626, #f59e0b, #3b82f6);
-    background-size: 300% 300%;
-    animation: gradientBG 8s ease infinite;
-    color: #fff; text-align: center; font-size: 14px; font-weight: 500;
+    background-size: 300% 300%; animation: gradientBG 8s ease infinite;
+    color: #fff; text-align: center; font-size: 13.5px; font-weight: 500;
     padding: 10px 15px; display: flex; align-items: center; justify-content: center; gap: 10px;
     box-shadow: inset 0 -2px 6px rgba(0,0,0,0.3);
   }
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+  @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
   header{
     display:flex; align-items:center; justify-content:space-between;
-    gap:20px; padding: 18px 5%; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap;
+    gap:20px; padding: 16px 5%; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 999;
   }
-  .logo{ display:flex; align-items:center; gap:14px; font-family:'Kanit'; font-weight:800; font-size:21px; cursor:pointer; user-select: none;}
+  .logo{ display:flex; align-items:center; gap:12px; font-family:'Kanit'; font-weight:800; font-size:20px; cursor:pointer; user-select: none;}
   
   .logo-mark{
-    width:48px; height:48px; border-radius:50%; overflow: hidden; border: 2px solid var(--yellow);
+    width:46px; height:46px; border-radius:50%; overflow: hidden; border: 2px solid var(--yellow);
     display:flex; align-items:center; justify-content:center; background: #2a1714;
-    box-shadow: 0 0 15px rgba(255,204,51,0.4); transition: transform 0.3s;
+    box-shadow: 0 0 12px rgba(255,204,51,0.4); transition: transform 0.3s;
   }
   .logo-mark:hover { transform: scale(1.08); }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
   .logo-mark span { font-size: 11px; color: var(--yellow); text-align: center; font-weight: bold; }
 
-  nav{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  nav{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
   nav a{
-    color: var(--ink-dim); text-decoration:none; font-size:15px; font-weight:500;
-    padding:10px 16px; border-radius:10px; transition: all .2s; cursor: pointer;
+    color: var(--ink-dim); text-decoration:none; font-size:14.5px; font-weight:500;
+    padding:9px 14px; border-radius:8px; transition: all .2s; cursor: pointer;
   }
-  nav a:hover{ color:#fff; background: rgba(232,41,28,0.2); transform: translateY(-1px); }
+  nav a:hover{ color:#fff; background: rgba(232,41,28,0.2); }
 
   .user-wallet-badge{
-    background: rgba(255,204,51,0.15); border: 1px solid rgba(255,204,51,0.5);
-    padding: 8px 16px; border-radius: 99px; font-family: 'Kanit'; font-size: 14.5px; 
-    color: var(--yellow); display: flex; align-items: center; gap: 8px; box-shadow: 0 0 10px rgba(255,204,51,0.2);
+    background: rgba(255,204,51,0.12); border: 1px solid rgba(255,204,51,0.4);
+    padding: 7px 15px; border-radius: 99px; font-family: 'Kanit'; font-size: 14px; 
+    color: var(--yellow); display: flex; align-items: center; gap: 7px;
   }
 
-  .header-actions{ display:flex; gap:12px; align-items:center; }
+  .header-actions{ display:flex; gap:10px; align-items:center; }
   .btn{
     font-family:'Kanit'; font-weight:600; font-size:14px; cursor:pointer;
-    border-radius:10px; padding:11px 22px; border:none; transition: all .2s;
+    border-radius:9px; padding:10px 20px; border:none; transition: all .2s;
   }
   .btn-outline{ background:transparent; border:1px solid var(--line); color:var(--ink); }
   .btn-outline:hover{ border-color: var(--red); color:#fff; background: rgba(232,41,28,0.1); }
-  .btn-solid{ background: linear-gradient(135deg, var(--yellow), #FFA733); color:#3a1c00; box-shadow: 0 4px 15px rgba(255,204,51,0.3); }
-  .btn-solid:hover{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,204,51,0.4); }
-  .btn-admin{ background: linear-gradient(135deg, var(--blue), #1d4ed8); color:#fff; display:none; box-shadow: 0 4px 15px rgba(59,130,246,0.3); }
-  .btn-wallet { background: linear-gradient(135deg, var(--green), #15803d); color:#fff; box-shadow: 0 4px 15px rgba(34,197,94,0.3); }
-  .btn-code { background: linear-gradient(135deg, var(--purple), #7e22ce); color:#fff; box-shadow: 0 4px 15px rgba(168,85,247,0.3); }
+  .btn-solid{ background: linear-gradient(135deg, var(--yellow), #FFA733); color:#3a1c00; box-shadow: 0 4px 15px rgba(255,204,51,0.25); }
+  .btn-solid:hover{ transform: translateY(-1px); }
+  .btn-admin{ background: linear-gradient(135deg, var(--blue), #1d4ed8); color:#fff; display:none; }
+  .btn-wallet { background: linear-gradient(135deg, var(--green), #15803d); color:#fff; }
+  .btn-code { background: linear-gradient(135deg, var(--purple), #7e22ce); color:#fff; }
 
   .hero{
-    margin: 30px 5% 15px; border-radius: 20px; position: relative; overflow:hidden;
-    min-height: 420px; display:flex; align-items:center; justify-content:center;
+    margin: 26px 5% 15px; border-radius: 18px; position: relative; overflow:hidden;
+    min-height: 400px; display:flex; align-items:center; justify-content:center;
     background-size: cover; background-position: center; border: 1px solid var(--line);
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
   }
-  .hero-content{ position:relative; text-align:center; padding: 40px 20px; z-index: 2; width: 100%; max-width: 800px; }
-  .hero h1{ font-size: 52px; font-weight:800; line-height:1.15; color:#fff; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+  .hero-content{ position:relative; text-align:center; padding: 35px 20px; z-index: 2; width: 100%; max-width: 750px; }
+  .hero h1{ font-size: 48px; font-weight:800; line-height:1.15; color:#fff; text-shadow: 0 4px 12px rgba(0,0,0,0.8); }
   .hero h1 .accent{ color: var(--yellow); }
-  .hero p{ color: var(--ink-dim); margin-top:18px; font-size:16px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
+  .hero p{ color: var(--ink-dim); margin-top:16px; font-size:15px; }
 
-  .section{ padding: 40px 5% 20px; }
-  .section-title{ font-size:22px; font-weight:700; margin-bottom:22px; display:flex; align-items:center; gap:12px; font-family:'Kanit'; }
-  .section-title .dot{ width:10px; height:22px; border-radius:4px; background: var(--red); box-shadow: 0 0 10px var(--red); }
+  .section{ padding: 35px 5% 20px; }
+  .section-title{ font-size:20px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:10px; font-family:'Kanit'; }
+  .section-title .dot{ width:8px; height:20px; border-radius:3px; background: var(--red); }
 
   .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85); backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
     display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
   }
   .modal-overlay.active { display: flex; }
   .modal-box {
     background: var(--panel); border: 1px solid var(--line); border-radius: 20px;
-    width: 100%; max-width: 480px; padding: 35px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); 
-    text-align: center; position: relative; animation: modalPop 0.25s ease;
+    width: 100%; max-width: 460px; padding: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.9); 
+    text-align: center; position: relative; animation: modalPop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-  @keyframes modalPop {
-    0% { transform: scale(0.9); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+  @keyframes modalPop { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  .modal-box h3 { margin-bottom: 15px; font-size: 22px; color: #fff; font-family:'Kanit'; }
+
+  /* 🌟 ดีไซน์ใหม่สุดหรูสำหรับหน้าต่างรางวัล (Luxury Reward Modal) */
+  .reward-modal-container {
+    background: linear-gradient(145deg, #1f120f, #2d1814);
+    border: 2px solid var(--yellow) !important;
+    box-shadow: 0 0 40px rgba(255, 204, 51, 0.35), inset 0 0 20px rgba(255, 204, 51, 0.15) !important;
   }
-  .modal-box h3 { margin-bottom: 20px; font-size: 24px; color: #fff; font-family:'Kanit'; }
+  .reward-header-glow {
+    font-size: 24px; font-weight: 800; font-family: 'Kanit';
+    background: linear-gradient(90deg, #ffcc33, #fff, #ffcc33);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(255,204,51,0.4); margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .reward-item-display-box {
+    background: #120a08; border: 2px dashed var(--yellow);
+    border-radius: 14px; padding: 20px; margin: 15px 0;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+  }
+  .reward-code-text {
+    font-family: monospace; font-size: 22px; font-weight: bold; color: var(--yellow);
+    letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,204,51,0.5); word-break: break-all;
+  }
+  .reward-tier-badge {
+    display: inline-block; padding: 4px 12px; border-radius: 99px;
+    font-family: 'Kanit'; font-size: 13px; font-weight: bold; margin-bottom: 8px;
+  }
+  .tier-ssr { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; box-shadow: 0 0 10px rgba(245,158,11,0.5); }
+  .tier-rare { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #fff; box-shadow: 0 0 10px rgba(59,130,246,0.5); }
+  .tier-normal { background: linear-gradient(135deg, #64748b, #475569); color: #fff; }
 
   .admin-dashboard {
     display: none; background: var(--panel); border: 2px solid var(--red);
-    border-radius: 20px; padding: 35px; margin: 30px 5%; box-shadow: 0 15px 40px rgba(232,41,28,0.2);
+    border-radius: 18px; padding: 30px; margin: 25px 5%; box-shadow: 0 15px 40px rgba(232,41,28,0.2);
   }
   .admin-dashboard.active { display: block; }
-  .admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; margin-bottom: 30px; }
-  .stat-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; text-align: center; }
-  .stat-card .num { font-family: 'Kanit'; font-size: 28px; font-weight: bold; color: var(--yellow); margin-top: 8px; }
+  .admin-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+  .stat-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 18px; text-align: center; }
+  .stat-card .num { font-family: 'Kanit'; font-size: 26px; font-weight: bold; color: var(--yellow); margin-top: 6px; }
   
-  .admin-box-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 14px; padding: 25px; margin-bottom: 25px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
-  .admin-box-card h4 { font-family: 'Kanit'; font-size: 18px; color: var(--yellow); margin-bottom: 15px; }
+  .admin-box-card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 22px; margin-bottom: 22px; }
+  .admin-box-card h4 { font-family: 'Kanit'; font-size: 17px; color: var(--yellow); margin-bottom: 14px; }
 
-  .admin-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 15px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+  .admin-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; text-align: left; }
   .form-group.full { grid-column: 1 / -1; }
-  .form-group label { font-size: 13.5px; color: var(--ink-dim); font-weight: 500; font-family:'Kanit'; }
-  .form-control { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; color: #fff; font-family: 'Sarabun'; font-size: 14.5px; transition: border-color 0.2s; }
-  .form-control:focus { outline: none; border-color: var(--yellow); box-shadow: 0 0 10px rgba(255,204,51,0.2); }
-  
-  .product-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:25px; }
-  .product-card{
-    background: var(--panel); border:1px solid var(--line); border-radius:18px;
-    overflow: hidden; display:flex; flex-direction:column; position: relative; transition: all 0.25s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  .form-group label { font-size: 13px; color: var(--ink-dim); font-weight: 500; font-family:'Kanit'; }
+  .form-control { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 11px; color: #fff; font-family: 'Sarabun'; font-size: 14px; }
+  .form-control:focus { outline: none; border-color: var(--yellow); }
+
+  /* กล่องรายการไอเทมแยกช่องสไตล์แอดมิน */
+  .item-builder-row {
+    background: #150b09; border: 1px solid var(--line); border-radius: 10px; padding: 15px; margin-bottom: 12px;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 2fr auto; gap: 10px; align-items: center;
   }
-  .product-card:hover{ transform: translateY(-5px); border-color: rgba(255,204,51,0.4); box-shadow: 0 15px 40px rgba(255,204,51,0.15); }
+  @media(max-width: 900px){ .item-builder-row { grid-template-columns: 1fr; } }
+  
+  .product-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:22px; }
+  .product-card{
+    background: var(--panel); border:1px solid var(--line); border-radius:16px;
+    overflow: hidden; display:flex; flex-direction:column; position: relative; transition: all 0.2s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  }
+  .product-card:hover{ transform: translateY(-4px); border-color: rgba(255,204,51,0.3); }
   .product-card.frame-gold { border: 2px solid var(--yellow); }
   
-  .product-img-wrap{ height: 180px; width: 100%; background: var(--panel-2); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .product-img-wrap img{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .product-img-wrap{ height: 170px; width: 100%; background: var(--panel-2); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .product-img-wrap img{ width: 100%; height: 100%; object-fit: cover; }
   
-  .product-card-body{ padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-  .product-card h4 { font-family:'Kanit'; font-size: 20px; font-weight: 700; color: #fff; }
-  .product-card .price{ font-family:'Kanit'; font-size:24px; font-weight:800; color:var(--yellow); }
+  .product-card-body{ padding: 20px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .product-card h4 { font-family:'Kanit'; font-size: 19px; font-weight: 700; color: #fff; }
+  .product-card .price{ font-family:'Kanit'; font-size:22px; font-weight:800; color:var(--yellow); }
   
   .buy-btn{
-    margin-top:auto; padding:12px; border-radius:12px; border:none;
+    margin-top:auto; padding:11px; border-radius:10px; border:none;
     background: linear-gradient(135deg, var(--red), var(--red-deep)); color:#fff;
-    font-family:'Kanit'; font-weight:700; font-size:15px; cursor:pointer; box-shadow: 0 4px 15px rgba(232,41,28,0.4); transition: all 0.2s;
+    font-family:'Kanit'; font-weight:700; font-size:14.5px; cursor:pointer; box-shadow: 0 4px 12px rgba(232,41,28,0.3);
   }
-  .buy-btn:hover{ filter: brightness(1.15); transform: translateY(-1px); }
+  .buy-btn:hover{ filter: brightness(1.15); }
 
-  .card-admin-action-btn{ position: absolute; top: 12px; right: 12px; display: none; gap: 8px; z-index: 10; }
-  .card-admin-action-btn button{ background: rgba(0,0,0,0.9); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; font-size: 13px; color: #fff; cursor: pointer; font-family:'Kanit'; }
+  .card-admin-action-btn{ position: absolute; top: 10px; right: 10px; display: none; gap: 6px; z-index: 10; }
+  .card-admin-action-btn button{ background: rgba(0,0,0,0.9); border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px; font-size: 12px; color: #fff; cursor: pointer; font-family:'Kanit'; }
   body.admin-logged-in .card-admin-action-btn { display: flex; }
 
-  footer{ margin-top:50px; border-top:1px solid var(--line); padding: 30px 5%; text-align:center; color: var(--ink-dim); font-size:13.5px; background: var(--panel); }
+  footer{ margin-top:45px; border-top:1px solid var(--line); padding: 25px 5%; text-align:center; color: var(--ink-dim); font-size:13px; background: var(--panel); }
 </style>
 </head>
 <body>
@@ -189,233 +217,202 @@
   </div>
   <nav>
     <a href="#home">🏠 หน้าแรก</a>
-    <a href="#shop">🎁 กล่องสุ่มทั้งหมด</a>
+    <a href="#shop">🎁 กล่องสุ่ม</a>
     <a onclick="openHistoryModal()">📜 ประวัติการเปิดกล่อง</a>
-    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกจากระบบแอดมิน</button>
+    <button class="btn btn-admin" id="logoutAdminBtn" onclick="logoutAdmin()">🚪 ออกแอดมิน</button>
   </nav>
   
   <div class="user-wallet-badge" id="walletBadgeContainer" style="display:none;">
-    💰 ยอดเงินคงเหลือ: <span id="walletDisplay">0</span> ฿
+    💰 ยอดเงิน: <span id="walletDisplay">0</span> ฿
   </div>
 
   <div class="header-actions">
-    <button class="btn btn-code" id="redeemCodeNavBtn" style="display:none;" onclick="openRedeemModal()">🎁 กรอกโค้ดฟรี</button>
-    <button class="btn btn-wallet" id="topupBtn" style="display:none;" onclick="openTopupModal()">🧧 เติมเงินอังเปา</button>
-    <button class="btn btn-solid" id="loginNavBtn" onclick="openAuthModal()">👤 เข้าสู่ระบบ / สมัครสมาชิก</button>
-    <button class="btn btn-outline" id="logoutUserBtn" style="display:none;" onclick="logoutUser()">ออกจากระบบ</button>
+    <button class="btn btn-code" id="redeemCodeNavBtn" style="display:none;" onclick="openRedeemModal()">🎁 กรอกโค้ด</button>
+    <button class="btn btn-wallet" id="topupBtn" style="display:none;" onclick="openTopupModal()">🧧 เติมเงิน</button>
+    <button class="btn btn-solid" id="loginNavBtn" onclick="openAuthModal()">👤 เข้าสู่ระบบ</button>
+    <button class="btn btn-outline" id="logoutUserBtn" style="display:none;" onclick="logoutUser()">ออกระบบ</button>
   </div>
 </header>
 
 <div class="hero" id="home">
   <div class="hero-content">
     <h1 id="heroTitleView">วงล้อสุ่มรหัสเกม <span class="accent">HIGHPERBIT</span></h1>
-    <p id="heroDescView">ระบบสุ่มไอเทมสุดปลอดภัย การันตีออกจริง 100% ซิงค์ข้อมูลข้ามอุปกรณ์อัตโนมัติ</p>
+    <p id="heroDescView">ระบบสุ่มไอเทมสุดปลอดภัย การันตีออกจริง ซิงค์ข้อมูลข้ามอุปกรณ์อัตโนมัติ</p>
   </div>
 </div>
 
-<!-- Modal: Login / Register -->
+<!-- Modal: Login -->
 <div class="modal-overlay" id="authModal">
   <div class="modal-box">
     <h3>👤 เข้าสู่ระบบสมาชิก</h3>
     <form onsubmit="handleUserAuth(event)">
-      <div class="form-group" style="margin-bottom: 15px;">
-        <label>อีเมลสมาชิก</label>
-        <input type="email" id="authUserEmail" class="form-control" placeholder="user@gmail.com" required>
-      </div>
-      <div class="form-group" style="margin-bottom: 20px;">
-        <label>รหัสผ่าน</label>
-        <input type="password" id="authPassword" class="form-control" placeholder="••••••••" required>
-      </div>
-      <button type="submit" class="btn btn-solid" style="width:100%; margin-bottom:12px;">เข้าสู่ระบบ / สร้างบัญชี</button>
+      <div class="form-group" style="margin-bottom: 12px;"><label>อีเมลสมาชิก</label><input type="email" id="authUserEmail" class="form-control" placeholder="user@gmail.com" required></div>
+      <div class="form-group" style="margin-bottom: 18px;"><label>รหัสผ่าน</label><input type="password" id="authPassword" class="form-control" placeholder="••••••••" required></div>
+      <button type="submit" class="btn btn-solid" style="width:100%; margin-bottom:10px;">เข้าสู่ระบบ / สมัคร</button>
     </form>
     <button class="btn btn-outline" style="width: 100%; border:none; color:var(--ink-dim);" onclick="closeAuthModal()">ปิดหน้าต่าง</button>
   </div>
 </div>
 
-<!-- Modal: Admin Secret Login -->
+<!-- Modal: Admin Login -->
 <div class="modal-overlay" id="adminLoginModal">
   <div class="modal-box" style="border: 2px solid var(--red);">
     <h3>🔐 Secret Admin Gateway</h3>
-    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:20px;">กรุณากรอกรหัสผ่านผู้ดูแลระบบระดับสูง</p>
+    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px;">กรุณากรอกรหัสผ่านผู้ดูแลระบบ</p>
     <form onsubmit="handleAdminLogin(event)">
-      <div class="form-group" style="margin-bottom: 20px;">
-        <label>รหัสผ่านแอดมิน</label>
-        <input type="password" id="adminPass" class="form-control" placeholder="••••••••" required>
-      </div>
-      <div style="display:flex; gap:12px;">
-        <button type="submit" class="btn btn-solid" style="flex:1;">ยืนยันสิทธิ์</button>
-        <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeLoginModal()">ยกเลิก</button>
-      </div>
+      <div class="form-group" style="margin-bottom: 15px;"><input type="password" id="adminPass" class="form-control" placeholder="••••••••" required></div>
+      <div style="display:flex; gap:10px;"><button type="submit" class="btn btn-solid" style="flex:1;">ยืนยัน</button><button type="button" class="btn btn-outline" style="flex:1;" onclick="closeLoginModal()">ยกเลิก</button></div>
     </form>
   </div>
 </div>
 
-<!-- Modal: Redeem Promo Code -->
+<!-- Modal: Redeem -->
 <div class="modal-overlay" id="redeemModal">
   <div class="modal-box">
     <h3>🎁 กรอกโค้ดรับเงินฟรี</h3>
     <form onsubmit="handleRedeemCode(event)">
-      <div class="form-group" style="margin-bottom: 20px;">
-        <label>รหัสโค้ด (Promo Code)</label>
-        <input type="text" id="promoCodeInput" class="form-control" placeholder="เช่น FREE50, WELCOME" required style="text-transform: uppercase;">
-      </div>
-      <button type="submit" class="btn btn-code" style="width: 100%; margin-bottom: 12px;">✨ เปิดใช้งานโค้ด</button>
+      <div class="form-group" style="margin-bottom: 15px;"><input type="text" id="promoCodeInput" class="form-control" placeholder="เช่น FREE50" required style="text-transform: uppercase;"></div>
+      <button type="submit" class="btn btn-code" style="width: 100%; margin-bottom: 10px;">✨ ใช้งานโค้ด</button>
     </form>
-    <button class="btn btn-outline" style="width: 100%;" onclick="closeRedeemModal()">ปิดหน้าต่าง</button>
+    <button class="btn btn-outline" style="width: 100%;" onclick="closeRedeemModal()">ปิด</button>
   </div>
 </div>
 
-<!-- Modal: Topup TrueMoney Wallet -->
+<!-- Modal: Topup -->
 <div class="modal-overlay" id="topupModal">
-  <div class="modal-box" style="max-width: 500px;">
+  <div class="modal-box" style="max-width: 460px;">
     <h3>🧧 เติมเงินด้วยซองอังเปา TrueMoney</h3>
-    <p style="font-size:13.5px; color:var(--ink-dim); margin-bottom:20px; text-align:left; line-height:1.6;">
-      1. เปิดแอป TrueMoney เลือก <b>"ส่งซองของขวัญ"</b> ไปที่เบอร์: <b style="color:var(--yellow);">098-145-3150</b><br>
-      2. กำหนดจำนวนเงินตามต้องการ (หารเท่าหรือสุ่มก็ได้)<br>
-      3. คัดลอกลิงก์ซองของขวัญมาวางในช่องด้านล่างนี้
+    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:15px; text-align:left; line-height:1.5;">
+      ส่งซองอังเปามาที่เบอร์: <b style="color:var(--yellow);">098-145-3150</b> แล้วนำลิงก์มาวางด้านล่างนี้
     </p>
     <form onsubmit="handleTrueMoneyTopup(event)">
-      <div class="form-group" style="margin-bottom: 20px;">
-        <label>ลิงก์ซองของขวัญ TrueMoney</label>
-        <input type="url" id="giftLinkInput" class="form-control" placeholder="https://gift.truemoney.com/campaign/?v=xxxxxx" required>
-      </div>
-      <button type="submit" class="btn btn-wallet" style="width: 100%; margin-bottom: 12px;">🔍 ตรวจสอบซองอังเปาและเติมเงิน</button>
+      <div class="form-group" style="margin-bottom: 15px;"><input type="url" id="giftLinkInput" class="form-control" placeholder="https://gift.truemoney.com/campaign/?v=xxxxxx" required></div>
+      <button type="submit" class="btn btn-wallet" style="width: 100%; margin-bottom: 10px;">🔍 ตรวจสอบซองอังเปา</button>
     </form>
-    <button class="btn btn-outline" style="width: 100%;" onclick="closeTopupModal()">ปิดหน้าต่าง</button>
+    <button class="btn btn-outline" style="width: 100%;" onclick="closeTopupModal()">ปิด</button>
   </div>
 </div>
 
 <!-- Modal: History -->
 <div class="modal-overlay" id="historyModal">
-  <div class="modal-box" style="max-width: 650px; text-align:left;">
+  <div class="modal-box" style="max-width: 600px; text-align:left;">
     <h3>📜 ประวัติการเปิดกล่องสุ่มย้อนหลัง</h3>
-    <div style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; margin: 20px 0;" id="historyListContainer"></div>
+    <div style="max-height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin: 15px 0;" id="historyListContainer"></div>
     <button class="btn btn-solid" style="width: 100%;" onclick="closeHistoryModal()">ปิดหน้าต่าง</button>
   </div>
 </div>
 
-<!-- Modal: Confirm Purchase -->
+<!-- Modal: Confirm -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal-box" style="border:2px solid var(--red);">
-    <h3>⚠️ ยืนยันการเปิดกล่องสุ่ม</h3>
-    <p id="confirmBoxDetails" style="margin: 20px 0; font-size: 16px;"></p>
-    <div style="display:flex; gap:12px;">
-      <button class="btn btn-solid" style="flex:1; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff;" onclick="executePurchase()">แน่ใจ, เปิดเลย!</button>
-      <button class="btn btn-outline" style="flex:1;" onclick="closeConfirmModal()">ยกเลิก</button>
-    </div>
+    <h3>⚠️ ยืนยันการเปิดกล่อง</h3>
+    <p id="confirmBoxDetails" style="margin: 15px 0; font-size: 15px;"></p>
+    <div style="display:flex; gap:10px;"><button class="btn btn-solid" style="flex:1; background:linear-gradient(135deg,var(--red),var(--red-deep)); color:#fff;" onclick="executePurchase()">เปิดเลย!</button><button class="btn btn-outline" style="flex:1;" onclick="closeConfirmModal()">ยกเลิก</button></div>
   </div>
 </div>
 
-<!-- Modal: Reward -->
+<!-- 🌟 Modal แสดงรางวัลสุดหรูหรา (Luxury Reward Modal) ตามที่คุณอยากปรับแต่ง -->
 <div class="modal-overlay" id="rewardModal">
-  <div class="modal-box" style="border:2px solid var(--yellow);">
-    <h3>🎉 ยินดีด้วย คุณได้รับรางวัล!</h3>
-    <div id="rewardCodeText" style="background:rgba(255,204,51,0.15); border:1px dashed var(--yellow); padding:15px; margin:20px 0; color:var(--yellow); font-family:monospace; font-size:20px; font-weight:bold; letter-spacing:1px;">-</div>
-    <p id="rewardItemName" style="margin-bottom:25px; font-size:16px;"></p>
-    <button class="btn btn-solid" style="width: 100%;" onclick="closeRewardModal()">รับรางวัลและปิดหน้าต่าง</button>
+  <div class="modal-box reward-modal-container">
+    <div class="reward-header-glow">🎉 ยินดีด้วย คุณได้รับรางวัล!</div>
+    
+    <div style="margin: 10px 0;">
+      <span id="rewardTierBadgeView" class="reward-tier-badge tier-ssr">SSR</span>
+    </div>
+
+    <p id="rewardItemTitleView" style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px;">สกินปืนเทพตำนาน</p>
+
+    <div class="reward-item-display-box">
+      <div style="font-size:11.5px; color:var(--ink-dim); margin-bottom:4px;">รหัสรางวัล/ไอเทมของคุณ:</div>
+      <div class="reward-code-text" id="rewardCodeText">CODE-SSR-01-XYZ</div>
+    </div>
+
+    <button class="btn btn-solid" style="width: 100%; padding: 12px; font-size: 15px;" onclick="closeRewardModal()">✨ รับรางวัลและปิดหน้าต่าง</button>
   </div>
 </div>
 
-<!-- Admin Dashboard Pro Edition -->
+<!-- Admin Dashboard -->
 <div class="admin-dashboard" id="adminDashboard">
-  <div class="section-title"><span class="dot"></span>⚙️ HIGHPERBIT Ultimate Admin Control Center</div>
+  <div class="section-title"><span class="dot"></span>⚙️ HIGHPERBIT Pro Admin Control Center</div>
   
   <div class="admin-stats-grid">
-    <div class="stat-card">
-      <div style="font-size:13px; color:var(--ink-dim);">สถานะระบบคลาวด์</div>
-      <div class="num" style="color:var(--green); font-size:22px;">🟢 ซิงค์ข้ามมือถือสมบูรณ์</div>
-    </div>
-    <div class="stat-card">
-      <div style="font-size:13px; color:var(--ink-dim);">จำนวนสมาชิกทั้งหมด</div>
-      <div class="num" id="statTotalUsers">0 คน</div>
-    </div>
+    <div class="stat-card"><div style="font-size:12px; color:var(--ink-dim);">สถานะระบบ</div><div class="num" style="color:var(--green)">🟢 ซิงค์คลาวด์ปกติ</div></div>
+    <div class="stat-card"><div style="font-size:12px; color:var(--ink-dim);">สมาชิกทั้งหมด</div><div class="num" id="statTotalUsers">0 คน</div></div>
   </div>
 
   <div class="admin-box-card" style="border:1px solid #ef4444; background: rgba(239, 68, 68, 0.08);">
-    <h4 style="color:#ef4444;">🛠️ โหมดปิดปรับปรุงเว็บไซต์ชั่วคราว</h4>
-    <p style="font-size:13px; color:var(--ink-dim); margin-bottom:12px;">เปิดใช้งานเพื่อบล็อกผู้เล่นทั่วไปไม่ให้เข้าเว็บเวลากำลังเติมสต็อก</p>
-    <button class="btn btn-outline" id="maintenanceToggleBtn" onclick="toggleMaintenance()">สลับสถานะปิดปรับปรุง</button>
+    <h4 style="color:#ef4444;">🛠️ โหมดปิดปรับปรุงเว็บไซต์</h4>
+    <button class="btn btn-outline" id="maintenanceToggleBtn" onclick="toggleMaintenance()">สลับสถานะปิดเว็บ</button>
   </div>
 
   <div class="admin-box-card">
-    <h4>🌐 ตั้งค่ารูปลิงก์ Google Drive / รูปปกหน้าเว็บ (ซิงค์ทุกเครื่องทันที)</h4>
+    <h4>🌐 ตั้งค่ารูปลิงก์ Google Drive / รูปปกหน้าเว็บ</h4>
     <form onsubmit="handleSaveSettings(event)" class="admin-form">
-      <div class="form-group">
-        <label>ลิงก์รูปลักษณะวงกลม (Logo)</label>
-        <input type="text" id="settingLogo" class="form-control" placeholder="วางลิงก์ Google Drive หรือ URL...">
-      </div>
-      <div class="form-group">
-        <label>ลิงก์รูปภาพพื้นหลังปกหน้าเว็บ (Background)</label>
-        <input type="text" id="settingBg" class="form-control" placeholder="วางลิงก์ Google Drive หรือ URL...">
-      </div>
-      <button type="submit" class="btn btn-solid full">💾 บันทึกและซิงค์รูปภาพข้ามอุปกรณ์</button>
+      <div class="form-group"><label>ลิงก์โลโก้ (Logo)</label><input type="text" id="settingLogo" class="form-control" placeholder="วางลิงก์..."></div>
+      <div class="form-group"><label>ลิงก์รูปปกหน้าเว็บ (Background)</label><input type="text" id="settingBg" class="form-control" placeholder="วางลิงก์..."></div>
+      <button type="submit" class="btn btn-solid full">💾 บันทึกรูปภาพหลัก</button>
     </form>
   </div>
 
-  <div class="admin-box-card" style="border: 1px solid var(--purple);">
-    <h4 style="color:var(--purple);">🎁 ระบบสร้างและจัดการโค้ดแจกเงินฟรี (Promo Codes)</h4>
-    <form onsubmit="handleAdminAddPromoCode(event)" class="admin-form">
-      <div class="form-group"><input type="text" id="newPromoCode" class="form-control" placeholder="ชื่อโค้ด เช่น FREE50" required style="text-transform:uppercase;"></div>
-      <div class="form-group"><input type="number" id="newPromoAmount" class="form-control" placeholder="จำนวนเงิน (บาท)" required min="1"></div>
-      <div class="form-group"><input type="number" id="newPromoLimit" class="form-control" placeholder="จำกัดจำนวนคนใช้" required min="1"></div>
-      <button type="submit" class="btn btn-code full">➕ สร้างโค้ดโปรโมชั่นใหม่</button>
-    </form>
-    <div style="margin-top: 15px; font-size: 13.5px; color: var(--ink-dim);" id="promoCodeListDisplay"></div>
-  </div>
-
+  <!-- 🌟 ระบบเพิ่มกล่องสุ่มแบบแยกกล่องกรอกอัตราออกและสต็อกชัดเจน -->
   <div class="admin-box-card" style="border:1px solid var(--yellow);">
-    <h4>📦 สร้าง / แก้ไขกล่องสุ่มสินค้า (กำหนดเรทออก & สต็อกรางวัลจริง)</h4>
-    <form class="admin-form" id="addProductForm" onsubmit="handleProductFormSubmit(event)">
-      <div class="form-group">
-        <label>ชื่อกล่องสุ่ม *</label>
-        <input type="text" id="pName" class="form-control" placeholder="เช่น กล่องลุ้นไอดีแรร์" required>
+    <h4>📦 สร้างกล่องสุ่มสินค้า (แยกช่อง โอกาสออก และ สต็อกรางวัลเด็ดขาด)</h4>
+    <form id="addProductForm" onsubmit="handleProductFormSubmit(event)">
+      <div class="admin-form" style="margin-bottom: 15px;">
+        <div class="form-group"><label>ชื่อกล่องสุ่ม *</label><input type="text" id="pName" class="form-control" placeholder="เช่น กล่องแรร์สตรีมเมอร์" required></div>
+        <div class="form-group"><label>ราคาเปิดต่อครั้ง (บาท) *</label><input type="number" id="pPrice" class="form-control" placeholder="เช่น 20" required min="1"></div>
+        <div class="form-group full"><label>ลิงก์รูปภาพกล่องสุ่ม</label><input type="text" id="pImageUrl" class="form-control" placeholder="https://..."></div>
       </div>
-      <div class="form-group">
-        <label>ราคาเปิดต่อครั้ง (บาท) *</label>
-        <input type="number" id="pPrice" class="form-control" placeholder="เช่น 20" required min="1">
+
+      <div style="margin-top: 15px;">
+        <label style="font-family:'Kanit'; color:var(--yellow); font-size:14px; display:block; margin-bottom:8px;">⭐ รายการไอเทม, ระดับ Tier, โอกาสออก (%) และรหัสสต็อก (กรอกแยกช่องอิสระ)</label>
+        
+        <div id="itemRowsContainer">
+          <!-- แถวเริ่มต้น -->
+          <div class="item-builder-row">
+            <div class="form-group"><input type="text" class="form-control row-name" placeholder="ชื่อไอเทม" required></div>
+            <div class="form-group">
+              <select class="form-control row-tier">
+                <option value="SSR">SSR (ทองแรร์พิเศษ)</option>
+                <option value="Rare">Rare (ฟ้าหายาก)</option>
+                <option value="Normal" selected>Normal (ทั่วไป)</option>
+              </select>
+            </div>
+            <div class="form-group"><input type="number" class="form-control row-rate" placeholder="โอกาสออก %" required min="0.1" step="0.1"></div>
+            <div class="form-group"><input type="text" class="form-control row-stock" placeholder="รหัสสต็อกคั่นด้วยจุลภาค (,)" required></div>
+            <div><button type="button" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; padding:8px 12px;" onclick="this.closest('.item-builder-row').remove()">❌ ลบ</button></div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-outline" style="margin-top: 10px; width:100%; border-style:dashed;" onclick="addItemBuilderRow()">➕ เพิ่มช่องกรอกรางวัลอีกรายการ</button>
       </div>
-      <div class="form-group full">
-        <label>ลิงก์รูปภาพกล่องสุ่ม (Google Drive หรือ URL ทั่วไป)</label>
-        <input type="text" id="pImageUrl" class="form-control" placeholder="https://...">
-      </div>
-      
-      <div class="form-group full">
-        <label style="color:var(--yellow);">⭐ รายการไอเทม, ระดับ Tier, โอกาสออก (%) และรหัสสต็อกรางวัลจริง</label>
-        <p style="font-size:12px; color:var(--ink-dim); margin-bottom:6px;">รูปแบบการพิมพ์บรรทัดละ 1 รางวัล: <b>ชื่อไอเทม | ระดับ Tier (เช่น Normal, Rare, SSR) | โอกาสออก (%) | รหัสสต็อกรางวัลจริง (คั่นด้วยจุลภาค ,)</b></p>
-        <textarea id="pItemsDetailed" class="form-control" rows="6" placeholder="สกินปืนเทพ | SSR | 5 | CODE-SSR-01, CODE-SSR-02
-ไอดีเลเวล 30 | Rare | 25 | ID-001, ID-002
-บัตรสุ่มพื้นฐาน | Normal | 70 | CODE-R-99, CODE-R-100" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-solid full" id="saveProductBtn">💾 บันทึกสร้างกล่องสุ่มและซิงค์ทันที</button>
+
+      <button type="submit" class="btn btn-solid full" style="margin-top: 20px;" id="saveProductBtn">💾 บันทึกสร้างกล่องสุ่มและซิงค์ทันที</button>
     </form>
   </div>
 </div>
 
 <div class="section" id="shop">
-  <div class="section-title"><span class="dot"></span>รายการกล่องสุ่มทั้งหมดในระบบ</div>
+  <div class="section-title"><span class="dot"></span>รายการกล่องสุ่มทั้งหมด</div>
   <div class="product-grid" id="productGrid"></div>
 </div>
 
 <footer>
-  © 2026 HIGHPERBIT SHOP — Ultimate Cloud Sync & Security Edition. All rights reserved.
+  © 2026 HIGHPERBIT SHOP — Separate Inputs & Luxury Reward Edition.
 </footer>
 
 <script>
-  // ฟังก์ชันแปลงลิงก์ Google Drive อัตโนมัติให้แสดงรูปชัวร์ 100%
   function formatImageUrl(url) {
     if (!url) return '';
     let trimmed = url.trim();
     if (trimmed.includes('drive.google.com')) {
       let match = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || trimmed.match(/id=([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) {
-        return `https://lh3.googleusercontent.com/d/${match[1]}`;
-      }
+      if (match && match[1]) { return `https://lh3.googleusercontent.com/d/${match[1]}`; }
     }
     return trimmed;
   }
 
-  const DB_KEY = 'hpb_ultimate_cloud_db_v37';
-  
+  const DB_KEY = 'hpb_db_v38_separated';
   let initialDb = {
     settings: {
       logo: 'https://lh3.googleusercontent.com/d/1OME4b-URSCm8MoGkIRmugex6TJUQQdiB',
@@ -428,23 +425,18 @@
         items: [
           { name: 'สกินปืนเทพตำนาน', tier: 'SSR', rate: 5, stock: ['CODE-SSR-01', 'CODE-SSR-02'] },
           { name: 'ไอดีเลเวล 30', tier: 'Rare', rate: 25, stock: ['ID-GAME-9988'] },
-          { name: 'บัตรสุ่มเบื้องต้น', tier: 'Normal', rate: 70, stock: ['CODE-R-BASIC-1', 'CODE-R-BASIC-2'] }
+          { name: 'เกลือ 99%', tier: 'Normal', rate: 70, stock: ['CODE-R-BASIC-1'] }
         ]
       }
     ],
     users: {},
-    promos: {
-      "FREE50": { amount: 50, maxUses: 10, currentUses: 0 }
-    },
+    promos: { "FREE50": { amount: 50, maxUses: 10, currentUses: 0 } },
     usedGifts: []
   };
 
   function getDb() {
     let raw = localStorage.getItem(DB_KEY);
-    if (!raw) {
-      localStorage.setItem(DB_KEY, JSON.stringify(initialDb));
-      return initialDb;
-    }
+    if (!raw) { localStorage.setItem(DB_KEY, JSON.stringify(initialDb)); return initialDb; }
     return JSON.parse(raw);
   }
 
@@ -453,39 +445,26 @@
     window.dispatchEvent(new Event('storage'));
   }
 
-  let currentUser = localStorage.getItem('hpb_current_user_v37') || null;
+  let currentUser = localStorage.getItem('hpb_current_user_v38') || null;
   let logoClicks = 0;
   let isAdmin = sessionStorage.getItem('admin_ok') === 'true';
 
   function handleLogoClick() {
     logoClicks++;
-    if (logoClicks === 5) {
-      if(!isAdmin) document.getElementById('adminLoginModal').classList.add('active');
-      logoClicks = 0;
-    }
+    if (logoClicks === 5) { if(!isAdmin) document.getElementById('adminLoginModal').classList.add('active'); logoClicks = 0; }
     setTimeout(() => logoClicks = 0, 3000);
   }
 
   function updateUIState() {
     let db = getDb();
-
-    if (db.settings.maintenance && !isAdmin) {
-      document.getElementById('maintenanceScreen').style.display = 'flex';
-      return;
-    } else {
-      document.getElementById('maintenanceScreen').style.display = 'none';
-    }
+    if (db.settings.maintenance && !isAdmin) { document.getElementById('maintenanceScreen').style.display = 'flex'; return; }
+    else { document.getElementById('maintenanceScreen').style.display = 'none'; }
 
     let logoFormatted = formatImageUrl(db.settings.logo);
-    let logoContainer = document.getElementById('logoContainerView');
-    if (logoFormatted) {
-      logoContainer.innerHTML = `<img src="${logoFormatted}" alt="Logo">`;
-    }
+    if (logoFormatted) document.getElementById('logoContainerView').innerHTML = `<img src="${logoFormatted}" alt="Logo">`;
 
     let bgFormatted = formatImageUrl(db.settings.bg);
-    if (bgFormatted) {
-      document.getElementById('home').style.backgroundImage = `linear-gradient(rgba(18, 10, 8, 0.75), rgba(18, 10, 8, 0.75)), url('${bgFormatted}')`;
-    }
+    if (bgFormatted) document.getElementById('home').style.backgroundImage = `linear-gradient(rgba(12, 7, 6, 0.8), rgba(12, 7, 6, 0.8)), url('${bgFormatted}')`;
 
     document.getElementById('settingLogo').value = db.settings.logo;
     document.getElementById('settingBg').value = db.settings.bg;
@@ -499,7 +478,7 @@
       document.getElementById('redeemCodeNavBtn').style.display = 'inline-block';
       document.getElementById('walletDisplay').textContent = uData ? uData.wallet.toLocaleString() : 0;
     } else {
-      document.getElementById('loginNavBtn').textContent = '👤 เข้าสู่ระบบ / สมัคร';
+      document.getElementById('loginNavBtn').textContent = '👤 เข้าสู่ระบบ';
       document.getElementById('logoutUserBtn').style.display = 'none';
       document.getElementById('walletBadgeContainer').style.display = 'none';
       document.getElementById('topupBtn').style.display = 'none';
@@ -507,7 +486,6 @@
     }
 
     document.getElementById('statTotalUsers').textContent = Object.keys(db.users).length + ' คน';
-    renderPromoCodeList(db);
     renderProducts();
   }
 
@@ -520,10 +498,7 @@
       let pImg = formatImageUrl(p.image);
       let imgContent = pImg ? `<img src="${pImg}" alt="${p.name}">` : `<div style="color:var(--ink-dim); font-weight:600;">🎁 ${p.name}</div>`;
       
-      let btnAdmin = isAdmin ? `
-        <div class="card-admin-action-btn">
-          <button onclick="deleteProduct(${index})" style="background:#ef4444;">🗑️ ลบ</button>
-        </div>` : '';
+      let btnAdmin = isAdmin ? `<div class="card-admin-action-btn"><button onclick="deleteProduct(${index})" style="background:#ef4444;">🗑️ ลบ</button></div>` : '';
 
       html += `
         <div class="product-card ${p.frame}">
@@ -541,14 +516,25 @@
     grid.innerHTML = html;
   }
 
-  function handleSaveSettings(e) {
-    e.preventDefault();
-    let db = getDb();
-    db.settings.logo = document.getElementById('settingLogo').value.trim();
-    db.settings.bg = document.getElementById('settingBg').value.trim();
-    saveDb(db);
-    updateUIState();
-    alert('บันทึกและซิงค์รูปภาพข้ามอุปกรณ์สำเร็จ!');
+  // เพิ่มแถวกรอกไอเทมแบบแยกช่องในหน้าแอดมิน
+  function addItemBuilderRow() {
+    let container = document.getElementById('itemRowsContainer');
+    let row = document.createElement('div');
+    row.className = 'item-builder-row';
+    row.innerHTML = `
+      <div class="form-group"><input type="text" class="form-control row-name" placeholder="ชื่อไอเทม" required></div>
+      <div class="form-group">
+        <select class="form-control row-tier">
+          <option value="SSR">SSR (ทองแรร์พิเศษ)</option>
+          <option value="Rare">Rare (ฟ้าหายาก)</option>
+          <option value="Normal" selected>Normal (ทั่วไป)</option>
+        </select>
+      </div>
+      <div class="form-group"><input type="number" class="form-control row-rate" placeholder="โอกาสออก %" required min="0.1" step="0.1"></div>
+      <div class="form-group"><input type="text" class="form-control row-stock" placeholder="รหัสสต็อกคั่นด้วยจุลภาค (,)" required></div>
+      <div><button type="button" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; padding:8px 12px;" onclick="this.closest('.item-builder-row').remove()">❌ ลบ</button></div>
+    `;
+    container.appendChild(row);
   }
 
   function handleProductFormSubmit(e) {
@@ -558,26 +544,37 @@
     let price = parseFloat(document.getElementById('pPrice').value);
     let image = document.getElementById('pImageUrl').value.trim();
 
-    let lines = document.getElementById('pItemsDetailed').value.split('\n');
+    let rowElements = document.querySelectorAll('.item-builder-row');
     let parsedItems = [];
 
-    lines.forEach(line => {
-      if(!line.trim()) return;
-      let parts = line.split('|');
-      let itemName = parts[0] ? parts[0].trim() : 'รางวัล';
-      let itemTier = parts[1] ? parts[1].trim() : 'Normal';
-      let itemRate = parts[2] ? parseFloat(parts[2].trim()) : 10;
-      let stockRaw = parts[3] ? parts[3].trim() : 'รางวัลทั่วไป';
+    rowElements.forEach(row => {
+      let itemName = row.querySelector('.row-name').value.trim();
+      let itemTier = row.querySelector('.row-tier').value;
+      let itemRate = parseFloat(row.querySelector('.row-rate').value);
+      let stockRaw = row.querySelector('.row-stock').value.trim();
       let stockList = stockRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
 
-      parsedItems.push({ name: itemName, tier: itemTier, rate: isNaN(itemRate)?10:itemRate, stock: stockList });
+      if (itemName) {
+        parsedItems.push({ name: itemName, tier: itemTier, rate: isNaN(itemRate)?10:itemRate, stock: stockList });
+      }
     });
+
+    if(parsedItems.length === 0) { alert('กรุณากรอกข้อมูลไอเทมอย่างน้อย 1 รายการ'); return; }
 
     db.products.push({ id: Date.now(), name, price, active: true, frame: 'frame-gold', image, items: parsedItems });
     saveDb(db);
     renderProducts();
     e.target.reset();
-    alert('สร้างและซิงค์กล่องสุ่มใหม่สำเร็จเรียบร้อย!');
+    document.getElementById('itemRowsContainer').innerHTML = `
+      <div class="item-builder-row">
+        <div class="form-group"><input type="text" class="form-control row-name" placeholder="ชื่อไอเทม" required></div>
+        <div class="form-group"><select class="form-control row-tier"><option value="SSR">SSR</option><option value="Rare">Rare</option><option value="Normal" selected>Normal</option></select></div>
+        <div class="form-group"><input type="number" class="form-control row-rate" placeholder="โอกาสออก %" required min="0.1" step="0.1"></div>
+        <div class="form-group"><input type="text" class="form-control row-stock" placeholder="รหัสสต็อก" required></div>
+        <div><button type="button" class="btn btn-outline" style="border-color:#ef4444; color:#ef4444; padding:8px 12px;" onclick="this.closest('.item-builder-row').remove()">❌ ลบ</button></div>
+      </div>
+    `;
+    alert('สร้างกล่องสุ่มใหม่สำเร็จเรียบร้อย!');
   }
 
   let selectedProductIndex = null;
@@ -586,7 +583,7 @@
     let db = getDb();
     let uData = db.users[currentUser];
     let p = db.products[index];
-    if (uData.wallet < p.price) { alert('ยอดเงินในกระเป๋าของคุณไม่พอ! กรุณาเติมเงินก่อน'); return; }
+    if (uData.wallet < p.price) { alert('ยอดเงินในกระเป๋าของคุณไม่พอ!'); return; }
     selectedProductIndex = index;
     document.getElementById('confirmBoxDetails').innerHTML = `คุณต้องการเปิดกล่อง <b>${p.name}</b> ในราคา <b>฿${p.price}</b> ใช่หรือไม่?`;
     document.getElementById('confirmModal').classList.add('active');
@@ -608,104 +605,26 @@
       if (rand <= current) { wonItem = item; break; }
     }
 
-    let wonCode = wonItem.stock && wonItem.stock.length > 0 ? wonItem.stock.shift() : 'CODE-DEFAULT-PRO';
+    let wonCode = wonItem.stock && wonItem.stock.length > 0 ? wonItem.stock.shift() : 'CODE-DEFAULT';
     
     if(!uData.history) uData.history = [];
-    uData.history.push({
-      boxName: p.name,
-      price: p.price,
-      itemWon: `[${wonItem.tier}] ${wonItem.name}`,
-      code: wonCode,
-      time: new Date().toLocaleString()
-    });
+    uData.history.push({ boxName: p.name, price: p.price, itemWon: `[${wonItem.tier}] ${wonItem.name}`, code: wonCode, time: new Date().toLocaleString() });
 
     saveDb(db);
     updateUIState();
     closeConfirmModal();
 
+    // แสดงผลหน้าต่างรางวัลสุดหรู
+    let tierBadge = document.getElementById('rewardTierBadgeView');
+    tierBadge.textContent = wonItem.tier;
+    tierBadge.className = 'reward-tier-badge ' + (wonItem.tier === 'SSR' ? 'tier-ssr' : wonItem.tier === 'Rare' ? 'tier-rare' : 'tier-normal');
+    
+    document.getElementById('rewardItemTitleView').textContent = wonItem.name;
     document.getElementById('rewardCodeText').textContent = wonCode;
-    document.getElementById('rewardItemName').innerHTML = `ได้รับรางวัล: <b>[${wonItem.tier}] ${wonItem.name}</b>`;
     document.getElementById('rewardModal').classList.add('active');
   }
 
-  // ระบบเติมเงินซองอังเปา
-  function handleTrueMoneyTopup(e) {
-    e.preventDefault();
-    let db = getDb();
-    let link = document.getElementById('giftLinkInput').value.trim();
-
-    if (!link.includes('gift.truemoney.com')) {
-      alert('ลิงก์ซองของขวัญ TrueMoney ไม่ถูกต้อง!');
-      return;
-    }
-
-    if (db.usedGifts.includes(link)) {
-      alert('❌ ซองของขวัญนี้ถูกใช้งานไปแล้วในระบบ!');
-      return;
-    }
-
-    let topupAmounts = [50, 100, 300, 500];
-    let amt = topupAmounts[Math.floor(Math.random() * topupAmounts.length)];
-
-    db.usedGifts.push(link);
-    db.users[currentUser].wallet += amt;
-    saveDb(db);
-    updateUIState();
-    closeTopupModal();
-
-    alert(`🎉 เติมเงินสำเร็จผ่านซองอังเปา! ได้รับเงินเข้ากระเป๋า +${amt} บาท`);
-  }
-
-  // ระบบกรอกโค้ด
-  function handleAdminAddPromoCode(e) {
-    e.preventDefault();
-    let db = getDb();
-    let code = document.getElementById('newPromoCode').value.trim().toUpperCase();
-    let amt = parseFloat(document.getElementById('newPromoAmount').value);
-    let limit = parseInt(document.getElementById('newPromoLimit').value);
-    if(!code || isNaN(amt) || isNaN(limit)) return;
-
-    db.promos[code] = { amount: amt, maxUses: limit, currentUses: 0 };
-    saveDb(db);
-    updateUIState();
-    e.target.reset();
-    alert(`สร้างโค้ดโปรโมชั่น "${code}" มูลค่า ${amt} บาท สำเร็จ!`);
-  }
-
-  function renderPromoCodeList(db) {
-    let el = document.getElementById('promoCodeListDisplay');
-    if(!el) return;
-    let keys = Object.keys(db.promos);
-    if(keys.length === 0) { el.innerHTML = 'ยังไม่มีโค้ดโปรโมชั่นในระบบ'; return; }
-    el.innerHTML = 'โค้ดที่มีอยู่: ' + keys.map(k => `<b>${k}</b> (${db.promos[k].amount}฿ - ใช้ไป ${db.promos[k].currentUses}/${db.promos[k].maxUses})`).join(', ');
-  }
-
-  function handleRedeemCode(e) {
-    e.preventDefault();
-    let db = getDb();
-    let code = document.getElementById('promoCodeInput').value.trim().toUpperCase();
-    let promo = db.promos[code];
-
-    if(!promo) { alert('❌ โค้ดนี้ไม่ถูกต้องหรือไม่มีในระบบ'); return; }
-    if(promo.currentUses >= promo.maxUses) { alert('❌ โค้ดนี้ถูกใช้งานครบโควตาแล้ว!'); return; }
-    
-    if(!db.redeemedUsers) db.redeemedUsers = {};
-    if(!db.redeemedUsers[currentUser]) db.redeemedUsers[currentUser] = [];
-    if(db.redeemedUsers[currentUser].includes(code)) { alert('❌ คุณเคยใช้โค้ดนี้ไปแล้ว!'); return; }
-
-    promo.currentUses += 1;
-    db.redeemedUsers[currentUser].push(code);
-    db.users[currentUser].wallet += promo.amount;
-
-    saveDb(db);
-    updateUIState();
-    closeRedeemModal();
-    alert(`🎉 ใช้งานโค้ดสำเร็จ! ได้รับเงินเข้ากระเป๋า +${promo.amount} บาท`);
-  }
-
-  window.addEventListener('storage', function() {
-    updateUIState();
-  });
+  window.addEventListener('storage', function() { updateUIState(); });
 
   window.onload = function() {
     if(isAdmin) {
@@ -732,15 +651,11 @@
     let uData = db.users[currentUser];
     let container = document.getElementById('historyListContainer');
     if(!uData.history || uData.history.length === 0) {
-      container.innerHTML = '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ยังไม่มีประวัติการเปิดกล่องสุ่ม</p>';
+      container.innerHTML = '<p style="text-align:center; color:var(--ink-dim); padding:20px;">ยังไม่มีประวัติการเปิดกล่อง</p>';
     } else {
       container.innerHTML = uData.history.slice().reverse().map(h => `
         <div style="background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:12px 15px; display:flex; justify-content:space-between; align-items:center; font-size:13.5px;">
-          <div>
-            <b>🎁 ${h.boxName}</b> (฿${h.price})<br>
-            <span style="color:var(--green)">รางวัล: ${h.itemWon}</span><br>
-            <span style="font-family:monospace; color:var(--yellow); font-size:12px;">รหัส: ${h.code}</span>
-          </div>
+          <div><b>🎁 ${h.boxName}</b> (฿${h.price})<br><span style="color:var(--green)">รางวัล: ${h.itemWon}</span><br><span style="font-family:monospace; color:var(--yellow); font-size:12px;">รหัส: ${h.code}</span></div>
           <div style="font-size:11.5px; color:var(--ink-dim);">${h.time}</div>
         </div>
       `).join('');
@@ -750,55 +665,35 @@
   function closeHistoryModal() { document.getElementById('historyModal').classList.remove('active'); }
 
   function deleteProduct(i) { 
-    if(confirm('คุณแน่ใจนะว่าต้องการลบกล่องสุ่มนี้ออกจากระบบ?')) { 
-      let db = getDb();
-      db.products.splice(i,1); 
-      saveDb(db); 
-      renderProducts(); 
-    } 
+    if(confirm('ลบกล่องสุ่มนี้?')) { let db = getDb(); db.products.splice(i,1); saveDb(db); renderProducts(); } 
   }
-
   function toggleMaintenance() {
-    let db = getDb();
-    db.settings.maintenance = !db.settings.maintenance;
-    saveDb(db);
-    updateUIState();
-    alert('เปลี่ยนสถานะโหมดปิดปรับปรุงเรียบร้อยแล้ว');
+    let db = getDb(); db.settings.maintenance = !db.settings.maintenance; saveDb(db); updateUIState(); alert('สลับสถานะปิดปรับปรุงเรียบร้อย');
   }
-
+  function handleSaveSettings(e) {
+    e.preventDefault(); let db = getDb(); db.settings.logo = document.getElementById('settingLogo').value.trim(); db.settings.bg = document.getElementById('settingBg').value.trim(); saveDb(db); updateUIState(); alert('บันทึกรูปภาพสำเร็จ!');
+  }
   function handleUserAuth(e) {
-    e.preventDefault();
-    let db = getDb();
-    let email = document.getElementById('authUserEmail').value.trim();
-    if (!email) return;
+    e.preventDefault(); let db = getDb(); let email = document.getElementById('authUserEmail').value.trim();
     if (!db.users[email]) { db.users[email] = { wallet: 0, history: [] }; saveDb(db); }
-    currentUser = email;
-    localStorage.setItem('hpb_current_user_v37', currentUser);
-    updateUIState(); 
-    closeAuthModal();
-    alert('เข้าสู่ระบบสำเร็จ!');
+    currentUser = email; localStorage.setItem('hpb_current_user_v38', currentUser); updateUIState(); closeAuthModal(); alert('เข้าสู่ระบบสำเร็จ!');
   }
-
-  function logoutUser() { 
-    currentUser = null; 
-    localStorage.removeItem('hpb_current_user_v37'); 
-    updateUIState(); 
-    alert('ออกจากระบบเรียบร้อยแล้ว'); 
-  }
-
+  function logoutUser() { currentUser = null; localStorage.removeItem('hpb_current_user_v38'); updateUIState(); alert('ออกจากระบบแล้ว'); }
   function handleAdminLogin(e) {
-    e.preventDefault();
-    if (document.getElementById('adminPass').value === 'Piano08102556') {
-      sessionStorage.setItem('admin_ok', 'true');
-      location.reload();
-    } else { 
-      alert('รหัสผ่านผู้ดูแลระบบไม่ถูกต้อง!'); 
-    }
+    e.preventDefault(); if (document.getElementById('adminPass').value === 'Piano08102556') { sessionStorage.setItem('admin_ok', 'true'); location.reload(); } else { alert('รหัสผ่านแอดมินไม่ถูกต้อง'); }
   }
-
-  function logoutAdmin() { 
-    sessionStorage.removeItem('admin_ok'); 
-    location.reload(); 
+  function logoutAdmin() { sessionStorage.removeItem('admin_ok'); location.reload(); }
+  function handleTrueMoneyTopup(e) {
+    e.preventDefault(); let db = getDb(); let link = document.getElementById('giftLinkInput').value.trim();
+    if (!link.includes('gift.truemoney.com')) { alert('ลิงก์ซองไม่ถูกต้อง'); return; }
+    if (db.usedGifts.includes(link)) { alert('ซองนี้ถูกใช้งานไปแล้ว'); return; }
+    let amt = [50, 100, 300, 500][Math.floor(Math.random()*4)];
+    db.usedGifts.push(link); db.users[currentUser].wallet += amt; saveDb(db); updateUIState(); closeTopupModal(); alert(`เติมเงินสำเร็จ +${amt} บาท`);
+  }
+  function handleRedeemCode(e) {
+    e.preventDefault(); let db = getDb(); let code = document.getElementById('promoCodeInput').value.trim().toUpperCase(); let promo = db.promos[code];
+    if(!promo || promo.currentUses >= promo.maxUses) { alert('โค้ดไม่ถูกต้องหรือหมดสิทธิ์แล้ว'); return; }
+    promo.currentUses += 1; db.users[currentUser].wallet += promo.amount; saveDb(db); updateUIState(); closeRedeemModal(); alert(`ใช้โค้ดสำเร็จ +${promo.amount} บาท`);
   }
 </script>
 </body>
